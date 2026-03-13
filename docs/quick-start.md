@@ -43,97 +43,97 @@ First, enable network permissions in Claude Desktop:
 2. Go to **Settings** → **Capabilities**
 3. Toggle **"Allow network egress"** to ON
 
-![Network settings](../assets/screenshots/install-step-1-network.png)
+![Enable network access](../assets/screenshots/1_enable_network_access.png)
 *Enable network egress in Claude Desktop Settings*
 
-### Step 2: Navigate to COWORK
+### Step 2: Open COWORK
 
 1. In Claude Desktop, click on **"Cowork"** in the left sidebar
 2. This opens the COWORK workspace area
 
-![Navigate to COWORK](../assets/screenshots/install-step-2-cowork.png)
+![Open COWORK](../assets/screenshots/2_open_cowork.png)
 *Access the COWORK workspace*
 
-### Step 3: Open Customize Panel
+### Step 3: Click Customize
 
-1. Click **"Customize"** in the left sidebar
+1. In the left sidebar, click **"Customize"**
 2. This opens the customization and plugins area
 
-![Customize panel](../assets/screenshots/install-step-3-customize.png)
+![Click Customize](../assets/screenshots/3_in_the_left_sidebar_click_customize.png)
 *Open the Customize panel*
 
-### Step 4: Browse Plugins
+### Step 4: Click Browse Plugins
 
 1. Click **"Browse plugins"** to access the plugin marketplace
 
-![Browse plugins](../assets/screenshots/install-step-4-browse.png)
+![Browse plugins](../assets/screenshots/4_click_browse_plugin.png)
 *Open the plugin browser*
 
-### Step 5: Switch to Personal Tab
+### Step 5: Click Personal Tab
 
 1. Click the **"Personal"** tab at the top
 2. This section allows you to add custom plugin sources
 
-![Personal tab](../assets/screenshots/install-step-5-personal.png)
+![Personal tab](../assets/screenshots/5_click_personal_tab.png)
 *Switch to the Personal plugins tab*
 
-### Step 6: Add Marketplace Source
+### Step 6: Click the Plus (+) Button
 
 1. Find the **+** button next to **"Local uploads"**
 2. Click to reveal the dropdown menu
 
-![Add source button](../assets/screenshots/install-step-6-add.png)
+![Click the plus button](../assets/screenshots/6_click_the_plus_+_button.png)
 *Locate the add source button*
 
-### Step 7: Select GitHub Marketplace
+### Step 7: Select "Add Marketplace from GitHub"
 
 1. From the dropdown, select **"Add marketplace from GitHub"**
 2. A dialog box will appear
 
-![GitHub marketplace option](../assets/screenshots/install-step-7-github.png)
+![Select GitHub marketplace](../assets/screenshots/7_select_add_marketplace_from_github.png)
 *Choose GitHub marketplace option*
 
-### Step 8: Enter Repository
+### Step 8: Enter Repository and Sync
 
 1. In the dialog, enter: `fedec65/bettercallclaude`
 2. Click **"Sync"** to fetch the plugin
 
-![Enter repository](../assets/screenshots/install-step-8-repo.png)
+![Enter repository](../assets/screenshots/8_enter_fedec65:bettercallclaude_and_click_sync.png)
 *Enter the BetterCallClaude repository*
 
-### Step 9: Install the Plugin
+### Step 9: Click BetterCallClaude and Install
 
 1. Click on **BetterCallClaude** in the list
 2. Click **"Install"** to begin installation
 
-![Install plugin](../assets/screenshots/install-step-9-install.png)
+![Install plugin](../assets/screenshots/9_click_on_bettercallclaude_and_then_install.png)
 *Install BetterCallClaude*
 
-### Step 10: Grant Permissions
+### Step 10: Grant MCP Server Permissions
 
 1. A permissions dialog will appear for MCP servers
 2. Click **"Continue"** to grant the necessary permissions
 
-![Grant permissions](../assets/screenshots/install-step-10-permissions.png)
+![Grant permissions](../assets/screenshots/10_click_continue_to_grant_MCP_server_permissions.png)
 *Grant MCP server permissions*
 
 ### Step 11: Installation Complete
 
 1. You'll see a confirmation that installation is complete
-2. Click **"Manage"** to access plugin settings
+2. Click **"Manage"** to configure your plugin
 
-![Installation complete](../assets/screenshots/install-step-11-complete.png)
-*Installation successful*
+![Installation complete](../assets/screenshots/11_installation_complete_click_manage_to_configure_your_plugin.png)
+*Installation successful - click Manage to configure*
 
-### Step 12: View Connectors
+### Step 12: Click Connectors
 
 1. Click **"Connectors"** to view the MCP servers
 2. These are your data pipelines to Swiss legal databases
 
-![View connectors](../assets/screenshots/install-step-12-connectors.png)
+![View connectors](../assets/screenshots/12_click_connectors_to_view_the_MCP_servers.png)
 *Access the Connectors panel*
 
-### Step 13: Verify Connectors
+### Step 13: Verify 6 Connectors Available
 
 You should see **6 connectors** listed:
 
@@ -146,19 +146,26 @@ You should see **6 connectors** listed:
 | `onlinekommentar` | Legal commentaries |
 | `ollama` | Local AI for privacy-sensitive work |
 
-![Connectors list](../assets/screenshots/install-step-13-list.png)
+![Connectors list](../assets/screenshots/13_check_that_the_6_connectors_are_avvailable.png)
 *Verify all 6 connectors are present*
 
-### Step 14: Configure Permissions
+### Step 14: Set Each Connector to Always On
 
-For each connector, set to **"Always allow"**:
+For each connector, set to **"Always on"**:
 
 1. Click on each connector
-2. Set the permission to **"Always allow"**
+2. Set the permission to **"Always on"**
 3. Repeat for all 6 connectors
 
-![Set permissions](../assets/screenshots/install-step-14-permissions.png)
-*Set each connector to "Always allow"*
+![Set permissions](../assets/screenshots/14_set_each_connector_to_always_on.png)
+*Set each connector to "Always on"*
+
+### Step 15: Ollama (Optional)
+
+If you have Ollama installed on your computer, the Ollama MCP is connected automatically. This allows you to use local AI models for privacy-sensitive legal work.
+
+![Ollama connection](../assets/screenshots/15_if_you_have_ollama_on_your_computer_the_ollama_MPC_is_connected_automatically.png)
+*Ollama MCP connects automatically if installed*
 
 ---
 
