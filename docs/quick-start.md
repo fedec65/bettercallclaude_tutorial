@@ -26,29 +26,172 @@ Before you begin, ensure you have:
 
 ## 1.2 Installation in COWORK
 
- BetterCallClaude is a plugin for the COWORK platform. Here's how to install it:
+BetterCallClaude is installed through the Claude Desktop COWORK marketplace. Follow these steps carefully.
 
-### Step 1: Open COWORK
+### Prerequisites
 
- Navigate to [cowork.com](https://cowork.com) and log in to your account.
+Before installing, ensure you have:
+- ✅ Claude Desktop installed on your computer
+- ✅ Internet connection active
+- ✅ Network access enabled (see Step 1)
 
-### Step 2: Access the Plugin Store
+### Step 1: Enable Network Access
 
- In COWORK, open the plugin marketplace or extension store.
+First, enable network permissions in Claude Desktop:
 
-### Step 3: Search for "BetterCallClaude" Use the search bar to find the plugin.
+1. Open Claude Desktop
+2. Go to **Settings** → **Capabilities**
+3. Toggle **"Allow network egress"** to ON
 
-### Step 4: Install Click "Install" or "Add to Workspace".### Step 5: Verify Installation
+![Network settings](../assets/screenshots/install-step-1-network.png)
+*Enable network egress in Claude Desktop Settings*
 
- Once installed, you should see the BetterCallClaude icon in your interface.
+### Step 2: Navigate to COWORK
 
- Try typing:
+1. In Claude Desktop, click on **"Cowork"** in the left sidebar
+2. This opens the COWORK workspace area
+
+![Navigate to COWORK](../assets/screenshots/install-step-2-cowork.png)
+*Access the COWORK workspace*
+
+### Step 3: Open Customize Panel
+
+1. Click **"Customize"** in the left sidebar
+2. This opens the customization and plugins area
+
+![Customize panel](../assets/screenshots/install-step-3-customize.png)
+*Open the Customize panel*
+
+### Step 4: Browse Plugins
+
+1. Click **"Browse plugins"** to access the plugin marketplace
+
+![Browse plugins](../assets/screenshots/install-step-4-browse.png)
+*Open the plugin browser*
+
+### Step 5: Switch to Personal Tab
+
+1. Click the **"Personal"** tab at the top
+2. This section allows you to add custom plugin sources
+
+![Personal tab](../assets/screenshots/install-step-5-personal.png)
+*Switch to the Personal plugins tab*
+
+### Step 6: Add Marketplace Source
+
+1. Find the **+** button next to **"Local uploads"**
+2. Click to reveal the dropdown menu
+
+![Add source button](../assets/screenshots/install-step-6-add.png)
+*Locate the add source button*
+
+### Step 7: Select GitHub Marketplace
+
+1. From the dropdown, select **"Add marketplace from GitHub"**
+2. A dialog box will appear
+
+![GitHub marketplace option](../assets/screenshots/install-step-7-github.png)
+*Choose GitHub marketplace option*
+
+### Step 8: Enter Repository
+
+1. In the dialog, enter: `fedec65/bettercallclaude`
+2. Click **"Sync"** to fetch the plugin
+
+![Enter repository](../assets/screenshots/install-step-8-repo.png)
+*Enter the BetterCallClaude repository*
+
+### Step 9: Install the Plugin
+
+1. Click on **BetterCallClaude** in the list
+2. Click **"Install"** to begin installation
+
+![Install plugin](../assets/screenshots/install-step-9-install.png)
+*Install BetterCallClaude*
+
+### Step 10: Grant Permissions
+
+1. A permissions dialog will appear for MCP servers
+2. Click **"Continue"** to grant the necessary permissions
+
+![Grant permissions](../assets/screenshots/install-step-10-permissions.png)
+*Grant MCP server permissions*
+
+### Step 11: Installation Complete
+
+1. You'll see a confirmation that installation is complete
+2. Click **"Manage"** to access plugin settings
+
+![Installation complete](../assets/screenshots/install-step-11-complete.png)
+*Installation successful*
+
+### Step 12: View Connectors
+
+1. Click **"Connectors"** to view the MCP servers
+2. These are your data pipelines to Swiss legal databases
+
+![View connectors](../assets/screenshots/install-step-12-connectors.png)
+*Access the Connectors panel*
+
+### Step 13: Verify Connectors
+
+You should see **6 connectors** listed:
+
+| Connector | Purpose |
+|-----------|---------|
+| `entscheidsuche` | Court decisions search |
+| `bge-search` | Federal Supreme Court (BGE) lookup |
+| `legal-citations` | Citation validation & formatting |
+| `fedlex-sparql` | Federal legislation database |
+| `onlinekommentar` | Legal commentaries |
+| `ollama` | Local AI for privacy-sensitive work |
+
+![Connectors list](../assets/screenshots/install-step-13-list.png)
+*Verify all 6 connectors are present*
+
+### Step 14: Configure Permissions
+
+For each connector, set to **"Always allow"**:
+
+1. Click on each connector
+2. Set the permission to **"Always allow"**
+3. Repeat for all 6 connectors
+
+![Set permissions](../assets/screenshots/install-step-14-permissions.png)
+*Set each connector to "Always allow"*
+
+---
+
+### Post-Installation Setup
+
+After installing, run the setup command to configure MCP servers:
+
+```
+/bettercallclaude:setup
+```
+
+This command will:
+- Verify all MCP servers are connected
+- Configure default settings
+- Display your available capabilities
+
+### Verification
+
+To confirm everything is working, try typing:
 
 ```
 Hello, are you available?
 ```
 
- You should receive a response confirming the plugin is active.
+You should receive a response confirming BetterCallClaude is active and ready.
+
+---
+
+> ⚠️ **Installation issues? Check:**
+> - Network egress is enabled (Step 1)
+> - Repository name is exactly `fedec65/bettercallclaude`
+> - All 6 connectors show in the list
+> - Each connector is set to "Always allow"
 
 ---
 
