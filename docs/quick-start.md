@@ -171,7 +171,7 @@ If you have Ollama installed on your computer, the Ollama MCP is connected autom
 
 ### Post-Installation Setup
 
-**Restart Claude Desktop** to clean the cache, ensure a fresh start.
+**Restart Claude Desktop** to clean the cache and ensure a fresh start.
 
 After installing, run the setup command in COWORK to configure MCP servers:
 
