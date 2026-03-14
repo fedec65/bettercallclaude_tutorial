@@ -287,19 +287,62 @@ You should receive a response confirming BetterCallClaude is active and ready.
 
 ### Why a Dedicated Directory Matters
 
- Working in a dedicated directory per matter provides:
+BetterCallClaude uses **context persistence** — it remembers your case across sessions. This only works when you work in a dedicated directory per matter.
 
-- **🧠 Context Persistence**: BetterCallClaude "remembers" your case across sessions
- - **📁 Organization**: All related files in one place
- - **🔄 Resume**: Pick up where you left off days or weeks later
+**Benefits:**
+- **🧠 Memory**: BetterCallClaude "remembers" your case context across sessions
+- **📁 Organization**: All related files in one place
+- **🔄 Resume**: Pick up where you left off days or weeks later without re-explaining
+
 ### How to Create a Case/Matter Directory
 
- In COWORK, create a new folder for your matter:```
-📁 2024-001_Smith_v_AG/  (Year-Number_ClientName_ContractType)    ├── 📄 CLAUDE.md          # Your persistent case memory    ├── 📄 contracts/        # Related documents    ├── 📄 correspondence/  # Emails, letters    ├── 📄 research/        # Research notes    └── 📄 drafts/         # Working drafts```### The CLAUDE.md File: Your Persistent Case Memory
+In COWORK, create a new folder for each matter:
 
- The `CLAUDE.md` file is the most important part of your workspace. BetterCallClaude reads this file at the start of every conversation to understand your case context.### What to Put in CLAUDE.md
+```
+📁 2024-001_Smith_v_AG/    (Year-Number_ClientName_MatterType)
+    ├── 📄 CLAUDE.md          # ⚠️ CRITICAL: Must be in root of this folder
+    ├── 📄 contracts/         # Related documents
+    ├── 📄 correspondence/    # Emails, letters
+    ├── 📄 research/          # Research notes
+    └── 📄 drafts/            # Working drafts
+```
 
- ```markdown
+---
+
+### The CLAUDE.md File: Your Persistent Case Memory
+
+#### What is CLAUDE.md?
+
+`CLAUDE.md` is a **markdown file that BetterCallClaude automatically reads at the start of every conversation** in that directory. Think of it as your "case briefing document" that the AI reads before every interaction.
+
+#### Why is it Important?
+
+| Without CLAUDE.md | With CLAUDE.md |
+|-------------------|----------------|
+| You re-explain the case every session | AI already knows the context |
+| Inconsistent advice across sessions | Coherent, building advice |
+| Wasted time on background | Jump straight to substantive work |
+| Risk of missing key details | All facts documented and referenced |
+
+#### Why Must It Be in the Root Directory?
+
+**Claude Code looks for `CLAUDE.md` in the root of your current working directory.** This is a built-in behavior:
+
+1. When you open a folder in COWORK, that folder becomes your "working directory"
+2. At the start of each conversation, Claude Code checks: *Is there a `CLAUDE.md` file here?*
+3. If found → It reads the file and uses it as context
+4. If not found → You start with no case context
+
+**This means:**
+- ✅ Put `CLAUDE.md` in the root of your matter folder
+- ❌ Don't bury it in a subfolder (Claude won't find it)
+- ❌ Don't name it differently (only `CLAUDE.md` is recognized)
+
+---
+
+### What to Put in CLAUDE.md
+
+```markdown
 # Case: Smith v. AG
 
 ## Client
@@ -340,9 +383,13 @@ Contract dispute arising from commercial lease agreement dated 15 March 2023. Cl
 - **Deadline**: Client meeting 20.01.2025
 ```
 
+---
+
 ### Example: Minimal CLAUDE.md for Quick Start
 
- For your first matter, start simple:```markdown
+For your first matter, start simple:
+
+```markdown
 # Matter: [Brief description]
 
 ## Parties
