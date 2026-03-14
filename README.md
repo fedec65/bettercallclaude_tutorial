@@ -10,12 +10,12 @@ A comprehensive tutorial for Swiss lawyers using BetterCallClaude within the COW
 
 
 
-This tutorial will take you from skeptic to expert, teaching you how to leverage AI for Swiss legal work while maintaining professional standards and
+This tutorial will take you from skeptic to expert, teaching you how to leverage AI for Swiss legal work while maintaining professional standards.
 
 
 
 | ⏱️ Time | 📚 Topic | 🎯 Outcome |
-|:--------::--------:--------|
+|:--------|:--------|:--------|
 | 15 min | Quick Start | First citation lookup, first legal research |
 | 30 min | Understanding AI | Build mental model without technical overwhelm |
 | 1 hr | Building Confidence | Hands-on practice with increasing complexity |
