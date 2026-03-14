@@ -68,6 +68,9 @@ New to BetterCallClaude? Start here:
 
 
 ### Reference Materials
+- **[Cheatsheet](./docs/appendix/cheatsheet.md)** — Complete reference: skills, commands, agents, hooks, MCP servers, workflows
+
+
 - **[Command Reference](./docs/appendix/command-reference.md)** — All 18 commands at a glance
 
 
