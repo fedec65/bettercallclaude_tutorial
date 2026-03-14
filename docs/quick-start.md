@@ -409,6 +409,32 @@ For your first matter, start simple:
 
 ---
 
+### Why CLAUDE.md is Critical for Your Legal Practice
+
+**CLAUDE.md is your persistent case memory.** Without it, every conversation with BetterCallClaude starts from zero — you must re-explain the parties, the facts, the legal issues, and the current status. With it, BetterCallClaude already understands your case context the moment you start a conversation.
+
+**The one-case-one-directory rule:** Each legal matter deserves its own directory, and each directory must have its own `CLAUDE.md` file in the root. This is not optional — it's how BetterCallClaude knows which case you're working on.
+
+```
+📁 2024-001_Smith_v_AG/
+    └── CLAUDE.md          ← BetterCallClaude reads THIS for this case
+
+📁 2024-002_Mueller_v_GmbH/
+    └── CLAUDE.md          ← BetterCallClaude reads THIS for this case
+```
+
+**When you open a directory in COWORK:**
+- BetterCallClaude looks for `CLAUDE.md` in that directory's root
+- It loads the file content as context before your first message
+- All conversations in that directory benefit from that context
+
+**If you forget CLAUDE.md:**
+- BetterCallClaude has no memory of your case
+- You waste time re-explaining background every session
+- Advice may be inconsistent across conversations
+
+---
+
 > ⚠️ **Context Not persisting? Check:**
 > - Are you in the correct directory? (Check your current working directory)
 > - Does CLAUDE.md exist? (It should be in your matter folder)
