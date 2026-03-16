@@ -11,6 +11,8 @@ By the end of this section, you will understand:
 - What to expect during the question flow
 - How to use briefing output for execution
 
+> **📖 Context**: This section covers Phase 1 (Briefing) of the unified 5-phase framework. For the complete methodology overview, see [Framework Methodology](./framework-methodology.md).
+
 ---
 
 ## 4.1 What is Briefing?

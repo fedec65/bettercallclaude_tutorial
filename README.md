@@ -53,6 +53,11 @@ New to BetterCallClaude? Start here:
 
 
 
+### Core Methodology
+- **[Framework Methodology](./docs/framework-methodology.md)** — The 5-phase unified workflow (Briefing → Execution → Interaction → Adversarial Analysis → Final Summary), workspace setup, agent invocation, command modes, and document management
+
+
+
 ### Advanced Usage
 - **[Part 4: The Briefing Phase](./docs/briefing-phase.md)** — Structuring complex work with specialist panels
 

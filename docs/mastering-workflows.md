@@ -11,6 +11,8 @@ By the end of this section, you will be able to:
 - Design your own workflows
 - Use quality checkpoints effectively
 
+> **📖 Context**: This section builds on Phases 2-3 (Execution and Interaction) of the unified framework. For the complete methodology overview, see [Framework Methodology](./framework-methodology.md).
+
 ---
 
 ## 5.1 Thinking in Workflows
