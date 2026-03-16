@@ -20,23 +20,7 @@ By the end of this section, you will understand:
 
 BetterCallClaude provides a structured methodology for handling legal work with AI assistance. The framework consists of five interconnected phases:
 
-```
-┌─────────────────────────────────────────────────────────────────────────────┐
-│                      THE BETTERCALLCLAUDE FRAMEWORK                          │
-├─────────────────────────────────────────────────────────────────────────────┤
-│                                                                              │
-│  ┌──────────┐   ┌──────────┐   ┌──────────┐   ┌──────────┐   ┌──────────┐ │
-│  │ BRIEFING │ → │ EXECUTION│ → │INTERACTION│ → │ADVERSARIAL│ → │  FINAL   │ │
-│  │          │   │          │   │          │   │          │   │ SUMMARY  │ │
-│  │ Structured│   │ Carry out │   │ Refine & │   │ Stress-  │   │ Client-  │ │
-│  │  intake  │   │ the plan  │   │  deepen  │   │   test   │   │  ready   │ │
-│  └──────────┘   └──────────┘   └──────────┘   └──────────┘   └──────────┘ │
-│       │              │              │              │              │        │
-│    Panel asks    Research &     Q&A to fill    Challenge     Professional  │
-│    questions     analysis       gaps          position       document      │
-│                                                                              │
-└─────────────────────────────────────────────────────────────────────────────┘
-```
+![The BetterCallClaude Framework](../assets/diagrams/framework-workflow.png)
 
 ### When to Use the Full Framework vs. Quick Commands
 
@@ -408,26 +392,7 @@ Move to Final Summary when:
 
 ### The Three-Agent Analysis System
 
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                    ADVERSARIAL ANALYSIS                              │
-├─────────────────────────────────────────────────────────────────────┤
-│                                                                      │
-│  ┌──────────────┐     ┌──────────────┐     ┌──────────────┐       │
-│  │   ADVOCATE   │ ──→ │   ADVERSARY  │ ──→ │   JUDICIAL   │       │
-│  │              │     │              │     │              │       │
-│  │ Builds your  │     │ Challenges   │     │ Synthesizes  │       │
-│  │ strongest    │     │ every point  │     │ balanced     │       │
-│  │ case         │     │              │     │ assessment   │       │
-│  └──────────────┘     └──────────────┘     └──────────────┘       │
-│         │                    │                    │                │
-│         ▼                    ▼                    ▼                │
-│   Arguments,           Weaknesses,          Objective              │
-│   precedents,          counter-args,        evaluation,            │
-│   evidence             risks                recommendations        │
-│                                                                      │
-└─────────────────────────────────────────────────────────────────────┘
-```
+![Adversarial Analysis](../assets/diagrams/adversarial-analysis.png)
 
 ### How to Invoke
 
