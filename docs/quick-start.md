@@ -50,6 +50,37 @@ First, enable network permissions in Claude Desktop:
 ![Enable network access](../assets/screenshots/1_enable_network_access.png)
 *Enable network egress in Claude Desktop Settings*
 
+### Step 1.5: Windows 11 Home Setup (Windows Users Only)
+
+If you're using **Windows 11 Home**, there's one extra step before continuing. Claude COWORK needs the Virtual Machine Platform and Windows Subsystem for Linux to run properly — these aren't enabled by default on Windows 11 Home.
+
+Don't worry, this is a quick fix! Choose one of the options below:
+
+#### Option A — PowerShell (Recommended, ~2 minutes)
+
+1. Open **PowerShell as Administrator** (right-click PowerShell → "Run as administrator")
+2. Run these two commands:
+
+```powershell
+dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+wsl --install
+```
+
+3. **Restart your computer** when prompted
+
+#### Option B — Windows Settings (~3 minutes)
+
+1. Open **Settings → System → Optional Features**
+2. Click **"More Windows features"** at the bottom
+3. Check both boxes:
+   - ☑️ Virtual Machine Platform
+   - ☑️ Windows Subsystem for Linux
+4. Click **OK** and **restart your computer**
+
+After restarting, come back here and continue with Step 2. You only need to do this once!
+
+> 💡 **Seeing "VM service not running"?** This means the above features aren't enabled yet. Enable them and restart, then try the installation again.
+
 ### Step 2: Open COWORK
 
 1. In Claude Desktop, click on **"Cowork"** in the left sidebar
@@ -202,6 +233,7 @@ You should receive a response confirming BetterCallClaude is active and ready.
 
 > ⚠️ **Installation issues? Check:**
 > - Network egress is enabled (Step 1)
+> - **Windows 11 Home:** VM Platform and WSL are enabled (Step 1.5)
 > - Repository name is exactly `fedec65/bettercallclaude`
 > - All 6 connectors show in the list
 > - Each connector is set to "Always allow"
