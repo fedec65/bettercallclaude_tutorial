@@ -32,6 +32,9 @@ Before you begin, ensure you have:
 
 BetterCallClaude is installed through the Claude Desktop COWORK marketplace. Follow these steps carefully.
 
+> 🌙 **A Note on Interface Changes**  
+> Anthropic has a peculiar habit of redesigning the COWORK interface while the rest of us are sleeping. If these instructions don't match what you see on screen, don't worry—you're not going crazy. The menu items have simply taken a midnight stroll to new locations. We update this documentation as fast as humanly possible, but the UI may occasionally outpace us. When in doubt, look for buttons that sound similar to what we describe here.
+
 ### Prerequisites
 
 Before installing, ensure you have:
@@ -83,10 +86,10 @@ After restarting, come back here and continue with Step 2. You only need to do t
 
 ### Step 2: Open COWORK
 
-1. In Claude Desktop, click on **"Cowork"** in the left sidebar
+1. In Claude Desktop, click on **"Cowork"** in the top navigation bar
 2. This opens the COWORK workspace area
 
-![Open COWORK](../assets/screenshots/2_open_cowork.png)
+![Open COWORK](../assets/screenshots/01_open_claude_cowork.png)
 *Access the COWORK workspace*
 
 ### Step 3: Click Customize
@@ -94,113 +97,102 @@ After restarting, come back here and continue with Step 2. You only need to do t
 1. In the left sidebar, click **"Customize"**
 2. This opens the customization and plugins area
 
-![Click Customize](../assets/screenshots/3_in_the_left_sidebar_click_customize.png)
+![Click Customize](../assets/screenshots/02_click_customize.png)
 *Open the Customize panel*
 
-### Step 4: Click Browse Plugins
+### Step 4: Click the + Next to Personal Plugins
 
-1. Click **"Browse plugins"** to access the plugin marketplace
+1. Find the **+** button next to **"Personal plugins"** in the left panel
+2. Hover over it to see the "Add plugin" tooltip
 
-![Browse plugins](../assets/screenshots/4_click_browse_plugin.png)
-*Open the plugin browser*
+![Click Personal Plugins +](../assets/screenshots/03_click_personal_plugins_+.png)
+*Click the + button to add a plugin*
 
-### Step 5: Click Personal Tab
+### Step 5: Select Add Marketplace
 
-1. Click the **"Personal"** tab at the top
-2. This section allows you to add custom plugin sources
+1. From the dropdown menu, hover over **"Create plugin"** to reveal the submenu
+2. Click **"Add marketplace"**
 
-![Personal tab](../assets/screenshots/5_click_personal_tab.png)
-*Switch to the Personal plugins tab*
+![Add Marketplace](../assets/screenshots/04_click_+_create_plugin_ADD_MARKET_PLACE.png)
+*Select Add marketplace from the menu*
 
-### Step 6: Click the Plus (+) Button
+### Step 6: Enter Repository and Sync
 
-1. Find the **+** button next to **"Local uploads"**
-2. Click to reveal the dropdown menu
-
-![Click the plus button](../assets/screenshots/6_click_the_plus_+_button.png)
-*Locate the add source button*
-
-### Step 7: Select "Add Marketplace from GitHub"
-
-1. From the dropdown, select **"Add marketplace from GitHub"**
-2. A dialog box will appear
-
-![Select GitHub marketplace](../assets/screenshots/7_select_add_marketplace_from_github.png)
-*Choose GitHub marketplace option*
-
-### Step 8: Enter Repository and Sync
-
-1. In the dialog, enter: `fedec65/bettercallclaude`
+1. In the **"Add marketplace"** dialog, enter the URL: `fedec65/bettercallclaude`
 2. Click **"Sync"** to fetch the plugin
 
-![Enter repository](../assets/screenshots/8_enter_fedec65:bettercallclaude_and_click_sync.png)
+![Enter repository](../assets/screenshots/05_enter_the_repo_fedec65:bettercallclaude.png)
 *Enter the BetterCallClaude repository*
 
-### Step 9: Click BetterCallClaude and Install
+### Step 7: Click the Personal Tab
 
-1. Click on **BetterCallClaude** in the list
-2. Click **"Install"** to begin installation
+1. The **Directory** will open showing available plugins
+2. Click the **"Personal"** tab to view your personal marketplace plugins
 
-![Install plugin](../assets/screenshots/9_click_on_bettercallclaude_and_then_install.png)
-*Install BetterCallClaude*
+![Personal tab](../assets/screenshots/06_Click_Personal.png)
+*Switch to the Personal tab in the Directory*
 
-### Step 10: Grant MCP Server Permissions
+![Personal tab highlighted](../assets/screenshots/07_click_personal.png)
+*Personal tab location*
 
-1. A permissions dialog will appear for MCP servers
-2. Click **"Continue"** to grant the necessary permissions
+### Step 8: Install BetterCallClaude
 
-![Grant permissions](../assets/screenshots/10_click_continue_to_grant_MCP_server_permissions.png)
+1. Find **Bettercallclaude** in the Personal plugins list
+2. Click the **+** button on the plugin card to install it
+
+![Install plugin](../assets/screenshots/08_click_+.png)
+*Click + to install BetterCallClaude*
+
+### Step 9: Grant MCP Server Permissions
+
+1. A permissions dialog will appear warning that the plugin includes local MCP servers
+2. Review the information and click **"Continue"** to grant the necessary permissions
+
+![Grant permissions](../assets/screenshots/09_click_continue.png)
 *Grant MCP server permissions*
 
-### Step 11: Installation Complete
+### Step 10: Access Plugin Settings
 
-1. You'll see a confirmation that installation is complete
-2. Click **"Manage"** to configure your plugin
+1. After installation, you'll see Bettercallclaude listed under Personal plugins
+2. Click the **gear wheel** icon on the plugin card to access settings
 
-![Installation complete](../assets/screenshots/11_installation_complete_click_manage_to_configure_your_plugin.png)
-*Installation successful - click Manage to configure*
+![Plugin settings](../assets/screenshots/10_click_the_gear_wheel.png)
+*Click the gear wheel to configure*
 
-### Step 12: Click Connectors
+### Step 11: Click Connectors
 
-1. Click **"Connectors"** to view the MCP servers
-2. These are your data pipelines to Swiss legal databases
+1. The plugin details page will open showing Skills, Agents, and Hooks
+2. In the left sidebar, click **"Connectors"** to view the MCP servers
+3. These are your data pipelines to Swiss legal databases
 
-![View connectors](../assets/screenshots/12_click_connectors_to_view_the_MCP_servers.png)
-*Access the Connectors panel*
+![Plugin details](../assets/screenshots/11_you_should_see_this_page_click_connectors.png)
+*Plugin details page - click Connectors*
 
-### Step 13: Verify 6 Connectors Available
+### Step 12: Verify All Connectors Are Allowed
 
-You should see **6 connectors** listed:
+1. You should see **6 connectors** listed in the left panel
+2. For each connector, ensure the permission is set to **"Always allow"**
+3. The tools should show checkmarks indicating they are enabled
+
+![Connectors list](../assets/screenshots/12_make_sure_connectors_are_all_allowed.png)
+*Verify all 6 connectors are present and allowed*
+
+### Available Connectors Reference
+
+You should see these **6 connectors**:
 
 | Connector | Purpose |
 |-----------|---------|
-| `entscheidsuche` | Court decisions search |
-| `bge-search` | Federal Supreme Court (BGE) lookup |
-| `legal-citations` | Citation validation & formatting |
-| `fedlex-sparql` | Federal legislation database |
-| `onlinekommentar` | Legal commentaries |
-| `ollama` | Local AI for privacy-sensitive work |
+| `bettercallclaude-entscheidsuche` | Court decisions search |
+| `bettercallclaude-bge-search` | Federal Supreme Court (BGE) lookup |
+| `bettercallclaude-legal-citations` | Citation validation & formatting |
+| `bettercallclaude-fedlex-sparql` | Federal legislation database |
+| `bettercallclaude-onlinekommentar` | Legal commentaries |
+| `bettercallclaude-ollama` | Local AI for privacy-sensitive work |
 
-![Connectors list](../assets/screenshots/13_check_that_the_6_connectors_are_avvailable.png)
-*Verify all 6 connectors are present*
+### Ollama (Optional)
 
-### Step 14: Set Each Connector to Always On
-
-For each connector, set to **"Always on"**:
-
-1. Click on each connector
-2. Set the permission to **"Always on"**
-3. Repeat for all 6 connectors
-
-![Set permissions](../assets/screenshots/14_set_each_connector_to_always_on.png)
-*Set each connector to "Always on"*
-
-### Step 15: Ollama (Optional)
-
-If you have Ollama installed on your computer, the Ollama MCP is connected automatically. This allows you to use local AI models for privacy-sensitive legal work.
-
-![Ollama connection](../assets/screenshots/15_if_you_have_ollama_on_your_computer_the_ollama_MPC_is_connected_automatically.png)
-*Ollama MCP connects automatically if installed*
+If you have Ollama installed on your computer, the Ollama MCP connects automatically. This allows you to use local AI models for privacy-sensitive legal work.
 
 ---
 
