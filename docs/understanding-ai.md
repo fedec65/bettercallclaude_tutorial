@@ -31,6 +31,7 @@ Think of commands as shortcuts that trigger specific actions. You type `/somethi
 | `/draft` | Generate documents | Contracts, opinions, briefs, letters |
 | `/translate` | Translate legal texts | Cross-language work, terminology preservation |
 | `/briefing` | Structured intake | Complex matters, multi-step work |
+| `/refine` | Transform vague queries into structured prompts | Unclear legal questions, need help formulating queries |
 
 ### Decision Guide: Which Command When?
 
@@ -44,6 +45,7 @@ Plan litigation → /strategy
 Write a document → /draft
 Translate text → /translate
 Start complex matter → /briefing
+Clarify my question → /refine
 ```
 
 ### Command Examples
@@ -66,6 +68,11 @@ Start complex matter → /briefing
 **Case Strategy:**
 ```
 /strategy Breach of contract claim, seeking damages of CHF 50,000
+```
+
+**Prompt Refinement:**
+```
+/refine I need to research something about contract termination and hardship
 ```
 
 ---
@@ -116,6 +123,7 @@ Agents are specialist AI colleagues. Each has expertise in a specific area of Sw
 - **Citation Specialist**: Verifies and formats citations
 - **Procedure Specialist**: Analyzes procedural issues
 - **Swiss Judicial Analyst**: Provides neutral synthesis
+- **Legal Prompt Engineer**: Transforms vague queries into structured legal prompts via Socratic dialogue
 
 ### How the Framework Routes Requests
 

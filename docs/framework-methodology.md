@@ -498,6 +498,7 @@ Work is complete when:
 | `citation` | Citation verification | Auto via /cite | Verifying BGE references |
 | `compliance` | FINMA, AML/KYC | Auto on regulatory queries | Regulatory compliance |
 | `translator` | DE/FR/IT translation | Auto via /translate | Multi-language work |
+| `prompt-engineer` | Query refinement | Auto via /refine | Clarifying vague legal questions, structuring queries |
 
 ### Specialized Domain Agents
 
@@ -520,7 +521,84 @@ Most agents activate automatically through skills. For explicit control:
 /bettercallclaude:strategy [query]    → Activates strategist + risk
 /bettercallclaude:draft [query]       → Activates drafter
 /bettercallclaude:adversary [query]   → Activates advocate + adversary + judicial
+/bettercallclaude:refine [query]      → Activates prompt-engineer
 ```
+
+---
+
+### The Legal Prompt Engineer Agent
+
+The **Legal Prompt Engineer** is a specialist agent that transforms vague or incomplete legal queries into well-structured, actionable prompts through Socratic dialogue. This agent is particularly valuable when you're not quite sure how to formulate your legal question or need help defining the scope of your inquiry.
+
+#### What It Does
+
+- **Socratic Refinement**: Asks targeted questions to fill gaps in your query (jurisdiction, legal domain, party position, desired outcome)
+- **Workflow Recommendations**: Suggests optimal agent pipelines (e.g., researcher → strategist → drafter)
+- **Multi-lingual Terminology Guidance**: Provides accurate legal terminology across German, French, and Italian
+
+#### How to Invoke
+
+Two invocation paths are available:
+
+```
+/bettercallclaude:refine [your vague query]
+/bettercallclaude:legal --refine [your vague query]
+```
+
+#### Mode Flags
+
+| Mode | Flag | Use When |
+|------|------|----------|
+| **Quick** | `--quick` | You need fast results and have some legal experience |
+| **Optimize** | `--optimize` | You're an experienced user who wants streamlined output |
+
+#### Example Usage
+
+**Starting Point (Vague):**
+```
+/refine I need to research something about contract termination
+```
+
+**Socratic Dialogue:**
+> **Prompt Engineer**: To help you effectively, I need to clarify a few things:
+> 1. What type of contract? (employment, commercial lease, service agreement)
+> 2. Which jurisdiction? (federal law, specific canton)
+> 3. Are you representing the party seeking termination or opposing it?
+> 4. What triggered the termination? (breach, hardship, convenience)
+
+**After Clarification:**
+The agent transforms your query into a structured prompt and recommends workflow:
+
+```
+Structured Query: "Research BGE precedents on early termination of commercial 
+leases under Art. 271 OR due to hardship (Notlage), focusing on Zurich cantonal 
+court interpretations post-2020."
+
+Recommended Workflow:
+1. /research BGE precedents on Art. 271 OR hardship doctrine
+2. /research Zurich cantonal decisions on commercial lease hardship
+3. /strategy Assess termination risks vs. rent reduction options
+4. /draft Legal opinion for client with risk assessment
+```
+
+#### When to Use the Legal Prompt Engineer
+
+| Use `/refine` When... | Go Directly to Other Agents When... |
+|----------------------|-------------------------------------|
+| You're unsure how to formulate the legal question | You know exactly what you need |
+| The legal issue spans multiple domains | It's a straightforward single-issue query |
+| You need help identifying relevant legal frameworks | You're already familiar with applicable law |
+| Starting a new, unfamiliar type of matter | Following up on an existing, well-defined matter |
+| Complex multi-jurisdictional issues | Simple citation lookup or document review |
+
+#### Integration with the 5-Phase Framework
+
+The Legal Prompt Engineer serves as an excellent **pre-Phase 1** tool. Use it when:
+- You're not ready for a full `/briefing` because the scope is unclear
+- You need help defining what agents to invoke in the Execution phase
+- You want to validate your approach before committing to a workflow
+
+Think of it as a "scoping call" before the main engagement.
 
 ---
 
