@@ -76,7 +76,7 @@ New to BetterCallClaude? Start here:
 - **[Cheatsheet](./docs/appendix/cheatsheet.md)** — Complete reference: skills, commands, agents, hooks, MCP servers, workflows
 
 
-- **[Command Reference](./docs/appendix/command-reference.md)** — All 18 commands at a glance
+- **[Command Reference](./docs/appendix/command-reference.md)** — Commands, skills, and usage examples
 
 
 - **[Swiss Legal Terminology](./docs/appendix/terminology.md)** — DE/FR/IT/EN glossary
@@ -130,6 +130,10 @@ This tutorial is designed for:
 | 📝 **Document Drafting** | Generate contracts, opinions, briefs | `/draft contract` |
 | 🌐 **Translation** | Translate legal documents preserving terminology | `/translate` |
 | 📊 **Case Strategy** | Assess litigation risks and opportunities | `/strategy` |
+| 🎯 **Query Refinement** | Transform vague questions into structured prompts | `/refine` |
+| 📄 **Document Analysis** | Analyze legal documents for issues and clauses | `/doc-analyze` |
+
+> 🏗️ **Architecture**: BetterCallClaude uses 14 specialized **skills** as the single source of truth. Commands are thin entry points that delegate to these skills. Infrastructure commands (`legal`, `setup`, `help`, `workflow`, `briefing`, `version`) remain full-featured.
 
 ## 🔗 Links
 
