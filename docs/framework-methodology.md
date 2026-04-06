@@ -517,18 +517,23 @@ Work is complete when:
 Most agents activate automatically through skills. For explicit control:
 
 ```
-/bettercallclaude:research [query]    → Activates researcher + citation
-/bettercallclaude:strategy [query]    → Activates strategist + risk
-/bettercallclaude:draft [query]       → Activates drafter
-/bettercallclaude:adversary [query]   → Activates advocate + adversary + judicial
-/bettercallclaude:refine [query]      → Activates prompt-engineer
+/bettercallclaude:research [query]    → Delegates to swiss-legal-research skill
+/bettercallclaude:strategy [query]    → Delegates to swiss-legal-strategy skill
+/bettercallclaude:draft [query]       → Delegates to swiss-legal-drafting skill
+/bettercallclaude:adversary [query]   → Delegates to swiss-legal-adversarial skill
+/bettercallclaude:refine [query]      → Delegates to legal-query-refinement skill
+/bettercallclaude:translate [query]   → Delegates to swiss-legal-translation skill
+/bettercallclaude:doc-analyze [query] → Delegates to swiss-document-analysis skill
+/bettercallclaude:summarize [query]   → Delegates to output-summarization skill
 ```
+
+> 🏗️ **Architecture Note**: Domain commands are now thin wrappers (5-13 lines) that delegate to **skills** — the single source of truth. Infrastructure commands (`legal`, `setup`, `help`, `workflow`, `briefing`, `version`) remain full-featured.
 
 ---
 
 ### The Legal Prompt Engineer Agent
 
-The **Legal Prompt Engineer** is a specialist agent that transforms vague or incomplete legal queries into well-structured, actionable prompts through Socratic dialogue. This agent is particularly valuable when you're not quite sure how to formulate your legal question or need help defining the scope of your inquiry.
+The **Legal Prompt Engineer** is a specialist agent powered by the `legal-query-refinement` skill. It transforms vague or incomplete legal queries into well-structured, actionable prompts through Socratic dialogue. This agent is particularly valuable when you're not quite sure how to formulate your legal question or need help defining the scope of your inquiry.
 
 #### What It Does
 

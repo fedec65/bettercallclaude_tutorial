@@ -20,6 +20,8 @@ By the end of this section, you will understand:
 
 Think of commands as shortcuts that trigger specific actions. You type `/something`, and something happens.
 
+> 🏗️ **Architecture Note**: Commands are now thin entry points (typically 5-13 lines) that delegate to **skills** — the single source of truth. Domain methodology has migrated from 13 commands into 14 skills. Infrastructure commands (`legal`, `setup`, `help`, `workflow`, `briefing`, `version`) remain full-featured, while domain commands act as wrappers.
+
 ### Most Useful Commands for Daily Work
 
 | Command | What It Does | When to Use |
@@ -83,30 +85,39 @@ Clarify my question → /refine
 
 Skills are pre-packaged expertise for complex tasks. While commands do one thing well, skills orchest multiple steps for sophisticated outcomes.
 
-### Key Skills
+### Key Skills (14 Total)
 
 | Skill | What It Provides | Best For |
 |-------|-------------------|---------|
-| `/bettercallclaude:briefing` | Structured intake by specialist panel | Starting complex matters, due diligence, litigation prep |
-| `/bettercallclaude:research` | Comprehensive legal research | Deep precedent analysis, statutory interpretation |
-| `/bettercallclaude:strategy` | Case strategy development | Litigation planning, risk assessment |
-| `/bettercallclaude:draft` | Document generation | Contracts, opinions, briefs, correspondence |
-| `/bettercallclaude:adversary` | Counter-argument analysis | Stress-testing positions, finding weaknesses |
+| `swiss-legal-research` | Comprehensive legal research | Deep precedent analysis, statutory interpretation |
+| `swiss-legal-strategy` | Case strategy development | Litigation planning, risk assessment |
+| `swiss-legal-drafting` | Document generation | Contracts, opinions, briefs, correspondence |
+| `swiss-legal-adversarial` | Counter-argument analysis | Stress-testing positions, finding weaknesses |
+| `swiss-legal-citations` | Citation verification | Verifying BGE/ATF/DTF references |
+| `swiss-legal-briefing` | Structured intake by specialist panel | Starting complex matters, due diligence, litigation prep |
+| `swiss-legal-workflow` | Multi-agent workflow execution | Due diligence, litigation prep, contract lifecycle |
+| `swiss-legal-translation` | Legal text translation | Cross-language work with terminology preservation |
+| `swiss-document-analysis` | Document review and extraction | Contract analysis, issue identification |
+| `output-summarization` | Multi-agent output consolidation | Deduplicating pipeline outputs, length control |
+| `legal-query-refinement` | Query structuring via Socratic dialogue | Clarifying vague legal questions |
+| `swiss-federal-analysis` | Federal law analysis | ZGB, OR, StGB, BV research |
+| `swiss-cantonal-analysis` | Cantonal law analysis | All 26 cantons |
+| `swiss-precedent-analysis` | Precedent chain tracking | BGE/ATF/DTF evolution analysis |
 
 ### Skills vs. Commands: What's the Difference?
 
 ```
 COMMANDS                     SKILLS
 ─────────────────────────────────────────────────────────
-Single action                Multi-step orchest
-Quick result                 Sophisticated outcome
-You direct it                 AI coordinates specialists
-Immediate feedback           Structured output with analysis
+Thin entry points (5-13 lines)  Single source of truth
+Delegate to skills              Contain domain logic
+Immediate routing               Multi-step orchestration
+You type shortcuts              AI coordinates specialists
 ```
 
 **Example:**
-- **Command**: `/cite BGE 147 IV 73` → Returns the citation
-- **Skill**: `/bettercallclaude:research Art. 97 OR` → Searches databases, finds precedents, analyzes patterns, provides structured output
+- **Command**: `/cite BGE 147 IV 73` → Delegates to `swiss-legal-citations` skill → Returns the citation
+- **Skill**: `/bettercallclaude:research Art. 97 OR` → Runs `swiss-legal-research` skill → Searches databases, finds precedents, analyzes patterns, provides structured output
 
 ---
 
