@@ -29,6 +29,8 @@ New to BetterCallClaude? Start here:
 
 1. **[Quick Start Guide](./docs/quick-start.md)** — Get your first success in 15 minutes
 
+1. **[Updating the Plugin](./docs/updating-plugin.md)** — Check for updates and keep your plugin current
+
 
 2. **[Understanding Your AI Assistant](./docs/understanding-ai.md)** — Build your mental model
 
@@ -44,6 +46,7 @@ New to BetterCallClaude? Start here:
 
 ### Fundamentals
 - **[Part 1: Quick Start](./docs/quick-start.md)** — Installation, first citation, first research, workspace setup
+- **[Updating the Plugin](./docs/updating-plugin.md)** — Check for updates and install the latest version
 
 
 - **[Part 2: Understanding Your AI Assistant](./docs/understanding-ai.md)** — Commands, skills, agents, connectors, privacy
