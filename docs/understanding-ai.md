@@ -28,7 +28,7 @@ Think of commands as shortcuts that trigger specific actions. You type `/somethi
 |---------|--------------|-------------|
 | `/cite` | Look up and verify citations | Verifying a BGE reference, finding related decisions |
 | `/research` | Search legal databases | Finding precedents, statutory interpretation |
-| `/adversary` | Challenge your position | Stress-testing arguments, finding weaknesses |
+| `/adversarial` | Challenge your position | Stress-testing arguments, finding weaknesses |
 | `/strategy` | Develop case strategy | Litigation planning, risk assessment |
 | `/draft` | Generate documents | Contracts, opinions, briefs, letters |
 | `/translate` | Translate legal texts | Cross-language work, terminology preservation |
@@ -42,7 +42,7 @@ I need to...                    Use this command
 ────────────────────────────────────────────────────────
 Verify a citation → /cite
 Find precedents → /research
-Challenge my argument → /adversary
+Challenge my argument → /adversarial
 Plan litigation → /strategy
 Write a document → /draft
 Translate text → /translate
@@ -64,7 +64,7 @@ Clarify my question → /refine
 
 **Adversarial Analysis:**
 ```
-/adversary My argument: The limitation period should be 10 years not 5
+/adversarial My argument: The limitation period should be 10 years not 5
 ```
 
 **Case Strategy:**
@@ -169,6 +169,7 @@ Connectors are pipelines to Swiss legal databases. They connect BetterCallClaude
 | **Fedlex** | Federal statutes and legislation | Government database |
 | **entscheidsuche.ch** | Cantonal and federal decisions | Public database |
 | **OnlineKommentar.ch** | Legal commentaries | Academic database |
+| **opencaselaw.ch** | Case law, citation graphs, appeal chains | Public database |
 | **Ollama (local)** | AI processing | Your machine (privacy mode) |
 
 ### Privacy: What Stays Local vs. Cloud
@@ -274,7 +275,7 @@ After a significant development, update your CLAUDE.md:
 │             │          │                    │                │
 │  /cite      │ /briefing │ Legal Researcher │ BGE/ATF/DTF   │
 │  /research   │ /strategy │ Case Strategist   │ Fedlex        │
-│  /adversary  │ /draft   │ Legal Drafter    │ entscheidsuche │
+│  /adversarial  │ /draft   │ Legal Drafter    │ entscheidsuche │
 └──────────────┴──────────┴─────────────────────────────────────┘
 ```
 

@@ -397,12 +397,12 @@ Move to Final Summary when:
 ### How to Invoke
 
 ```
-/adversary [your position or argument]
+/adversarial [your position or argument]
 ```
 
 **Example:**
 ```
-/adversary My position: The limitation period for the contractual claim is
+/adversarial My position: The limitation period for the contractual claim is
 10 years under Art. 127 OR, not 5 years under Art. 128 OR, because the
 claim arises from a written contract and the obligation was not periodic.
 ```
@@ -652,7 +652,7 @@ Use when: Independent research streams to combine later
 ```
 Stage 1: /doc-analyze
 Stage 2: /research, /cite
-Stage 3: /adversary
+Stage 3: /adversarial
 Stage 4: /strategy
 Stage 5: /draft
 ```
@@ -861,7 +861,7 @@ commercial lease hardship?
 
 **Phase 4: Adversarial Analysis (10 minutes)**
 ```
-/adversary Client's position: The COVID-19 revenue loss constitutes
+/adversarial Client's position: The COVID-19 revenue loss constitutes
 hardship (Notlage) that justifies early termination under Art. 271 OR,
 even without a force majeure clause in the lease.
 ```

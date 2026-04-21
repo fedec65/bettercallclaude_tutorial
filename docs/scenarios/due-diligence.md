@@ -54,7 +54,7 @@ Priority: High-risk categories first (commercial, employment, litigation)
 
 **3.1 Corporate Documents:**
 ```
-/analyze [articles of association, share register] for:
+/doc-analyze [articles of association, share register] for:
 - Share transfer restrictions
 - Protective provisions
 - Governance issues
@@ -62,7 +62,7 @@ Priority: High-risk categories first (commercial, employment, litigation)
 
 **3.2 Employment Documents:**
 ```
-/analyze [employment contracts, collective agreements] for:
+/doc-analyze [employment contracts, collective agreements] for:
 - Non-compete clauses
 - Termination risks
 - Bonus/ pension obligations
@@ -70,7 +70,7 @@ Priority: High-risk categories first (commercial, employment, litigation)
 
 **3.3 Commercial Contracts:**
 ```
-/analyze [key customer/supplier contracts] for:
+/doc-analyze [key customer/supplier contracts] for:
 - Change of control provisions
 - Termination rights upon acquisition
 - Long-term commitments
@@ -78,7 +78,7 @@ Priority: High-risk categories first (commercial, employment, litigation)
 
 **3.4 Real Estate:**
 ```
-/analyze [lease agreements] for:
+/doc-analyze [lease agreements] for:
 - Transfer restrictions
 - Duration remaining
 - Rent adjustment mechanisms
@@ -93,7 +93,7 @@ Priority: High-risk categories first (commercial, employment, litigation)
 
 **Type:**
 ```
-/adversary From buyer's perspective, what are the biggest risks in this acquisition?
+/adversarial From buyer's perspective, what are the biggest risks in this acquisition?
 
 Consider: undisclosed liabilities, contract terminations, employment disputes, pending litigation
 ```

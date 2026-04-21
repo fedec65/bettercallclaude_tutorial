@@ -31,9 +31,9 @@ This mirrors how BetterCallClaude works best. Each stage maps to specific comman
 |-------|--------------------------|----------|
 | Intake | Understand the matter, gather facts | /briefing |
 | Research | Find law and precedents | /research, /cite |
-| Strategy | Assess strengths, weaknesses | /strategy, /adversary |
+| Strategy | Assess strengths, weaknesses | /strategy, /adversarial |
 | Draft | Create documents | /draft |
-| Review | Check quality, consistency | /adversary, /cite |
+| Review | Check quality, consistency | /adversarial, /cite |
 | Deliver | Finalize and communicate | /translate, /draft |
 
 ---
@@ -98,8 +98,8 @@ For your matter, break it into stages:
 
 | Stage | Command | Purpose |
 |-------|---------|---------|
-| Initial Review | /analyze | Extract key terms and structure |
-| Risk Analysis | /adversary | Find weaknesses and risks |
+| Initial Review | /doc-analyze | Extract key terms and structure |
+| Risk Analysis | /adversarial | Find weaknesses and risks |
 | Research | /research | Find supporting law |
 | Recommendations | /draft | Create client memo |
 | Negotiation | /strategy | Plan negotiation approach |
@@ -229,7 +229,7 @@ Following the plan, research employment law on bonus agreements, find precedents
 
 **Step 4: Challenge Your Position (10 minutes)**
 ```
-/adversary Client's position: Non-payment of bonus is fundamental breach justifying immediate termination
+/adversarial Client's position: Non-payment of bonus is fundamental breach justifying immediate termination
 ```
 
 **Step 5: Draft Opinion (30 minutes)**

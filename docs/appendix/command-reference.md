@@ -1,6 +1,14 @@
 # Appendix A: Command Quick Reference
 
-> **All 18 commands at a glance**
+> **All 19 commands at a glance**
+
+---
+
+## Intelligent Gateway
+
+| Command | Purpose | Example |
+|---------|---------|---------|
+| `/legal` | Intelligent gateway — analyzes intent, routes to the appropriate specialist agent, and manages multi-step legal workflows. Use `--refine` to transform vague queries first. | `/legal I need to assess our exposure under Art. 97 OR for late delivery` |
 
 ---
 
@@ -8,9 +16,19 @@
 
 | Command | Purpose | Example |
 |---------|---------|---------|
-| `/cite` | Look up and verify citations | `/cite BGE 147 IV 73` |
-| `/research` | Search legal databases | `/research Art. 97 OR contractual liability` |
-| `/translate` | Translate legal texts | `/translate [text] DE to FR` |
+| `/research` | Search Swiss legal precedents and compile research memoranda. Supports BGE/ATF/DTF databases, doctrine references, and cross-jurisdictional analysis. | `/research Art. 97 OR contractual liability` |
+| `/cite` | Verify and format Swiss legal citations across all four national languages (BGE/ATF/DTF formats). | `/cite BGE 147 IV 73` |
+| `/precedent` | Search and analyze BGE/ATF/DTF precedents with precedent chain tracking and evolution analysis. | `/precedent BGE 145 III 445` |
+| `/validate` | Validate Swiss legal citations in bulk — check format, existence, and cross-language consistency. | `/validate --document` |
+
+---
+
+## Jurisdiction Commands
+
+| Command | Purpose | Example |
+|---------|---------|---------|
+| `/federal` | Analyze a legal question under federal Swiss law (ZGB, OR, StGB, BV, and related federal statutes). | `/federal Art. 97 OR limitation period` |
+| `/cantonal` | Analyze a legal question under cantonal law for a specific canton. | `/cantonal ZH Commercial court jurisdiction for contract disputes over CHF 30k` |
 
 ---
 
@@ -18,9 +36,9 @@
 
 | Command | Purpose | Example |
 |---------|---------|---------|
-| `/strategy` | Develop case strategy | `/strategy Breach of contract claim, CHF 100K damages` |
-| `/adversary` | Challenge your position | `/adversary My argument: limitation period is 10 years` |
-| `/briefing` | Structured intake and planning | `/briefing Client wants to sue for breach of distribution agreement` |
+| `/strategy` | Develop litigation strategy with risk assessment, cost-benefit analysis, and procedural pathway evaluation. | `/strategy Breach of contract claim, CHF 100K damages` |
+| `/adversarial` | Run three-agent adversarial analysis — advocate builds the case, adversary challenges it, judicial analyst synthesizes. | `/adversarial My argument: limitation period is 10 years` |
+| `/briefing` | Structured pre-execution briefing — assembles a specialist panel, collects case context, and builds an execution plan before agents start working. | `/briefing Client wants to sue for breach of distribution agreement` |
 
 ---
 
@@ -28,18 +46,18 @@
 
 | Command | Purpose | Example |
 |---------|---------|---------|
-| `/draft` | Generate documents | `/draft client memo on termination rights` |
-| `/analyze` | Analyze documents | `/analyze [contract text] for risks` |
+| `/draft` | Draft Swiss legal documents including contracts, court briefs, legal opinions, and memoranda with proper citation formatting. | `/draft Employment contract for a software engineer in Geneva, bilingual DE/FR` |
+| `/doc-analyze` | Analyze Swiss legal documents — identify legal issues, extract key clauses, verify citations, assess compliance. Use `@file.pdf` to reference uploaded documents. | `/doc-analyze @contract.pdf Review this commercial lease agreement` |
+| `/translate` | Translate Swiss legal documents between DE, FR, IT, and EN while preserving legal terminology precision. | `/translate [text] DE to FR` |
+| `/summarize` | Consolidate multi-agent pipeline output — deduplicate disclaimers, terminology, and citations with length control. | `/summarize --short` |
 
 ---
 
-## Reference & Lookup Commands
+## Query Refinement
 
 | Command | Purpose | Example |
 |---------|---------|---------|
-| `/statute` | Look up statutory provisions | `/statute OR Art. 97` |
-| `/precedent` | Find related precedents | `/precedent BGE 145 III 445` |
-| `/glossary` | Define legal terms | `/glossary Notlage Swiss law` |
+| `/refine` | Transform vague legal queries into structured prompts through Socratic dialogue. Recommends optimal workflows and introduces Swiss legal terminology. | `/refine I have problems with my landlord` |
 
 ---
 
@@ -47,19 +65,7 @@
 
 | Command | Purpose | Example |
 |---------|---------|---------|
-| `/workflow` | Execute predefined workflows | `/workflow litigation-prep` |
-| `/plan` | Create execution plan | `/plan Research and draft legal opinion` |
-| `/execute` | Execute a plan | `/execute [plan from /plan]` |
-
----
-
-## Team & Collaboration Commands
-
-| Command | Purpose | Example |
-|---------|---------|---------|
-| `/team` | Team orchestration | `/team research parallel streams` |
-| `/delegate` | Delegate to specialists | `/delegate research to swiss-legal-researcher` |
-| `/sync` | Team synchronization | `/sync Update CLAUDE.md with findings` |
+| `/workflow` | Define and execute multi-agent legal workflows (due diligence, litigation prep, contract lifecycle, real estate closing). | `/workflow litigation-prep Personal injury claim against manufacturer` |
 
 ---
 
@@ -67,10 +73,9 @@
 
 | Command | Purpose | Example |
 |---------|---------|---------|
-| `/help` | Get help | `/help /research` |
-| `/config` | View/ modify settings | `/config privacy strict` |
-| `/status` | Check current state | `/status` |
-| `/resume` | Resume previous work | `/resume --last` |
+| `/setup` | Check MCP server connectivity and display status for all 7 servers. | `/setup` |
+| `/version` | Display plugin version, installed components, and system status. | `/version` |
+| `/help` | Show complete command reference, available agents, skills, and usage examples. | `/help /research` |
 
 ---
 
@@ -96,9 +101,10 @@ These can be appended to most commands:
 
 1. **Quick citation check**: `/cite [citation]`
 2. **Research a legal issue**: `/research [topic]`
-3. **Challenge your position**: `/adversary [your argument]`
+3. **Challenge your position**: `/adversarial [your argument]`
 4. **Draft a document**: `/draft [document type]`
 5. **Plan complex work**: `/briefing [describe matter]`
+6. **Vague query? Start here**: `/refine [your question]`
 
 ---
 
@@ -111,27 +117,32 @@ I need to...
 │
 ├─ Research law → /research
 │
-├─ Challenge my argument → /adversary
+├─ Challenge my argument → /adversarial
 │
 ├─ Assess case strength → /strategy
 │
 ├─ Draft a document → /draft
 │
-├─ Analyze a document → /analyze
+├─ Analyze a document → /doc-analyze
 │
 ├─ Translate legal text → /translate
 │
 ├─ Plan complex work → /briefing
 │
-├─ Look up a statute → /statute
+├─ Refine vague query → /refine
 │
-└─ Find related cases → /precedent
+├─ Federal law question → /federal
+│
+├─ Cantonal law question → /cantonal
+│
+└─ Multi-step pipeline → /workflow or /legal
 ```
 
 ---
 
 ## See Also
 
-- **[Terminology Glossary](./terminology.md)** - Swiss legal terms
-- **[Troubleshooting](./troubleshooting.md)** - When commands don't work
-- **[Team Features](./team-features.md)** - Collaboration commands deep-dive
+- **[Cheatsheet](./cheatsheet.md)** — Skills, agents, MCP servers, and workflows
+- **[Terminology Glossary](./terminology.md)** — Swiss legal terms
+- **[Troubleshooting](./troubleshooting.md)** — When commands don't work
+- **[Team Features](./team-features.md)** — Collaboration commands deep-dive

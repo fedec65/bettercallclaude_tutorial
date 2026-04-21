@@ -37,7 +37,7 @@ Gather and analyze:
 
 **Type:**
 ```
-/analyze [distribution agreement] for:
+/doc-analyze @distribution_agreement.pdf for:
 1. Exclusivity clause terms
 2. Territory definition
 3. Breach consequences
@@ -76,7 +76,7 @@ Gather and analyze:
 
 **4.2 Challenge your own case:**
 ```
-/adversary Our position: ABC Corp's direct sales violated exclusivity clause, causing CHF 500,000 in lost profits. We have written agreement and customer evidence.
+/adversarial Our position: ABC Corp's direct sales violated exclusivity clause, causing CHF 500,000 in lost profits. We have written agreement and customer evidence.
 ```
 
 **What to watch for:**

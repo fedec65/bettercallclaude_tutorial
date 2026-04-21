@@ -128,15 +128,21 @@ This tutorial is designed for:
 | Capability | Description | Example Commands |
 |:------------|-------------|------------------|
 | 📜 **Citation Lookup** | Verify and format Swiss legal citations | `/cite BGE 147 IV 73` |
-| 🔍 **Legal Research** | Search BGE/ATf/DTF decisions and Swiss statutes | `/research Art. 97 OR` |
-| ⚖️ **Adversarial Analysis** | Stress-test your legal arguments | `/adversary` |
+| 🔍 **Legal Research** | Search BGE/ATF/DTF decisions and Swiss statutes | `/research Art. 97 OR` |
+| ⚖️ **Adversarial Analysis** | Stress-test your legal arguments | `/adversarial` |
 | 📝 **Document Drafting** | Generate contracts, opinions, briefs | `/draft contract` |
 | 🌐 **Translation** | Translate legal documents preserving terminology | `/translate` |
 | 📊 **Case Strategy** | Assess litigation risks and opportunities | `/strategy` |
 | 🎯 **Query Refinement** | Transform vague questions into structured prompts | `/refine` |
 | 📄 **Document Analysis** | Analyze legal documents for issues and clauses | `/doc-analyze` |
+| 🏛️ **Federal Analysis** | Analyze under federal Swiss law (ZGB, OR, StGB, BV) | `/federal` |
+| 🏘️ **Cantonal Analysis** | Analyze under cantonal law for a specific canton | `/cantonal` |
+| ✅ **Citation Validation** | Bulk validate citations in documents | `/validate` |
+| 🧭 **Intelligent Gateway** | Auto-route to optimal workflow | `/legal` |
 
 > 🏗️ **Architecture**: BetterCallClaude uses 14 specialized **skills** as the single source of truth. Commands are thin entry points that delegate to these skills. Infrastructure commands (`legal`, `setup`, `help`, `workflow`, `briefing`, `version`) remain full-featured.
+>
+> **v4.3.0** — 20 agents, 19 commands, 14 skills, 7 MCP servers
 
 ## 🔗 Links
 

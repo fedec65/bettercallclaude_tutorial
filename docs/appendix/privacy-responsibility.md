@@ -90,8 +90,7 @@ This query contains potentially identifying information:
 Suggested anonymized query:
 /research supply agreement breach Swiss law limitation period damages
 
-To proceed with original query, switch to cloud mode:
-/config privacy cloud
+To proceed with original query, consider whether cloud mode is appropriate for the sensitivity level of your matter.
 ```
 
 ---
@@ -114,6 +113,7 @@ To proceed with original query, switch to cloud mode:
 | **BGE/ATF/DTF Search** | Citation queries | All modes: queries sent to entscheidsuche.ch |
 | **Fedlex SPARQL** | Statute queries | All modes: queries sent to Fedlex |
 | **OnlineKommentar** | Commentary queries | All modes: queries sent to platform |
+| **Swiss Caselaw** | Case law, citation graphs | All modes: queries sent to opencaselaw.ch |
 | **Ollama (Local)** | Everything | Strict mode: all processing local |
 
 **Key insight**: Database queries (BGE, Fedlex) always go to external sources—this is public legal data, not privileged information.

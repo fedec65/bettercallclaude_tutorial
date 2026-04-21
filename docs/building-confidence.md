@@ -168,7 +168,7 @@ Level 4: Document Drafting & Review (30 min)
 
 **Type:**
 ```
-/adversary My argument: The limitation period for contractual claims is 10 years under Art. 127 OR, not 5 years
+/adversarial My argument: The limitation period for contractual claims is 10 years under Art. 127 OR, not 5 years
 ```
 
 **What to observe:**
@@ -245,7 +245,7 @@ Level 4: Document Drafting & Review (30 min)
 
 **Type:**
 ```
-/analyze [paste contract text] for Swiss law compliance and key risks
+/doc-analyze [paste contract text] for Swiss law compliance and key risks
 ```
 
 **What to observe:**

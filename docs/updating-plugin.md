@@ -92,7 +92,7 @@ After clicking "Check for updates":
 After updating, we recommend:
 
 1. **Restart COWORK**: Close and reopen the COWORK workspace to ensure all changes take effect
-2. **Verify connectors**: Check that all 6 MCP connectors are still enabled
+2. **Verify connectors**: Check that all 7 MCP connectors are still enabled
 3. **Run setup command**: Type `/bettercallclaude:setup` to verify everything is working
 4. **Test a quick query**: Try a simple citation lookup to confirm functionality
 
@@ -116,7 +116,7 @@ After updating, we recommend:
 **Solution**:
 1. Go to the plugin settings (gear icon)
 2. Click **Connectors** in the left sidebar
-3. Ensure all 6 connectors are set to **"Always allow"**
+3. Ensure all 7 connectors are set to **"Always allow"**
 
 ---
 
@@ -138,7 +138,7 @@ To see what changed in the latest version:
 - [ ] Clicked three dots menu → "Check for updates"
 - [ ] Confirmed update status (updated or already current)
 - [ ] Restarted COWORK workspace
-- [ ] Verified connectors are still enabled
+- [ ] Verified all 7 connectors are still enabled
 - [ ] Ran `/bettercallclaude:setup` to verify
 
 ---

@@ -170,25 +170,26 @@ After restarting, come back here and continue with Step 2. You only need to do t
 
 ### Step 12: Verify All Connectors Are Allowed
 
-1. You should see **6 connectors** listed in the left panel
+1. You should see **7 connectors** listed in the left panel
 2. For each connector, ensure the permission is set to **"Always allow"**
 3. The tools should show checkmarks indicating they are enabled
 
 ![Connectors list](../assets/screenshots/12_make_sure_connectors_are_all_allowed.png)
-*Verify all 6 connectors are present and allowed*
+*Verify all 7 connectors are present and allowed*
 
 ### Available Connectors Reference
 
-You should see these **6 connectors**:
+You should see these **7 connectors**:
 
 | Connector | Purpose |
 |-----------|---------|
-| `bettercallclaude-entscheidsuche` | Court decisions search |
-| `bettercallclaude-bge-search` | Federal Supreme Court (BGE) lookup |
-| `bettercallclaude-legal-citations` | Citation validation & formatting |
-| `bettercallclaude-fedlex-sparql` | Federal legislation database |
-| `bettercallclaude-onlinekommentar` | Legal commentaries |
-| `bettercallclaude-ollama` | Local AI for privacy-sensitive work |
+| `entscheidsuche` | Court decisions search |
+| `bge-search` | Federal Supreme Court (BGE) lookup |
+| `legal-citations` | Citation validation & formatting |
+| `fedlex-sparql` | Federal legislation database |
+| `onlinekommentar` | Legal commentaries |
+| `swiss-caselaw` | Case law, citation graphs, appeal chains |
+| `ollama` | Local AI for privacy-sensitive work |
 
 ### Ollama (Optional)
 
@@ -206,10 +207,7 @@ Then run the setup command in COWORK to verify MCP server connections:
 /bettercallclaude:setup
 ```
 
-This command will:
-- Verify all MCP servers are connected
-- Configure default settings
-- Display your available capabilities
+This command checks connectivity for all 7 MCP servers and displays their status. No additional configuration is needed — all remote servers connect automatically via HTTP.
 
 ### Verification
 
@@ -227,7 +225,7 @@ You should receive a response confirming BetterCallClaude is active and ready.
 > - Network egress is enabled (Step 1)
 > - **Windows 11 Home:** VM Platform and WSL are enabled (Step 1.5)
 > - Repository name is exactly `fedec65/bettercallclaude`
-> - All 6 connectors show in the list
+> - All 7 connectors show in the list
 > - Each connector is set to "Always allow"
 
 ---

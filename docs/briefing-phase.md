@@ -116,7 +116,7 @@ After answering the panel's questions, you'll receive:
 - Analyze comparable cases in your canton
 
 ### Phase 2: Risk Assessment (Est. 1 hour)
-- Run /adversary on hardship termination argument
+- Run /adversarial on hardship termination argument
 - Assess probability of success
 - Identify counter-arguments landlord will raise
 
@@ -258,7 +258,7 @@ The plan looks good, but let's add a comparison with German and French approache
 - Identify age discrimination arguments (client was oldest)
 
 ### Phase 3: Strategy Development (Est. 1.5 hours)
-- Run /adversary on age discrimination claim
+- Run /adversarial on age discrimination claim
 - Assess settlement range
 - Prepare negotiation strategy
 

@@ -1,6 +1,8 @@
 # BetterCallClaude Cheatsheet
 
 > **Complete Reference** — Skills, Commands, Agents, Hooks, MCP Servers, and Workflows
+>
+> **v4.3.0** — 20 agents, 19 commands, 14 skills, 7 MCP servers
 
 ---
 
@@ -43,6 +45,7 @@ BetterCallClaude is built on an ecosystem of interconnected components that work
 ┌─────────────────────────────────────────────────────────────────────┐
 │                      MCP SERVERS (Data Sources)                      │
 │    entscheidsuche → bge-search → fedlex-sparql → onlinekommentar    │
+│                         → swiss-caselaw                              │
 └─────────────────────────────────────────────────────────────────────┘
 ```
 
@@ -89,11 +92,16 @@ You: "What does Art. 27 OR say about mistake?"
 
 Commands are explicit instructions you type. They give you direct control over specific functions.
 
+### Intelligent Gateway
+
+| Command | Description |
+|---------|-------------|
+| `/bettercallclaude:legal` | **Intelligent gateway** — analyzes intent, routes to the appropriate specialist agent, and manages multi-step legal workflows. Use `--refine` to transform vague queries first. |
+
 ### Core Commands
 
 | Command | Description |
 |---------|-------------|
-| `/bettercallclaude:legal` | **Intelligent gateway** — Auto-routes complex queries to optimal workflow |
 | `/bettercallclaude:research` | Search BGE/ATF/DTF decisions, statutes, and legal sources |
 | `/bettercallclaude:strategy` | Litigation strategy analysis, risk assessment, case planning |
 | `/bettercallclaude:draft` | Draft legal documents (contracts, submissions, opinions) |
@@ -109,7 +117,7 @@ Commands are explicit instructions you type. They give you direct control over s
 
 | Command | Description |
 |---------|-------------|
-| `/bettercallclaude:doc-analyze` | Analyze uploaded legal documents for key issues |
+| `/bettercallclaude:doc-analyze` | Analyze uploaded legal documents for key issues. Use `@file.pdf` syntax. |
 | `/bettercallclaude:precedent` | Search and analyze BGE precedent chains |
 | `/bettercallclaude:validate` | Batch validate citations in documents |
 | `/bettercallclaude:adversarial` | **Three-agent adversarial analysis** — Stress-test your legal position |
@@ -119,17 +127,23 @@ Commands are explicit instructions you type. They give you direct control over s
 | Command | Description |
 |---------|-------------|
 | `/bettercallclaude:workflow` | Define and execute multi-step pipelines |
-| `/bettercallclaude:briefing` | Structured pre-execution briefing for complex matters |
+| `/bettercallclaude:briefing` | Structured pre-execution briefing for complex matters. Supports `--resume`. |
 | `/bettercallclaude:translate` | Translate legal documents (DE/FR/IT/EN) |
+
+### Query Refinement
+
+| Command | Description |
+|---------|-------------|
+| `/bettercallclaude:refine` | Transform vague queries into structured prompts through Socratic dialogue |
 
 ### Reference Commands
 
 | Command | Description |
 |---------|-------------|
 | `/bettercallclaude:cite` | Format and verify citations |
-| `/bettercallclaude:setup` | Check MCP server status and configuration |
-| `/bettercallclaude:version` | Display plugin version information |
-| `/bettercallclaude:summarize` | Consolidate multi-agent pipeline output |
+| `/bettercallclaude:setup` | Check MCP server status and connectivity for all 7 servers |
+| `/bettercallclaude:version` | Display plugin version, installed components, and system status |
+| `/bettercallclaude:summarize` | Consolidate multi-agent pipeline output with `--short` / `--medium` / `--long` |
 | `/bettercallclaude:help` | Display command reference |
 
 ---
@@ -183,13 +197,23 @@ For balanced legal analysis, three agents work together:
 | `orchestrator` | Multi-agent coordination |
 | `summarizer` | Pipeline output consolidation |
 
+### Agent Model Tiers (v4.3.0)
+
+Every agent now declares its model tier explicitly:
+
+| Tier | Model | Used For |
+|------|-------|----------|
+| Fast | `haiku` | Quick scoped tasks (citation formatting, summarization) |
+| Standard | `sonnet` | Bulk of domain reasoning (research, strategy, drafting) |
+| Deep | `opus` | Judicial synthesis, workflow orchestration, complex analysis |
+
 ---
 
 ## Hooks
 
 Hooks are automatic triggers that run in the background. They protect confidentiality without you having to think about it.
 
-### Privacy Routing Hook
+### Privacy Routing Hook (v4.3.0 Hardened)
 
 | Hook | Purpose | Protection |
 |------|---------|------------|
@@ -212,6 +236,11 @@ Your message contains: "My client Müller wants to..."
    Normal cloud       → Redacted or      → Local Ollama
    processing            routed              processing
 ```
+
+#### v4.3.0 Improvements
+
+- **Covers more tools**: `MCP`, `MultiEdit`, and `WebFetch` tool calls are now scanned (previously only `Bash`, `Edit`, `Write`)
+- **Reduced false positives**: Weak markers (bare "confidential"/"vertraulich") now require a corroborating strong signal before triggering
 
 #### Privacy Modes
 
@@ -237,14 +266,21 @@ The hook detects privilege indicators in German, French, and Italian:
 
 MCP servers are the data connections. They connect BetterCallClaude to Swiss legal databases and services.
 
-| Server | Purpose | Data Source |
-|--------|---------|-------------|
-| `entscheidsuche` | Swiss court decision search | entscheidsuche.ch API |
-| `bge-search` | Federal Supreme Court decisions | BGE/ATF/DTF database |
-| `legal-citations` | Citation verification and formatting | Fedlex + internal |
-| `fedlex-sparql` | Federal legislation database | admin.ch/fedlex |
-| `onlinekommentar` | Swiss legal commentaries | onlinekommentar.ch |
-| `ollama` | Local LLM for privacy | Your machine |
+| Server | Purpose | Transport | Data Source |
+|--------|---------|-----------|-------------|
+| `entscheidsuche` | Swiss court decision search | HTTP | entscheidsuche.ch API |
+| `bge-search` | Federal Supreme Court decisions | HTTP | BGE/ATF/DTF database |
+| `legal-citations` | Citation verification and formatting | HTTP | Fedlex + internal |
+| `fedlex-sparql` | Federal legislation database | HTTP | admin.ch/fedlex |
+| `onlinekommentar` | Swiss legal commentaries | HTTP | onlinekommentar.ch |
+| `swiss-caselaw` | Case law, citation graphs, appeal chains | SSE | opencaselaw.ch |
+| `ollama` | Local LLM for privacy | Local STDIO | Your machine |
+
+**Transport notes:**
+- The 6 remote servers connect via HTTP to `mcp.bettercallclaude.ch` (rate limit: 60 req/min per IP)
+- `swiss-caselaw` connects via SSE to `mcp.opencaselaw.ch`
+- `ollama` is the only local server — requires Node.js ≥ 18
+- No API keys required for any server
 
 ### What Each Server Provides
 
@@ -282,6 +318,13 @@ MCP servers are the data connections. They connect BetterCallClaude to Swiss leg
 │  • Scholarly commentary on Swiss law                             │
 │  • Article-specific analysis                                     │
 │  • Academic references                                           │
+└─────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────┐
+│                   swiss-caselaw                                  │
+│  • Case law search via opencaselaw.ch                            │
+│  • Citation graph analysis                                       │
+│  • Appeal chain tracking                                         │
 └─────────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────────┐
@@ -388,6 +431,8 @@ Sequential:
 | Analyze my position | `/bettercallclaude:adversarial "my argument"` |
 | Validate citations | `/bettercallclaude:validate --document` |
 | Check a statute | `/bettercallclaude:research "Art. 97 OR"` |
+| Vague query? | `/bettercallclaude:refine "I have problems with my landlord"` |
+| Gateway route | `/bettercallclaude:legal "assess exposure under Art. 97 OR"` |
 
 ### Decision Flowchart
 
@@ -403,6 +448,8 @@ What do you need?
        ├── Check citations ────→ /bettercallclaude:validate
        │
        ├── Stress-test position → /bettercallclaude:adversarial
+       │
+       ├── Vague query ────────→ /bettercallclaude:refine
        │
        └── Complex task ────────→ /bettercallclaude:workflow
                                    or
@@ -425,8 +472,8 @@ What do you need?
 | Situation | Mode | How |
 |-----------|------|-----|
 | General research | balanced | Default (no action needed) |
-| Client-specific work | strict | Add `--privacy strict` |
-| Non-sensitive drafting | cloud | Add `--privacy cloud` |
+| Client-specific work | strict | Use local Ollama processing |
+| Non-sensitive drafting | cloud | Full cloud capabilities |
 | Unsure | balanced | Default is safe |
 
 ---
@@ -440,4 +487,4 @@ What do you need?
 
 ---
 
-*Last updated: March 2026*
+*Last updated: April 2026 — v4.3.0*

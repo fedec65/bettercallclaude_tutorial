@@ -31,7 +31,7 @@
 /research responsabilité contractuelle     # French terms
 
 # 4. Check database status
-/status    # Verify MCP servers connected
+/bettercallclaude:setup    # Verify MCP servers connected
 ```
 
 ---
@@ -94,13 +94,13 @@
 4. MCP server status?
 
 ```
-/config    # Check configuration
-/status    # Check server status
+/bettercallclaude:setup    # Check MCP server status
 ```
 
 **If servers offline:**
 - Try again in a few minutes
 - Check COWORK status page
+- Run `/bettercallclaude:setup` to see which servers are unreachable
 - Contact IT support if persistent
 
 ---
@@ -126,10 +126,10 @@
 /research wrongful termination employment law Switzerland
 
 # Option 2: Switch privacy mode (if appropriate)
-/config privacy balanced    # Less restrictive (still protects privileged info)
+# Option 2: Anonymize and retry in balanced mode
 
 # Option 3: Use local-only mode for sensitive work
-/config privacy strict    # Maximum protection
+# Option 3: Use local-only Ollama processing for sensitive work
 ```
 
 ---
@@ -171,7 +171,7 @@ pwd
 ls -la CLAUDE.md
 
 # Resume from previous session
-/briefing --resume
+/bettercallclaude:briefing --resume
 ```
 
 **Prevention:**
@@ -249,6 +249,7 @@ A: Yes, with strict privacy mode. Client confidences are protected.
 | "Citation not found" | Citation doesn't exist | Verify format, search by topic |
 | "CLAUDE.md not found" | Context file missing | Create CLAUDE.md in current directory |
 | "Rate limit exceeded" | Too many requests | Wait a moment, then retry |
+| "MCP connection timeout" | Server not responding | Check internet, retry, run /setup |
 
 ---
 
@@ -256,8 +257,8 @@ A: Yes, with strict privacy mode. Client confidences are protected.
 
 **Built-in help:**
 ```
-/help                # General help
-/help /research     # Help with specific command
+/bettercallclaude:help                # General help
+/bettercallclaude:help /research     # Help with specific command
 ```
 
 **Report bugs:**

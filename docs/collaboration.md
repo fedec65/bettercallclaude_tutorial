@@ -271,7 +271,7 @@ Friday: F. Cesconi reviews research, updates CLAUDE.md with key findings
 ```
 Monday: F. Cesconi runs /strategy with research findings
 Tuesday: F. Cesconi drafts complaint
-Wednesday: M. Schmidt reviews draft, runs /adversary
+Wednesday: M. Schmidt reviews draft, runs /adversarial
 Thursday: F. Cesconi incorporates feedback
 Friday: Final review, client approval
 ```

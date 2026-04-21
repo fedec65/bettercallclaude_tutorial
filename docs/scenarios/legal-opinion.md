@@ -59,7 +59,7 @@ Exemptions considered: [list relevant exemptions]
 
 **Type:**
 ```
-/adversary Our conclusion: [state your conclusion, e.g., "No license required due to sandbox exemption"]
+/adversarial Our conclusion: [state your conclusion, e.g., "No license required due to sandbox exemption"]
 
 Challenge this finding. What would FINMA argue?
 ```

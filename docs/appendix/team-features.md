@@ -15,18 +15,29 @@ BetterCallClaude supports multi-lawyer workflows through:
 
 ---
 
-## Team Commands
+## Team Collaboration in v4.3.0
 
-### /team - Orchestrate Multiple Specialists
+BetterCallClaude v4.3.0 does not have dedicated `/team`, `/delegate`, or `/sync` commands. Instead, collaboration happens through:
+
+1. **Shared CLAUDE.md**: Persistent case memory accessible to all team members
+2. **`/briefing --resume`**: Pick up where a colleague left off
+3. **`/workflow`**: Define multi-step processes that can be handed off
+4. **Natural language**: Describe parallel work needs in plain language
+
+---
+
+### Running Parallel Research Streams
 
 **Purpose**: Coordinate multiple AI specialists on complex matters
 
 **Basic usage:**
 ```
-/team research parallel streams on:
+Run parallel research on:
 1. Contractual liability under Art. 97 OR
 2. Damages calculation methods
 3. Precedents on limitation periods
+
+Then synthesize the findings into a single memo.
 ```
 
 **What happens:**
@@ -42,20 +53,20 @@ BetterCallClaude supports multi-lawyer workflows through:
 
 ---
 
-### /delegate - Assign to Specific Specialists
+### Invoking Specific Specialists
 
-**Purpose**: Send work to a specific specialist agent
+**Purpose**: Direct work to a specific specialist agent
 
-**Available specialists:**
-- `swiss-legal-researcher`: BGE/ATF/DTF research
-- `swiss-legal-drafter`: Document drafting
-- `swiss-case-strategist`: Litigation strategy
-- `swiss-legal-adversary`: Argument challenge
-- `citation-specialist`: Citation verification
+The framework routes requests automatically, but you can guide it explicitly:
 
 **Example:**
 ```
-/delegate to swiss-legal-researcher: Find all BGE decisions on Art. 97 OR contractual liability from the last 5 years
+Have the legal researcher find all BGE decisions on Art. 97 OR contractual liability from the last 5 years
+```
+
+Or use the relevant command:
+```
+/bettercallclaude:research Art. 97 OR contractual liability last 5 years
 ```
 
 **When to use:**
@@ -65,13 +76,15 @@ BetterCallClaude supports multi-lawyer workflows through:
 
 ---
 
-### /sync - Team Synchronization
+### Synchronizing Shared Context
 
 **Purpose**: Update shared context and coordinate
 
 **Usage:**
-```
-/sync Update CLAUDE.md with:
+Update CLAUDE.md directly with:
+```markdown
+## Team Update - [Date]
+
 - Today's client meeting outcomes
 - New deadline: filing by 2024-02-15
 - Strategy change: focus on settlement
@@ -79,8 +92,8 @@ BetterCallClaude supports multi-lawyer workflows through:
 
 **What happens:**
 1. CLAUDE.md updated with new information
-2. Team notified of changes (if using shared workspace)
-3. Next session will have current context
+2. Next session (by any team member) will have current context
+3. BetterCallClaude reads CLAUDE.md at the start of every conversation
 
 **When to use:**
 - After significant developments

@@ -53,7 +53,7 @@ Create a dedicated directory and CLAUDE.md for this review:
 
 **Type:**
 ```
-/analyze [paste lease text or attach document]
+/doc-analyze [paste lease text or attach document]
 
 Extract: key terms, unusual clauses, potential risks, Swiss law compliance
 ```
@@ -84,7 +84,7 @@ If the lease has unfamiliar provisions:
 
 **Type:**
 ```
-/adversary Analyze this lease from tenant's perspective. What are the risks?
+/adversarial Analyze this lease from tenant's perspective. What are the risks?
 ```
 
 **Focus on:**
