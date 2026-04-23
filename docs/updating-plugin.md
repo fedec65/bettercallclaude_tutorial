@@ -6,84 +6,123 @@
 
 > **Keep your plugin up to date with the latest features and improvements**
 
-## Overview
+---
 
-BetterCallClaude is actively developed with new features, improved connectors, and bug fixes. This guide shows you how to check for updates and install them.
+## How Cowork Plugin Updates Actually Work
 
-**⏱️ Estimated time: 2 minutes**
+Cowork's plugin system has **two independent layers**. Understanding the difference makes the update choice obvious.
 
 ---
 
-## When to Update
+## Layer 1 — The Marketplace Catalog
 
-You should check for updates:
-- **Monthly**: As part of regular maintenance
-- **When announced**: Follow repository updates at `fedec65/bettercallclaude`
-- **When experiencing issues**: Updates often fix known bugs
-- **Before important matters**: Ensure you have the latest features
+A **marketplace** is a Git repository whose `.claude-plugin/marketplace.json` lists which plugins exist and what version each is at. For you, the marketplace is `fedec65/bettercallclaude` itself.
+
+Cowork keeps a **local cached copy** of that `marketplace.json`. Until that cache is refreshed, Cowork does not even know that a newer version exists.
+
+### What refreshes the catalog?
+
+| Action | What It Does | Result |
+|--------|-------------|--------|
+| **Manual Sync** (Sync button on the marketplace row) | Git-fetches the marketplace repo → re-reads `marketplace.json` → updates the local catalog | Installs **nothing**. Cheap, instant, safe. |
+| **Auto-update marketplace** (toggle in the ⋯ menu) | Same as Manual Sync, but Cowork does it automatically — once on every app start, and periodically while running | Equivalent effect, just hands-off. |
+
+> 💡 **Key insight**: Layer 1 only updates the *catalog*. It tells Cowork "version 4.4.0 exists." It does not download or install anything.
 
 ---
 
-## Step-by-Step Update Process
+## Layer 2 — The Installed Plugin
 
-### Step 1: Navigate to Customize
+Separately, for each plugin you have installed, Cowork tracks the **version you're actually running**. Your installed version does **not** change until you click **"Update plugin"** on that specific plugin.
 
-Click on **"Customize"** in the left sidebar to access the plugin management area.
+The "Update plugin" button only becomes meaningful **after** the catalog has been refreshed to advertise a newer version (Layer 1).
 
-![Click Customize](../assets/screenshots/update_01_click_customize.png)
+### What "Update plugin" does
+
+1. Downloads the plugin sub-directory at the version the catalog currently advertises
+2. Validates it against Cowork's plugin validator
+3. Swaps it in
+4. Prompts for any new `userConfig` keys if the schema changed
+
+> ⚠️ This is the **only** action that actually changes what code runs on your machine.
+
+---
+
+## What the Combinations Do
+
+| Catalog Refresh | Plugin Update | Result |
+|-----------------|---------------|--------|
+| Manual sync | Manual click | You are in full control. Nothing changes unless you do **both** steps. Safest; recommended if you want to pin versions. |
+| Auto-update marketplace | Manual click | Cowork silently knows about new versions, but won't install them. You get a visible "Update" indicator. **Sweet spot for most users** — zero friction on discovery, explicit consent on install. |
+| Manual sync | *(no auto on the plugin — there is no "auto-update plugin")* | Same as above; just means you also have to remember to hit Sync. |
+| Auto-update marketplace | Auto | **Not exposed in the UI.** Plugin installation is always an explicit click. |
+
+---
+
+## Recommended Settings for BetterCallClaude
+
+### Turn ON "Sync automatically" for the marketplace
+
+Since `fedec65/bettercallclaude` is your own plugin — you're the only publisher, and it has no third-party supply-chain risk — auto-sync is safe and convenient. You'll get a visible "Update" cue when a new release ships, without any manual Sync step.
+
+### Leave "Update plugin" as manual
+
+After each release, click **Update** once, answer any new `userConfig` prompt, and you're on the new version. This gives you a chance to:
+
+1. **Read the CHANGELOG** first
+2. **Test in a controlled moment** rather than mid-session
+
+If a `userConfig` schema change happens mid-session, manual plugin update is your protection. Auto marketplace refresh is harmless — no code runs as a result of a catalog fetch.
+
+---
+
+## Step-by-Step: Enable Auto-Sync
+
+### Step 1: Open Customize
+
+In Cowork, click **"Customize"** in the left sidebar.
+
+![Click Customize](../assets/screenshots/update_v2_01_customize.png)
 *Open the Customize panel*
 
 ---
 
-### Step 2: Open Plugin Options
+### Step 2: Browse Plugins
 
-Click the **"+"** icon next to **"Personal plugins"** to reveal plugin management options.
+Click the **+** next to **"Personal plugins"**, then select **"Browse plugins"**.
 
-![Click the + button](../assets/screenshots/update_02_click_plus.png)
-*Access plugin management menu*
-
----
-
-### Step 3: Browse Plugins
-
-Select **"Browse plugins"** from the dropdown menu to view your installed plugins.
-
-![Browse plugins](../assets/screenshots/update_03_browse_plugins.png)
-*Open the plugin directory*
+![Browse plugins](../assets/screenshots/update_v2_02_browse_plugins.png)
+*Open the plugin browser*
 
 ---
 
-### Step 4: Access Plugin Menu
+### Step 3: Enable "Sync automatically"
 
-Find the **Bettercallclaude** plugin card and click the **three dots (⋯)** menu button on the right side.
+1. Find the **Bettercallclaude** plugin card
+2. Click the **three dots (⋯)** menu on the right
+3. Toggle **"Sync automatically"** to **ON**
 
-![Click three dots menu](../assets/screenshots/update_04_click_three_dots.png)
-*Open the plugin options menu*
+![Toggle Sync automatically](../assets/screenshots/update_v2_03_sync_automatically.png)
+*Enable automatic marketplace catalog refresh*
 
----
-
-### Step 5: Check for Updates
-
-Click **"Check for updates"** from the dropdown menu. You'll see:
-- The currently synced commit hash
-- The update check option
-
-![Check for updates](../assets/screenshots/update_05_check_updates.png)
-*Select "Check for updates" from the menu*
+**What this does:**
+- Cowork will periodically fetch the latest `marketplace.json` from `fedec65/bettercallclaude`
+- When a new version is published, Cowork will know about it automatically
+- **Nothing is installed** — you just get an "Update" indicator
 
 ---
 
-### Step 6: Review Result
+### Step 4: Update When Available
 
-After clicking "Check for updates":
+When a new version is available, go back to the plugin overview and click the **"Update"** button.
 
-| Scenario | What Happens |
-|----------|--------------|
-| **Update available** | The plugin automatically updates to the latest version |
-| **Already up to date** | You'll see a notification banner saying "Already up to date." |
+![Update button](../assets/screenshots/update_v2_04_plugin_overview.png)
+*Click Update to install the new version*
 
-![Update result](../assets/screenshots/update_06_result.png)
-*Confirmation that the plugin is up to date*
+**What happens:**
+- Cowork downloads and validates the new plugin version
+- If the `userConfig` schema changed, you'll be prompted for any new settings
+- The new version is swapped in immediately
 
 ---
 
@@ -91,7 +130,7 @@ After clicking "Check for updates":
 
 After updating, we recommend:
 
-1. **Restart COWORK**: Close and reopen the COWORK workspace to ensure all changes take effect
+1. **Restart COWORK**: Close and reopen the workspace to ensure all changes take effect
 2. **Verify connectors**: Check that all 7 MCP connectors are still enabled
 3. **Run setup command**: Type `/bettercallclaude:setup` to verify everything is working
 4. **Test a quick query**: Try a simple citation lookup to confirm functionality
@@ -100,16 +139,20 @@ After updating, we recommend:
 
 ## Troubleshooting Updates
 
-### Issue: "Check for updates" is grayed out
+### Issue: "Update" button doesn't appear
 
-**Solution**: Ensure you have an active internet connection and network egress is enabled in Claude Desktop settings.
+**Cause**: The marketplace catalog hasn't been refreshed yet, so Cowork doesn't know a newer version exists.
+
+**Solution**:
+- If auto-sync is ON: wait a moment, or restart Cowork (it fetches on startup)
+- If auto-sync is OFF: click the ⋯ menu → **"Check for updates"** to force a catalog refresh
 
 ### Issue: Update fails or stalls
 
-**Solution**: 
+**Solution**:
 1. Close Claude Desktop completely
 2. Reopen and try again
-3. If persists, remove and reinstall the plugin
+3. If it persists, remove and reinstall the plugin
 
 ### Issue: Connectors missing after update
 
@@ -120,31 +163,31 @@ After updating, we recommend:
 
 ---
 
-## What's New?
+## Edge Cases Worth Knowing
 
-To see what changed in the latest version:
+### Downgrades
 
-1. Visit the repository at `https://github.com/fedec65/bettercallclaude`
-2. Check the **Releases** section for changelogs
-3. Review commit history for recent changes
+If `marketplace.json` drops from 4.4.0 back to 4.3.0 (e.g., you revert a release), auto-sync will pick up the lower version on next fetch, and the "Update" button will offer the older version. Nothing warns you — verify the version number before clicking Update.
+
+### Cache staleness on fresh install
+
+If you install BetterCallClaude on a new machine and hit "Install", Cowork uses whatever its current cached `marketplace.json` says. On a fresh install this is freshly fetched, so you always get the latest version at install time.
+
+### Zip uploads bypass the marketplace
+
+If you ever install BetterCallClaude via a manual ZIP upload (e.g., for beta testing), the plugin is **pinned to that exact zip** regardless of what's in the marketplace. You'd have to uninstall and reinstall from the marketplace to rejoin the automatic update flow.
 
 ---
 
 ## ✅ Update Checklist
 
-- [ ] Opened Customize panel
-- [ ] Clicked "Browse plugins"
-- [ ] Found Bettercallclaude in the list
-- [ ] Clicked three dots menu → "Check for updates"
-- [ ] Confirmed update status (updated or already current)
-- [ ] Restarted COWORK workspace
-- [ ] Verified all 7 connectors are still enabled
-- [ ] Ran `/bettercallclaude:setup` to verify
+- [ ] Auto-sync is enabled on the `fedec65/bettercallclaude` marketplace
+- [ ] I understand that auto-sync only refreshes the catalog — it does not install updates
+- [ ] I will click "Update" manually when a new version is available
+- [ ] After updating, I restart COWORK
+- [ ] After updating, I verify all 7 connectors are enabled
+- [ ] After updating, I run `/bettercallclaude:setup` to confirm connectivity
 
 ---
 
-**🎉 Your BetterCallClaude plugin is now up to date!**
-
----
-
-*Last updated: April 2026*
+*Last updated: April 2026 — v4.3.0+
