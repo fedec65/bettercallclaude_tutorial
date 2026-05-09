@@ -73,7 +73,7 @@
 
 | Command | Purpose | Example |
 |---------|---------|---------|
-| `/setup` | Check MCP server connectivity and display status for all 7 servers. | `/setup` |
+| `/setup` | Check MCP server connectivity and display status for all 9 servers. | `/setup` |
 | `/version` | Display plugin version, installed components, and system status. | `/version` |
 | `/help` | Show complete command reference, available agents, skills, and usage examples. | `/help /research` |
 

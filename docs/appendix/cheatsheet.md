@@ -2,7 +2,7 @@
 
 > **Complete Reference** — Skills, Commands, Agents, Hooks, MCP Servers, and Workflows
 >
-> **v4.3.0** — 20 agents, 19 commands, 14 skills, 7 MCP servers
+> **v4.4.0** — 20 agents, 19 commands, 14 skills, 9 MCP servers
 
 ---
 
@@ -141,7 +141,7 @@ Commands are explicit instructions you type. They give you direct control over s
 | Command | Description |
 |---------|-------------|
 | `/bettercallclaude:cite` | Format and verify citations |
-| `/bettercallclaude:setup` | Check MCP server status and connectivity for all 7 servers |
+| `/bettercallclaude:setup` | Check MCP server status and connectivity for all 9 servers |
 | `/bettercallclaude:version` | Display plugin version, installed components, and system status |
 | `/bettercallclaude:summarize` | Consolidate multi-agent pipeline output with `--short` / `--medium` / `--long` |
 | `/bettercallclaude:help` | Display command reference |
@@ -197,7 +197,7 @@ For balanced legal analysis, three agents work together:
 | `orchestrator` | Multi-agent coordination |
 | `summarizer` | Pipeline output consolidation |
 
-### Agent Model Tiers (v4.3.0)
+### Agent Model Tiers (v4.4.0)
 
 Every agent now declares its model tier explicitly:
 
@@ -213,7 +213,7 @@ Every agent now declares its model tier explicitly:
 
 Hooks are automatic triggers that run in the background. They protect confidentiality without you having to think about it.
 
-### Privacy Routing Hook (v4.3.0 Hardened)
+### Privacy Routing Hook (v4.4.0)
 
 | Hook | Purpose | Protection |
 |------|---------|------------|
@@ -237,7 +237,7 @@ Your message contains: "My client Müller wants to..."
    processing            routed              processing
 ```
 
-#### v4.3.0 Improvements
+#### v4.4.0 Improvements
 
 - **Covers more tools**: `MCP`, `MultiEdit`, and `WebFetch` tool calls are now scanned (previously only `Bash`, `Edit`, `Write`)
 - **Reduced false positives**: Weak markers (bare "confidential"/"vertraulich") now require a corroborating strong signal before triggering
@@ -273,11 +273,13 @@ MCP servers are the data connections. They connect BetterCallClaude to Swiss leg
 | `legal-citations` | Citation verification and formatting | HTTP | Fedlex + internal |
 | `fedlex-sparql` | Federal legislation database | HTTP | admin.ch/fedlex |
 | `onlinekommentar` | Swiss legal commentaries | HTTP | onlinekommentar.ch |
+| `legal-persona` | Swiss-law document intelligence | HTTP | mcp.bettercallclaude.ch |
+| `tas-jurisprudence` | CAS/TAS sports arbitration decisions | HTTP | mcp.bettercallclaude.ch |
 | `swiss-caselaw` | Case law, citation graphs, appeal chains | SSE | opencaselaw.ch |
 | `ollama` | Local LLM for privacy | Local STDIO | Your machine |
 
 **Transport notes:**
-- The 6 remote servers connect via HTTP to `mcp.bettercallclaude.ch` (rate limit: 60 req/min per IP)
+- The 7 HTTP servers connect to `mcp.bettercallclaude.ch` (rate limit: 60 req/min per IP)
 - `swiss-caselaw` connects via SSE to `mcp.opencaselaw.ch`
 - `ollama` is the only local server — requires Node.js ≥ 18
 - No API keys required for any server
@@ -318,6 +320,21 @@ MCP servers are the data connections. They connect BetterCallClaude to Swiss leg
 │  • Scholarly commentary on Swiss law                             │
 │  • Article-specific analysis                                     │
 │  • Academic references                                           │
+└─────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────┐
+│                   legal-persona                                  │
+│  • Swiss-law document intelligence                               │
+│  • legal_strategy — structured case strategy with citations      │
+│  • legal_draft — 15 Swiss document types (DE/FR/IT/EN)           │
+│  • legal_analyze — compliance, clause extraction, issue flagging │
+└─────────────────────────────────────────────────────────────────┘
+
+┌─────────────────────────────────────────────────────────────────┐
+│                  tas-jurisprudence                               │
+│  • CAS/TAS sports arbitration decisions                          │
+│  • cas_search, cas_get_award, cas_recent, cas_by_sport           │
+│  • Backed by jurisprudence.tas-cas.org crawl                     │
 └─────────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────────┐
@@ -487,4 +504,4 @@ What do you need?
 
 ---
 
-*Last updated: April 2026 — v4.3.0*
+*Last updated: April 2026 — v4.4.0*

@@ -131,7 +131,7 @@ When a new version is available, go back to the plugin overview and click the **
 After updating, we recommend:
 
 1. **Restart COWORK**: Close and reopen the workspace to ensure all changes take effect
-2. **Verify connectors**: Check that all 7 MCP connectors are still enabled
+2. **Verify connectors**: Check that all 9 MCP connectors are still enabled
 3. **Run setup command**: Type `/bettercallclaude:setup` to verify everything is working
 4. **Test a quick query**: Try a simple citation lookup to confirm functionality
 
@@ -159,7 +159,7 @@ After updating, we recommend:
 **Solution**:
 1. Go to the plugin settings (gear icon)
 2. Click **Connectors** in the left sidebar
-3. Ensure all 7 connectors are set to **"Always allow"**
+3. Ensure all 9 connectors are set to **"Always allow"**
 
 ---
 
@@ -185,9 +185,9 @@ If you ever install BetterCallClaude via a manual ZIP upload (e.g., for beta tes
 - [ ] I understand that auto-sync only refreshes the catalog — it does not install updates
 - [ ] I will click "Update" manually when a new version is available
 - [ ] After updating, I restart COWORK
-- [ ] After updating, I verify all 7 connectors are enabled
+- [ ] After updating, I verify all 9 connectors are enabled
 - [ ] After updating, I run `/bettercallclaude:setup` to confirm connectivity
 
 ---
 
-*Last updated: April 2026 — v4.3.0+
+*Last updated: April 2026 — v4.4.0

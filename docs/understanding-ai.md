@@ -170,6 +170,8 @@ Connectors are pipelines to Swiss legal databases. They connect BetterCallClaude
 | **entscheidsuche.ch** | Cantonal and federal decisions | Public database |
 | **OnlineKommentar.ch** | Legal commentaries | Academic database |
 | **opencaselaw.ch** | Case law, citation graphs, appeal chains | Public database |
+| **legal-persona** | Swiss-law document intelligence (drafting, strategy, analysis) | HTTP service |
+| **tas-jurisprudence** | CAS/TAS sports arbitration decisions | HTTP service |
 | **Ollama (local)** | AI processing | Your machine (privacy mode) |
 
 ### Privacy: What Stays Local vs. Cloud

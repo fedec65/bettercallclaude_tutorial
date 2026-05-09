@@ -114,6 +114,8 @@ To proceed with original query, consider whether cloud mode is appropriate for t
 | **Fedlex SPARQL** | Statute queries | All modes: queries sent to Fedlex |
 | **OnlineKommentar** | Commentary queries | All modes: queries sent to platform |
 | **Swiss Caselaw** | Case law, citation graphs | All modes: queries sent to opencaselaw.ch |
+| **Legal Persona** | Document intelligence | All modes: queries sent to mcp.bettercallclaude.ch |
+| **TAS Jurisprudence** | Sports arbitration | All modes: queries sent to mcp.bettercallclaude.ch |
 | **Ollama (Local)** | Everything | Strict mode: all processing local |
 
 **Key insight**: Database queries (BGE, Fedlex) always go to external sources—this is public legal data, not privileged information.
