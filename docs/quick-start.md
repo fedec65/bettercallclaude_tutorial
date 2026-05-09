@@ -30,7 +30,10 @@ Before you begin, ensure you have:
 
 ## 1.2 Installation in COWORK
 
-BetterCallClaude is installed through the Claude Desktop COWORK marketplace. Follow these steps carefully.
+BetterCallClaude is installed through the Claude Desktop COWORK marketplace. The process has **two distinct phases**:
+
+1. **Phase 1 — Add the marketplace catalog** (makes BetterCallClaude visible)
+2. **Phase 2 — Install the plugin** (downloads the actual code)
 
 > 🌙 **A Note on Interface Changes**  
 > Anthropic has a peculiar habit of redesigning the COWORK interface while the rest of us are sleeping. If these instructions don't match what you see on screen, don't worry—you're not going crazy. The menu items have simply taken a midnight stroll to new locations. We update this documentation as fast as humanly possible, but the UI may occasionally outpace us. When in doubt, look for buttons that sound similar to what we describe here.
@@ -84,98 +87,108 @@ After restarting, come back here and continue with Step 2. You only need to do t
 
 > 💡 **Seeing "VM service not running"?** This means the above features aren't enabled yet. Enable them and restart, then try the installation again.
 
-### Step 2: Open COWORK
+---
 
-1. In Claude Desktop, click on **"Cowork"** in the top navigation bar
-2. This opens the COWORK workspace area
+### Phase 1 — Add the Marketplace Catalog
 
-![Open COWORK](../assets/screenshots/01_open_claude_cowork.png)
-*Access the COWORK workspace*
+A **marketplace** is a catalog that tells COWORK which plugins exist and what versions are available. Adding the `fedec65/bettercallclaude` marketplace does **not** install anything yet — it simply makes the plugin visible in your directory.
 
-### Step 3: Click Customize
+#### Step 2: Open the Plugin Directory
 
-1. In the left sidebar, click **"Customize"**
-2. This opens the customization and plugins area
+1. In Claude Desktop, click **"Cowork"** in the top navigation bar
+2. In the left sidebar, click **"Customize"**
 
-![Click Customize](../assets/screenshots/02_click_customize.png)
+![Open Customize](../assets/screenshots/install_01_customize.png)
 *Open the Customize panel*
 
-### Step 4: Click the + Next to Personal Plugins
+#### Step 3: Add a Marketplace
 
-1. Find the **+** button next to **"Personal plugins"** in the left panel
-2. Hover over it to see the "Add plugin" tooltip
+1. Click the **+** button next to **"Personal plugins"**
+2. From the dropdown, select **"Add marketplace"**
 
-![Click Personal Plugins +](../assets/screenshots/03_click_personal_plugins_+.png)
-*Click the + button to add a plugin*
+![Click the + sign](../assets/screenshots/install_02_plus_sign.png)
+*Click the + button to reveal options*
 
-### Step 5: Select Add Marketplace
+![Add marketplace](../assets/screenshots/install_03_add_marketplace.png)
+*Select "Add marketplace" from the dropdown*
 
-1. From the dropdown menu, hover over **"Create plugin"** to reveal the submenu
-2. Click **"Add marketplace"**
+#### Step 4: Enter the Repository and Sync
 
-![Add Marketplace](../assets/screenshots/04_click_+_create_plugin_ADD_MARKET_PLACE.png)
-*Select Add marketplace from the menu*
+1. In the **"Add marketplace"** dialog, enter the repository: `fedec65/bettercallclaude`
+2. Click **"Sync"** to fetch the catalog
 
-### Step 6: Enter Repository and Sync
+![Enter repository and sync](../assets/screenshots/install_04_enter_repo_sync.png)
+*Enter the repository URL and click Sync*
 
-1. In the **"Add marketplace"** dialog, enter the URL: `fedec65/bettercallclaude`
-2. Click **"Sync"** to fetch the plugin
-
-![Enter repository](../assets/screenshots/05_enter_the_repo_fedec65:bettercallclaude.png)
-*Enter the BetterCallClaude repository*
-
-### Step 7: Click the Personal Tab
+#### Step 5: Switch to the Personal Tab
 
 1. The **Directory** will open showing available plugins
-2. Click the **"Personal"** tab to view your personal marketplace plugins
+2. Click the **"Personal"** tab to view plugins from your marketplace
 
-![Personal tab](../assets/screenshots/06_Click_Personal.png)
+![Click Personal tab](../assets/screenshots/install_05_click_personal.png)
 *Switch to the Personal tab in the Directory*
 
-![Personal tab highlighted](../assets/screenshots/07_click_personal.png)
-*Personal tab location*
+#### Step 6: Enable Auto Sync (Recommended)
 
-### Step 8: Install BetterCallClaude
+1. Find the **bettercallclaude** marketplace row (shown under "Local uploads")
+2. Click the **⋯** (three dots) menu on the marketplace row
+3. Toggle **"Sync automatically"** to ON
 
-1. Find **Bettercallclaude** in the Personal plugins list
-2. Click the **+** button on the plugin card to install it
+![BetterCallClaude 3-dots menu](../assets/screenshots/install_06_bettercallclaude_3dots.png)
+*Click the three-dots menu on the marketplace row*
 
-![Install plugin](../assets/screenshots/08_click_+.png)
-*Click + to install BetterCallClaude*
+![Enable auto sync](../assets/screenshots/install_07_sync_automatically.png)
+*Toggle "Sync automatically" to ON*
 
-### Step 9: Grant MCP Server Permissions
+> 💡 **Why enable Auto Sync?** This keeps your marketplace catalog up to date. COWORK will periodically check for new versions and show an **Update** button when one is available. The plugin itself does not auto-update — you always choose when to click **Update**. For details, see [Updating the Plugin](./updating-plugin.md).
 
-1. A permissions dialog will appear warning that the plugin includes local MCP servers
-2. Review the information and click **"Continue"** to grant the necessary permissions
+---
 
-![Grant permissions](../assets/screenshots/09_click_continue.png)
-*Grant MCP server permissions*
+### Phase 2 — Install the Plugin
 
-### Step 10: Access Plugin Settings
+Now that the marketplace catalog is added and auto-sync is enabled, install the actual plugin.
 
-1. After installation, you'll see Bettercallclaude listed under Personal plugins
-2. Click the **gear wheel** icon on the plugin card to access settings
+#### Step 7: Install BetterCallClaude
 
-![Plugin settings](../assets/screenshots/10_click_the_gear_wheel.png)
-*Click the gear wheel to configure*
+1. In the **Personal** tab, find the **Bettercallclaude** plugin card
+2. Click the **+** button on the card to install
 
-### Step 11: Click Connectors
+![Click + to install plugin](../assets/screenshots/install_08_click_plus_plugin.png)
+*Click the + button on the BetterCallClaude plugin card*
 
-1. The plugin details page will open showing Skills, Agents, and Hooks
-2. In the left sidebar, click **"Connectors"** to view the MCP servers
-3. These are your data pipelines to Swiss legal databases
+#### Step 8: Grant MCP Server Permissions
 
-![Plugin details](../assets/screenshots/11_you_should_see_this_page_click_connectors.png)
-*Plugin details page - click Connectors*
+1. You'll see a toast notification: *"Bettercallclaude is installed and ready to use."*
+2. A dialog will appear warning that the plugin includes local MCP servers
+3. Click **"Continue"** to grant permissions
 
-### Step 12: Verify All Connectors Are Allowed
+![MCP permissions dialog](../assets/screenshots/install_09_mcp_continue.png)
+*Click Continue to allow the MCP servers*
+
+#### Step 9: Open Plugin Settings
+
+1. Click the **gear wheel** icon on the Bettercallclaude plugin card
+2. This opens the plugin details page
+
+![Click gear wheel](../assets/screenshots/install_10_gear_wheel.png)
+*Click the gear wheel to open plugin settings*
+
+#### Step 10: Navigate to Connectors
+
+1. In the left sidebar of the plugin details page, click **"Connectors"**
+2. These are your data pipelines to Swiss legal databases
+
+![Click Connectors](../assets/screenshots/install_11_click_connectors.png)
+*Click Connectors in the left sidebar*
+
+#### Step 11: Set All Connectors to "Always Allow"
 
 1. You should see **9 connectors** listed in the left panel
-2. For each connector, ensure the permission is set to **"Always allow"**
-3. The tools should show checkmarks indicating they are enabled
+2. Click each connector and set its permission to **"Always allow"**
+3. This ensures Claude can use the tools without asking every time
 
-![Connectors list](../assets/screenshots/12_make_sure_connectors_are_all_allowed.png)
-*Verify all 9 connectors are present and allowed*
+![Set Always Allow](../assets/screenshots/install_12_always_allow.png)
+*Set each connector's permission to "Always allow"*
 
 ### Available Connectors Reference
 
@@ -183,11 +196,11 @@ You should see these **9 connectors**:
 
 | Connector | Purpose |
 |-----------|---------|
-| `entscheidsuche` | Court decisions search |
-| `bge-search` | Federal Supreme Court (BGE) lookup |
-| `legal-citations` | Citation validation & formatting |
-| `fedlex-sparql` | Federal legislation database |
-| `onlinekommentar` | Legal commentaries |
+| `bettercallclaude-entscheidsuche` | Court decisions search |
+| `bettercallclaude-bge-search` | Federal Supreme Court (BGE) lookup |
+| `bettercallclaude-legal-citations` | Citation validation & formatting |
+| `bettercallclaude-fedlex-sparql` | Federal legislation database |
+| `bettercallclaude-onlinekommentar` | Legal commentaries |
 | `legal-persona` | Swiss-law document intelligence (drafting, strategy, analysis) |
 | `tas-jurisprudence` | CAS/TAS sports arbitration decisions |
 | `swiss-caselaw` | Case law, citation graphs, appeal chains |
@@ -209,7 +222,7 @@ Then run the setup command in COWORK to verify MCP server connections:
 /bettercallclaude:setup
 ```
 
-This command checks connectivity for all 9 MCP servers and displays their status. No additional configuration is needed — 8 remote servers connect automatically via HTTP.
+This command checks connectivity for all 9 MCP servers and displays their status. No additional configuration is needed — 8 remote servers connect automatically via HTTP, plus 1 via SSE.
 
 ### Verification
 
