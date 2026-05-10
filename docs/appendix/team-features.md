@@ -15,9 +15,9 @@ BetterCallClaude supports multi-lawyer workflows through:
 
 ---
 
-## Team Collaboration in v4.4.0
+## Team Collaboration in v4.5.0
 
-BetterCallClaude v4.4.0 does not have dedicated `/team`, `/delegate`, or `/sync` commands. Instead, collaboration happens through:
+BetterCallClaude v4.5.0 does not have dedicated `/team`, `/delegate`, or `/sync` commands. Instead, collaboration happens through:
 
 1. **Shared CLAUDE.md**: Persistent case memory accessible to all team members
 2. **`/briefing --resume`**: Pick up where a colleague left off

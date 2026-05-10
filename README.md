@@ -142,7 +142,7 @@ This tutorial is designed for:
 
 > 🏗️ **Architecture**: BetterCallClaude uses 14 specialized **skills** as the single source of truth. Commands are thin entry points that delegate to these skills. Infrastructure commands (`legal`, `setup`, `help`, `workflow`, `briefing`, `version`) remain full-featured.
 >
-> **v4.4.0** — 20 agents, 19 commands, 14 skills, 9 MCP servers
+> **v4.5.0** — 20 agents, 19 commands, 14 skills, 9 MCP servers
 
 ## 🔗 Links
 

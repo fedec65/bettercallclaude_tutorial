@@ -2,7 +2,7 @@
 
 > **Complete Reference** — Skills, Commands, Agents, Hooks, MCP Servers, and Workflows
 >
-> **v4.4.0** — 20 agents, 19 commands, 14 skills, 9 MCP servers
+> **v4.5.0** — 20 agents, 19 commands, 14 skills, 9 MCP servers
 
 ---
 
@@ -504,4 +504,4 @@ What do you need?
 
 ---
 
-*Last updated: April 2026 — v4.4.0*
+*Last updated: May 2026 — v4.5.0*

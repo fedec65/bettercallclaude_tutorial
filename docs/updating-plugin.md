@@ -27,7 +27,7 @@ Cowork keeps a **local cached copy** of that `marketplace.json`. Until that cach
 | **Manual Sync** (Sync button on the marketplace row) | Git-fetches the marketplace repo → re-reads `marketplace.json` → updates the local catalog | Installs **nothing**. Cheap, instant, safe. |
 | **Auto-update marketplace** (toggle in the ⋯ menu) | Same as Manual Sync, but Cowork does it automatically — once on every app start, and periodically while running | Equivalent effect, just hands-off. |
 
-> 💡 **Key insight**: Layer 1 only updates the *catalog*. It tells Cowork "version 4.4.0 exists." It does not download or install anything.
+> 💡 **Key insight**: Layer 1 only updates the *catalog*. It tells Cowork "version 4.5.0 exists." It does not download or install anything.
 
 ---
 
@@ -190,4 +190,4 @@ If you ever install BetterCallClaude via a manual ZIP upload (e.g., for beta tes
 
 ---
 
-*Last updated: April 2026 — v4.4.0
+*Last updated: May 2026 — v4.5.0
