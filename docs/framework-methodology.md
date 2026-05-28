@@ -486,6 +486,84 @@ Work is complete when:
 
 ---
 
+## The `/legal-5step` Command: One-Command Full Pipeline
+
+### What It Does
+
+`/legal-5step` runs the entire 5-phase framework as a single sequential pipeline. Instead of invoking each phase manually, you describe your matter once and BetterCallClaude executes all five steps automatically:
+
+```
+Your matter description
+        │
+        ▼
+   ┌─────────┐
+   │ Step 1  │  Intake — Structured fact gathering and issue identification
+   └────┬────┘
+        │
+        ▼
+   ┌─────────┐
+   │ Step 2  │  Research — BGE/ATF/DTF precedent search with citation verification
+   └────┬────┘
+        │
+        ▼
+   ┌─────────┐
+   │ Step 3  │  Strategy — Litigation strategy with risk assessment and probability scoring
+   └────┬────┘   ← Quality gate: must pass before proceeding
+        │
+        ▼
+   ┌─────────┐
+   │ Step 4  │  Adversarial — Three-agent stress test (Advocate, Adversary, Judge)
+   └────┬────┘   ← Quality gate: must pass before proceeding
+        │
+        ▼
+   ┌─────────┐
+   │ Step 5  │  Draft — Final document generation with traced citations
+   └─────────┘
+```
+
+### How It Maps to the 5-Phase Framework
+
+| Pipeline Step | Framework Phase | What Happens |
+|---------------|-----------------|--------------|
+| Step 1: Intake | Phase 1: Briefing | Structured fact gathering, issue identification |
+| Step 2: Research | Phase 2: Execution | BGE/ATF/DTF search, statutory analysis, citation verification |
+| Step 3: Strategy | Phase 3: Interaction | Risk assessment, probability scoring, strategic recommendations |
+| Step 4: Adversarial | Phase 4: Adversarial Analysis | Three-agent stress test with Erwägung methodology |
+| Step 5: Draft | Phase 5: Final Summary | Client-ready document with traced citations |
+
+### Flags
+
+| Flag | Effect | Example |
+|------|--------|---------|
+| `--short` | Brief output at each step | `/legal-5step [matter] --short` |
+| `--medium` | Standard output (default) | `/legal-5step [matter] --medium` |
+| `--long` | Comprehensive output | `/legal-5step [matter] --long` |
+| `--no-summary` | Skip the final summary step | `/legal-5step [matter] --no-summary` |
+| `--stop-after` | Halt after a specific step (1-5) | `/legal-5step [matter] --stop-after 3` |
+| `--lang` | Specify output language (de/fr/it/en) | `/legal-5step [matter] --lang fr` |
+| `--canton` | Specify cantonal context | `/legal-5step [matter] --canton ZH` |
+
+### When to Use `/legal-5step` vs. Manual Phases vs. `/workflow`
+
+| Use `/legal-5step` When... | Run Phases Manually When... | Use `/workflow` When... |
+|----------------------------|------------------------------|------------------------|
+| You want end-to-end analysis in one command | You need to pause and think between phases | The matter follows a standard pattern (litigation-prep, due-diligence, etc.) |
+| The matter is well-defined from the start | You want to iterate on intermediate results | You need a predefined, repeatable process |
+| You want quality gates to catch issues early | You need full control over each step | Multiple parallel workstreams are needed |
+| Speed and convenience matter | The matter is highly complex or unusual | Team collaboration with assigned roles |
+
+### Example
+
+```
+/legal-5step Client is a software company in Zurich being sued for alleged
+copyright infringement by a former employee. Need to assess exposure and
+prepare defense strategy. --medium --canton ZH
+```
+
+This single command runs the full pipeline: intake → research → strategy → adversarial → draft.
+
+---
+
 ## Invoking Agents: Complete Reference
 
 ### Core Agents and When to Use Them

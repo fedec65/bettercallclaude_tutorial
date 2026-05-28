@@ -48,6 +48,14 @@ The "Update plugin" button only becomes meaningful **after** the catalog has bee
 
 ---
 
+## What's New in v4.6.1
+
+- **`/legal-5step`** — Run the full 5-phase framework as a single sequential pipeline: Intake → Research → Strategy → Adversarial → Draft, with quality gates at Steps 3 and 4. Flags: `--short`, `--medium`, `--long`, `--no-summary`, `--stop-after`, `--lang`, `--canton`.
+- **`/privacy`** — Check and change your privacy mode (`strict` / `balanced` / `cloud`).
+- **Privacy hardening** — 14 new Anwaltsgeheimnis detection patterns across DE/FR/IT/EN, Bash commands now intercepted, strict/balanced/cloud modes actively enforced.
+
+---
+
 ## What the Combinations Do
 
 | Catalog Refresh | Plugin Update | Result |
@@ -190,4 +198,4 @@ If you ever install BetterCallClaude via a manual ZIP upload (e.g., for beta tes
 
 ---
 
-*Last updated: May 2026 — v4.5.0
+*Last updated: May 2026 — v4.6.1

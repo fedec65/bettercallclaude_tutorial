@@ -2,7 +2,7 @@
 
 > **Complete Reference** — Skills, Commands, Agents, Hooks, MCP Servers, and Workflows
 >
-> **v4.5.0** — 20 agents, 19 commands, 14 skills, 9 MCP servers
+> **v4.6.1** — 20 agents, 20 commands, 15 skills, 9 MCP servers
 
 ---
 
@@ -67,6 +67,7 @@ Skills **auto-activate** based on what you're asking. You don't invoke them dire
 | `cantonal-law` | Canton-specific legal questions |
 | `multilingual-law` | Multi-language legal terminology needs (DE/FR/IT/EN) |
 | `legal-briefing` | Complex queries needing structured pre-execution intake |
+| `legal-5step` | End-to-end 5-phase pipeline (Intake → Research → Strategy → Adversarial → Draft) |
 
 ### How Skills Work
 
@@ -135,6 +136,18 @@ Commands are explicit instructions you type. They give you direct control over s
 | Command | Description |
 |---------|-------------|
 | `/bettercallclaude:refine` | Transform vague queries into structured prompts through Socratic dialogue |
+
+### Pipeline Commands
+
+| Command | Description |
+|---------|-------------|
+| `/bettercallclaude:legal-5step` | End-to-end 5-phase pipeline: Intake → Research → Strategy → Adversarial → Draft. Quality gates at Steps 3 and 4. Flags: `--short`, `--medium`, `--long`, `--no-summary`, `--stop-after`, `--lang`, `--canton` |
+
+### Privacy & Configuration Commands
+
+| Command | Description |
+|---------|-------------|
+| `/bettercallclaude:privacy` | Check or change privacy mode (`strict` / `balanced` / `cloud`) |
 
 ### Reference Commands
 
@@ -237,10 +250,19 @@ Your message contains: "My client Müller wants to..."
    processing            routed              processing
 ```
 
-#### v4.4.0 Improvements
+#### v4.6.0 Privacy Hardening
 
-- **Covers more tools**: `MCP`, `MultiEdit`, and `WebFetch` tool calls are now scanned (previously only `Bash`, `Edit`, `Write`)
-- **Reduced false positives**: Weak markers (bare "confidential"/"vertraulich") now require a corroborating strong signal before triggering
+- **Modes now enforced**: `strict`, `balanced`, and `cloud` modes are actively enforced via plugin `userConfig` (previously documentation-only)
+- **Bash commands intercepted**: Shell commands (`curl`, `cat`, etc.) are now scanned by the privacy hook
+- **14 new detection patterns** across all four languages:
+  - **DE**: Verschwiegenheitspflicht, Geheimhaltungspflicht, anwaltliche Verschwiegenheit
+  - **FR**: obligation de discretion, secret du mandat, confidentialite du mandat
+  - **IT**: vincolo professionale, obbligo di riservatezza, segreto d'ufficio
+  - **EN**: attorney-client privilege, legal professional privilege, solicitor-client privilege, privileged and confidential
+  - **Legal**: Art. 622 CP
+- **Strict mode bypass fixed**: Empty-content MCP calls no longer skip strict mode
+- **Covers more tools**: `MCP`, `MultiEdit`, `WebFetch`, and `Bash` tool calls are now scanned
+- **Reduced false positives**: Weak markers (bare "confidential"/"vertraulich") still require a corroborating strong signal before triggering in `balanced` mode
 
 #### Privacy Modes
 
@@ -256,9 +278,9 @@ The hook detects privilege indicators in German, French, and Italian:
 
 | Language | Patterns Detected |
 |----------|-------------------|
-| **DE** | Anwaltsgeheimnis, streng vertraulich, mandant, klientel |
-| **FR** | secret professionnel, strictement confidentiel, client |
-| **IT** | segreto professionale, strettamente confidenziale, cliente |
+| **DE** | Anwaltsgeheimnis, streng vertraulich, mandant, klientel, Verschwiegenheitspflicht, Geheimhaltungspflicht, anwaltliche Verschwiegenheit |
+| **FR** | secret professionnel, strictement confidentiel, client, obligation de discretion, secret du mandat, confidentialite du mandat |
+| **IT** | segreto professionale, strettamente confidenziale, cliente, vincolo professionale, obbligo di riservatezza, segreto d'ufficio |
 
 ---
 
@@ -489,9 +511,10 @@ What do you need?
 | Situation | Mode | How |
 |-----------|------|-----|
 | General research | balanced | Default (no action needed) |
-| Client-specific work | strict | Use local Ollama processing |
-| Non-sensitive drafting | cloud | Full cloud capabilities |
+| Client-specific work | strict | `/privacy strict` — local Ollama only |
+| Non-sensitive drafting | cloud | `/privacy cloud` — full cloud capabilities |
 | Unsure | balanced | Default is safe |
+| Check current mode | — | `/privacy` |
 
 ---
 
@@ -504,4 +527,4 @@ What do you need?
 
 ---
 
-*Last updated: May 2026 — v4.5.0*
+*Last updated: May 2026 — v4.6.1*

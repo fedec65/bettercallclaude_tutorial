@@ -1,6 +1,6 @@
 # Appendix A: Command Quick Reference
 
-> **All 19 commands at a glance**
+> **All 20 commands at a glance**
 
 ---
 
@@ -66,6 +66,22 @@
 | Command | Purpose | Example |
 |---------|---------|---------|
 | `/workflow` | Define and execute multi-agent legal workflows (due diligence, litigation prep, contract lifecycle, real estate closing). | `/workflow litigation-prep Personal injury claim against manufacturer` |
+
+---
+
+## Pipeline Commands
+
+| Command | Purpose | Example |
+|---------|---------|---------|
+| `/legal-5step` | Run the full 5-phase framework in one sequential pipeline: Intake → Research → Strategy → Adversarial → Draft. Quality gates at Steps 3 and 4. Flags: `--short`, `--medium`, `--long`, `--no-summary`, `--stop-after`, `--lang`, `--canton`. | `/legal-5step Art. 97 OR contractual liability --medium` |
+
+---
+
+## Privacy & Configuration Commands
+
+| Command | Purpose | Example |
+|---------|---------|---------|
+| `/privacy` | Check or change the privacy mode (`strict`, `balanced`, `cloud`). | `/privacy` or `/privacy strict` |
 
 ---
 
@@ -135,7 +151,11 @@ I need to...
 │
 ├─ Cantonal law question → /cantonal
 │
-└─ Multi-step pipeline → /workflow or /legal
+├─ Multi-step pipeline → /workflow or /legal
+│
+├─ Full 5-step pipeline → /legal-5step
+│
+└─ Check privacy mode → /privacy
 ```
 
 ---

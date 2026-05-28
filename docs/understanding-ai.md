@@ -20,7 +20,7 @@ By the end of this section, you will understand:
 
 Think of commands as shortcuts that trigger specific actions. You type `/something`, and something happens.
 
-> 🏗️ **Architecture Note**: Commands are now thin entry points (typically 5-13 lines) that delegate to **skills** — the single source of truth. Domain methodology has migrated from 13 commands into 14 skills. Infrastructure commands (`legal`, `setup`, `help`, `workflow`, `briefing`, `version`) remain full-featured, while domain commands act as wrappers.
+> 🏗️ **Architecture Note**: Commands are now thin entry points (typically 5-13 lines) that delegate to **skills** — the single source of truth. Domain methodology has migrated from 13 commands into 15 skills. Infrastructure commands (`legal`, `setup`, `help`, `workflow`, `briefing`, `version`) remain full-featured, while domain commands act as wrappers.
 
 ### Most Useful Commands for Daily Work
 
@@ -34,6 +34,8 @@ Think of commands as shortcuts that trigger specific actions. You type `/somethi
 | `/translate` | Translate legal texts | Cross-language work, terminology preservation |
 | `/briefing` | Structured intake | Complex matters, multi-step work |
 | `/refine` | Transform vague queries into structured prompts | Unclear legal questions, need help formulating queries |
+| `/legal-5step` | Run full 5-phase pipeline in one command | End-to-end analysis from intake to draft |
+| `/privacy` | Check or change privacy mode | Managing confidentiality settings |
 
 ### Decision Guide: Which Command When?
 
@@ -48,6 +50,8 @@ Write a document → /draft
 Translate text → /translate
 Start complex matter → /briefing
 Clarify my question → /refine
+Run full pipeline → /legal-5step
+Check privacy mode → /privacy
 ```
 
 ### Command Examples
@@ -85,7 +89,7 @@ Clarify my question → /refine
 
 Skills are pre-packaged expertise for complex tasks. While commands do one thing well, skills orchest multiple steps for sophisticated outcomes.
 
-### Key Skills (14 Total)
+### Key Skills (15 Total)
 
 | Skill | What It Provides | Best For |
 |-------|-------------------|---------|
@@ -103,6 +107,7 @@ Skills are pre-packaged expertise for complex tasks. While commands do one thing
 | `swiss-federal-analysis` | Federal law analysis | ZGB, OR, StGB, BV research |
 | `swiss-cantonal-analysis` | Cantonal law analysis | All 26 cantons |
 | `swiss-precedent-analysis` | Precedent chain tracking | BGE/ATF/DTF evolution analysis |
+| `legal-5step` | End-to-end 5-phase pipeline | Intake → Research → Strategy → Adversarial → Draft |
 
 ### Skills vs. Commands: What's the Difference?
 
@@ -178,9 +183,9 @@ Connectors are pipelines to Swiss legal databases. They connect BetterCallClaude
 
 | Mode | What Happens | When to Use |
 |------|--------------|-------------|
-| **Strict** | All processing on your machine | Highly sensitive matters, client confidentiality critical |
-| **Balanced** | Most local, some cloud for research | Standard matters with some sensitivity |
-| **Cloud** | Full cloud access | Non-sensitive matters, speed priority |
+| **Strict** | All processing local via Ollama; blocks all non-Ollama tool calls | Highly sensitive matters, client confidentiality critical |
+| **Balanced** | Smart routing: sensitive→local, other→cloud; strong patterns trigger confirmation | Standard matters with some sensitivity (default) |
+| **Cloud** | Full cloud access; strong patterns still trigger confirmation | Non-sensitive matters, speed priority |
 
 ---
 
@@ -202,9 +207,11 @@ Swiss law protects attorney-client privilege. BetterCallClaude's hooks:
 
 | Mode | Behavior | Best For |
 |------|----------|-------------|
-| **strict** | Local processing only, no cloud APIs | Attorney-client communications, highly sensitive |
-| **balanced** | Smart routing: sensitive→local, other→cloud | Most matters, flexible security |
-| **cloud** | Full capabilities, all databases | Non-sensitive matters, speed priority |
+| **strict** | Blocks all non-Ollama tool calls; all processing local | Attorney-client communications, highly sensitive |
+| **balanced** | Strong patterns trigger confirmation; weak+context allowed; smart routing | Most matters, flexible security (default) |
+| **cloud** | Strong patterns trigger confirmation; weak allowed; full capabilities | Non-sensitive matters, speed priority |
+
+> **v4.6.0 update**: These modes are now actively enforced via plugin `userConfig`. Use `/privacy` to check or change your current mode.
 
 ### When Hooks Might Block Your Request
 
@@ -278,6 +285,7 @@ After a significant development, update your CLAUDE.md:
 │  /cite      │ /briefing │ Legal Researcher │ BGE/ATF/DTF   │
 │  /research   │ /strategy │ Case Strategist   │ Fedlex        │
 │  /adversarial  │ /draft   │ Legal Drafter    │ entscheidsuche │
+│  /legal-5step  │ /privacy  │                  │               │
 └──────────────┴──────────┴─────────────────────────────────────┘
 ```
 

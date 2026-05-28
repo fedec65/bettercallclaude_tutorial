@@ -23,35 +23,56 @@ Attorneys may not disclose:
 
 ---
 
+## The `/privacy` Command
+
+BetterCallClaude provides a dedicated command to check and control your privacy mode:
+
+```
+/privacy              → Show current privacy mode and settings
+/privacy strict       → Switch to strict mode (local only)
+/privacy balanced     → Switch to balanced mode (default)
+/privacy cloud        → Switch to cloud mode (full capabilities)
+```
+
+**When to use it:**
+- At the start of a sensitive matter: `/privacy strict`
+- When you're unsure what mode is active: `/privacy`
+- For general research where speed matters: `/privacy cloud`
+
+---
+
 ## BetterCallClaude Privacy Architecture
 
 ### Privacy Modes
 
-BetterCallClaude offers three privacy modes:
+BetterCallClaude offers three privacy modes. **As of v4.6.0, these modes are actively enforced** by the plugin (previously documented but not fully implemented):
 
 | Mode | Cloud Access | Local-Only | Use When |
 |------|--------------|------------|----------|
-| **Strict** | Never | Always | Highly sensitive matters, Anwaltsgeheimnis critical |
-| **Balanced** | Limited | Core matters | Standard legal work, some cloud queries acceptable |
-| **Cloud** | Full | Rarely | Non-sensitive matters, research queries, general work |
+| **Strict** | Never — blocks all non-Ollama tool calls | Always | Highly sensitive matters, Anwaltsgeheimnis critical |
+| **Balanced** | Limited — strong patterns trigger confirmation | Core matters | Standard legal work (default) |
+| **Cloud** | Full — strong patterns still trigger confirmation | Rarely | Non-sensitive matters, research queries, general work |
 
 ### How Each Mode Works
 
 **Strict Mode:**
 - All queries processed locally (via Ollama)
-- No data leaves your machine
+- All external tool calls blocked except Ollama (local)
 - Maximum privilege protection
 - May be slower, less comprehensive results
+- Use via: `/privacy strict`
 
 **Balanced Mode (Default):**
-- Privacy hook screens all queries
-- Queries with client data → local processing
+- Privacy hook screens all queries and tool calls
+- Strong privilege indicators → confirmation required
+- Weak markers → allowed if no corroborating strong signal
 - General research queries → cloud processing
 - Good balance of protection and capability
 
 **Cloud Mode:**
 - Full access to cloud capabilities
-- Privacy hook still blocks obvious privileged info
+- Strong privilege indicators still trigger confirmation
+- Weak markers allowed without corroboration
 - Best for non-sensitive matters
 - Fastest, most comprehensive results
 
@@ -61,16 +82,22 @@ BetterCallClaude offers three privacy modes:
 
 ### What Privacy Hooks Do
 
-Privacy hooks automatically scan your queries for:
+Privacy hooks automatically scan your queries **and tool calls** for:
 - Client names
 - Specific case details
 - Privileged communications
 - Identifying information
+- Bash/shell commands that may expose sensitive data
 
 **When triggered:**
-- Query is blocked
+- Query or tool call is blocked or requires confirmation (depending on mode)
 - You're notified why
 - Suggested anonymized alternative
+
+**v4.6.0 improvements:**
+- Bash and shell commands (`curl`, `cat`, etc.) are now intercepted by the hook
+- Empty-content MCP calls no longer bypass strict mode
+- 14 new detection patterns added across DE, FR, IT, and EN
 
 ### Example
 
@@ -116,7 +143,7 @@ To proceed with original query, consider whether cloud mode is appropriate for t
 | **Swiss Caselaw** | Case law, citation graphs | All modes: queries sent to opencaselaw.ch |
 | **Legal Persona** | Document intelligence | All modes: queries sent to mcp.bettercallclaude.ch |
 | **TAS Jurisprudence** | Sports arbitration | All modes: queries sent to mcp.bettercallclaude.ch |
-| **Ollama (Local)** | Everything | Strict mode: all processing local |
+| **Ollama (Local)** | Everything | Strict mode: all processing local; exempt from strict-mode blocking |
 
 **Key insight**: Database queries (BGE, Fedlex) always go to external sources—this is public legal data, not privileged information.
 

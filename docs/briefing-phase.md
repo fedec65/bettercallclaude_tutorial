@@ -47,6 +47,18 @@ You start /briefing → Specialist panel activated → Panel asks questions → 
 | Cross-canton issues | Single-jurisdiction matter |
 | Team collaboration needed | Solo work |
 
+### Briefing vs. `/legal-5step`
+
+Both start with structured intake, but serve different needs:
+
+| Use `/briefing` When... | Use `/legal-5step` When... |
+|------------------------|----------------------------|
+| You want a specialist panel with deep questioning | You want the full pipeline in one command |
+| Scope is unclear and needs exploration | The matter is well-defined from the start |
+| You may need to modify the execution plan | You want quality gates to catch issues automatically |
+| You prefer step-by-step control | You prefer convenience and speed |
+| Team collaboration with assigned roles | Solo analysis with automated orchestration |
+
 ---
 
 ## 4.2 Running a Briefing Session

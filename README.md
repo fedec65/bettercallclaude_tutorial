@@ -139,10 +139,12 @@ This tutorial is designed for:
 | 🏘️ **Cantonal Analysis** | Analyze under cantonal law for a specific canton | `/cantonal` |
 | ✅ **Citation Validation** | Bulk validate citations in documents | `/validate` |
 | 🧭 **Intelligent Gateway** | Auto-route to optimal workflow | `/legal` |
+| 🔄 **5-Step Pipeline** | End-to-end analysis in one command | `/legal-5step` |
+| 🔒 **Privacy Control** | Check and change privacy mode | `/privacy` |
 
-> 🏗️ **Architecture**: BetterCallClaude uses 14 specialized **skills** as the single source of truth. Commands are thin entry points that delegate to these skills. Infrastructure commands (`legal`, `setup`, `help`, `workflow`, `briefing`, `version`) remain full-featured.
+> 🏗️ **Architecture**: BetterCallClaude uses 15 specialized **skills** as the single source of truth. Commands are thin entry points that delegate to these skills. Infrastructure commands (`legal`, `setup`, `help`, `workflow`, `briefing`, `version`) remain full-featured.
 >
-> **v4.5.0** — 20 agents, 19 commands, 14 skills, 9 MCP servers
+> **v4.6.1** — 20 agents, 20 commands, 15 skills, 9 MCP servers
 
 ## 🔗 Links
 

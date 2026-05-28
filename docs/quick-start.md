@@ -224,6 +224,12 @@ Then run the setup command in COWORK to verify MCP server connections:
 
 This command checks connectivity for all 9 MCP servers and displays their status. No additional configuration is needed — 8 remote servers connect automatically via HTTP, plus 1 via SSE.
 
+**Optional: Check your privacy mode**
+```
+/bettercallclaude:privacy
+```
+This shows your current privacy mode (`strict`, `balanced`, or `cloud`). Most users should keep the default `balanced` mode.
+
 ### Verification
 
 To confirm everything is working, try typing:

@@ -36,6 +36,16 @@ This mirrors how BetterCallClaude works best. Each stage maps to specific comman
 | Review | Check quality, consistency | /adversarial, /cite |
 | Deliver | Finalize and communicate | /translate, /draft |
 
+### The `/legal-5step` Shortcut
+
+For matters where you want the full pipeline in one command:
+
+```
+/legal-5step [matter description] --medium
+```
+
+This runs: Intake → Research → Strategy → Adversarial → Draft with quality gates at Steps 3 and 4. See [Framework Methodology](./framework-methodology.md) for full details.
+
 ---
 
 ## 5.2 Command Chaining
@@ -172,6 +182,30 @@ Execute the contract-review workflow for the attached lease agreement
 
 ---
 
+### legal-5step
+
+**Purpose**: End-to-end legal analysis from intake to final draft
+
+**Stages:**
+1. **Intake**: Structured fact gathering and issue identification
+2. **Research**: BGE/ATF/DTF precedent search with citation verification
+3. **Strategy**: Litigation strategy with risk assessment and probability scoring
+4. **Adversarial**: Three-agent stress test (Advocate, Adversary, Judge)
+5. **Draft**: Final document generation with traced citations
+
+**Quality gates** at Steps 3 and 4 ensure issues are caught before proceeding.
+
+**Use when**: You want a complete analysis from start to finish in one command
+
+**How to invoke**:
+```
+/legal-5step [matter description] --medium
+```
+
+**Flags**: `--short`, `--medium`, `--long`, `--no-summary`, `--stop-after`, `--lang`, `--canton`
+
+---
+
 ## 5.5 Quality Checkpoints
 
 ### When to Stop and Review
@@ -213,6 +247,8 @@ If the citation doesn't exist or is incorrect:
 
 ### Scenario: Client Wants Legal Opinion on Termination Rights
 
+**Option A: Manual Step-by-Step (~2 hours)**
+
 **Step 1: Intake (5 minutes)**
 ```
 /briefing Client needs legal opinion on whether they can terminate employment contract early due to employer's failure to pay agreed bonus
@@ -243,6 +279,16 @@ Verify all citations, check for bias toward client position, ensure practical ad
 ```
 
 **Total: ~2 hours** for a thorough legal opinion with validated research.
+
+**Option B: One-Command Pipeline (~2 hours, less typing)**
+
+```
+/legal-5step Client needs legal opinion on whether they can terminate employment
+contract early due to employer's failure to pay agreed bonus. 2 years remaining,
+employer claims financial hardship. --medium
+```
+
+BetterCallClaude runs the full pipeline with quality gates, producing the same deliverable with less manual orchestration.
 
 ---
 
