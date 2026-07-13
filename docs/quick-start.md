@@ -30,165 +30,72 @@ Before you begin, ensure you have:
 
 ## 1.2 Installation in COWORK
 
-BetterCallClaude is installed through the Claude Desktop COWORK marketplace. The process has **two distinct phases**:
-
-1. **Phase 1 — Add the marketplace catalog** (makes BetterCallClaude visible)
-2. **Phase 2 — Install the plugin** (downloads the actual code)
-
-> 🌙 **A Note on Interface Changes**  
-> Anthropic has a peculiar habit of redesigning the COWORK interface while the rest of us are sleeping. If these instructions don't match what you see on screen, don't worry—you're not going crazy. The menu items have simply taken a midnight stroll to new locations. We update this documentation as fast as humanly possible, but the UI may occasionally outpace us. When in doubt, look for buttons that sound similar to what we describe here.
+BetterCallClaude is installed through the Claude Desktop plugin marketplace in just a few steps.
 
 ### Prerequisites
 
 Before installing, ensure you have:
 - ✅ Claude Desktop installed on your computer
-- ✅ Internet connection active
-- ✅ Network access enabled (see Step 1)
+- ✅ An active internet connection
 
-### Step 1: Enable Network Access
+> 🌙 **A Note on Interface Changes**  
+> Anthropic has a peculiar habit of redesigning the COWORK interface while the rest of us are sleeping. If these instructions don't match what you see on screen, don't worry—you're not going crazy. The menu items have simply taken a midnight stroll to new locations. We update this documentation as fast as humanly possible, but the UI may occasionally outpace us. When in doubt, look for buttons that sound similar to what we describe here.
 
-First, enable network permissions in Claude Desktop:
+### Step 1: Open Customize
 
 1. Open Claude Desktop
-2. Go to **Settings** → **Capabilities**
-3. Toggle **"Allow network egress"** to ON
-
-![Enable network access](../assets/screenshots/1_enable_network_access.png)
-*Enable network egress in Claude Desktop Settings*
-
-### Step 1.5: Windows 11 Home Setup (Windows Users Only)
-
-If you're using **Windows 11 Home**, there's one extra step before continuing. Claude COWORK needs the Virtual Machine Platform and Windows Subsystem for Linux to run properly — these aren't enabled by default on Windows 11 Home.
-
-Don't worry, this is a quick fix! Choose one of the options below:
-
-#### Option A — PowerShell (Recommended, ~2 minutes)
-
-1. Open **PowerShell as Administrator** (right-click PowerShell → "Run as administrator")
-2. Run these two commands:
-
-```powershell
-dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
-wsl --install
-```
-
-3. **Restart your computer** when prompted
-
-#### Option B — Windows Settings (~3 minutes)
-
-1. Open **Settings → System → Optional Features**
-2. Click **"More Windows features"** at the bottom
-3. Check both boxes:
-   - ☑️ Virtual Machine Platform
-   - ☑️ Windows Subsystem for Linux
-4. Click **OK** and **restart your computer**
-
-After restarting, come back here and continue with Step 2. You only need to do this once!
-
-> 💡 **Seeing "VM service not running"?** This means the above features aren't enabled yet. Enable them and restart, then try the installation again.
-
----
-
-### Phase 1 — Add the Marketplace Catalog
-
-A **marketplace** is a catalog that tells COWORK which plugins exist and what versions are available. Adding the `fedec65/bettercallclaude` marketplace does **not** install anything yet — it simply makes the plugin visible in your directory.
-
-#### Step 2: Open the Plugin Directory
-
-1. In Claude Desktop, click **"Cowork"** in the top navigation bar
-2. In the left sidebar, click **"Customize"**
+2. In the left sidebar, click **Customize**
 
 ![Open Customize](../assets/screenshots/install_01_customize.png)
-*Open the Customize panel*
+*Click Customize in the left sidebar*
 
-#### Step 3: Add a Marketplace
+### Step 2: Open Plugins and Add a Marketplace
 
-1. Click the **+** button next to **"Personal plugins"**
-2. From the dropdown, select **"Add marketplace"**
+1. In the Customize section, click **Plugins**
+2. Click the **Add** button in the top-right corner
+3. Select **Add marketplace**
 
-![Click the + sign](../assets/screenshots/install_02_plus_sign.png)
-*Click the + button to reveal options*
+![Plugins page](../assets/screenshots/install_02_plugin_add_marketplace.png)
+*Open Plugins and select Add marketplace*
 
-![Add marketplace](../assets/screenshots/install_03_add_marketplace.png)
-*Select "Add marketplace" from the dropdown*
+### Step 3: Select Add from a Repository
 
-#### Step 4: Enter the Repository and Sync
+In the Add marketplace dialog, select **Add from a repository**.
 
-1. In the **"Add marketplace"** dialog, enter the repository: `fedec65/bettercallclaude`
-2. Click **"Sync"** to fetch the catalog
+![Add from repository](../assets/screenshots/install_03_add_from_repository.png)
+*Choose Add from a repository*
+
+### Step 4: Enter the Repository and Sync
+
+1. In the URL field, enter: `fedec65/bettercallclaude`
+2. Click **Sync**
 
 ![Enter repository and sync](../assets/screenshots/install_04_enter_repo_sync.png)
-*Enter the repository URL and click Sync*
+*Enter the repository and click Sync*
 
-#### Step 5: Switch to the Personal Tab
+### Step 5: Install BetterCallClaude and Open Settings
 
-1. The **Directory** will open showing available plugins
-2. Click the **"Personal"** tab to view plugins from your marketplace
+1. The Directory opens showing available plugins
+2. Find the **Bettercallclaude** plugin card and click **Install**
+3. Once installed, click the **gear wheel** icon on the plugin card
 
-![Click Personal tab](../assets/screenshots/install_05_click_personal.png)
-*Switch to the Personal tab in the Directory*
+![Install and open settings](../assets/screenshots/install_05_install_and_gear.png)
+*Install the plugin, then click the gear wheel*
 
-#### Step 6: Enable Auto Sync (Recommended)
+### Step 6: Confirm Installation
 
-1. Find the **bettercallclaude** marketplace row (shown under "Local uploads")
-2. Click the **⋯** (three dots) menu on the marketplace row
-3. Toggle **"Sync automatically"** to ON
+You should now see the BetterCallClaude plugin details page, confirming the plugin is installed.
 
-![BetterCallClaude 3-dots menu](../assets/screenshots/install_06_bettercallclaude_3dots.png)
-*Click the three-dots menu on the marketplace row*
+![Plugin installed](../assets/screenshots/install_06_installed.png)
+*BetterCallClaude is installed*
 
-![Enable auto sync](../assets/screenshots/install_07_sync_automatically.png)
-*Toggle "Sync automatically" to ON*
+### Step 7: Set Connector Permissions
 
-> 💡 **Why enable Auto Sync?** This keeps your marketplace catalog up to date. COWORK will periodically check for new versions and show an **Update** button when one is available. The plugin itself does not auto-update — you always choose when to click **Update**. For details, see [Updating the Plugin](./updating-plugin.md).
+1. In the plugin details page, click **Connectors** in the left sidebar
+2. For each connector, set the permission to **Always allow**
 
----
-
-### Phase 2 — Install the Plugin
-
-Now that the marketplace catalog is added and auto-sync is enabled, install the actual plugin.
-
-#### Step 7: Install BetterCallClaude
-
-1. In the **Personal** tab, find the **Bettercallclaude** plugin card
-2. Click the **+** button on the card to install
-
-![Click + to install plugin](../assets/screenshots/install_08_click_plus_plugin.png)
-*Click the + button on the BetterCallClaude plugin card*
-
-#### Step 8: Grant MCP Server Permissions
-
-1. You'll see a toast notification: *"Bettercallclaude is installed and ready to use."*
-2. A dialog will appear warning that the plugin includes local MCP servers
-3. Click **"Continue"** to grant permissions
-
-![MCP permissions dialog](../assets/screenshots/install_09_mcp_continue.png)
-*Click Continue to allow the MCP servers*
-
-#### Step 9: Open Plugin Settings
-
-1. Click the **gear wheel** icon on the Bettercallclaude plugin card
-2. This opens the plugin details page
-
-![Click gear wheel](../assets/screenshots/install_10_gear_wheel.png)
-*Click the gear wheel to open plugin settings*
-
-#### Step 10: Navigate to Connectors
-
-1. In the left sidebar of the plugin details page, click **"Connectors"**
-2. These are your data pipelines to Swiss legal databases
-
-![Click Connectors](../assets/screenshots/install_11_click_connectors.png)
-*Click Connectors in the left sidebar*
-
-#### Step 11: Set All Connectors to "Always Allow"
-
-1. You should see **9 connectors** listed in the left panel
-2. Click each connector and set its permission to **"Always allow"**
-3. This ensures Claude can use the tools without asking every time
-
-![Set Always Allow](../assets/screenshots/install_12_always_allow.png)
-*Set each connector's permission to "Always allow"*
+![Connector permissions](../assets/screenshots/install_07_connector_permissions.png)
+*Set each connector to Always allow*
 
 ### Available Connectors Reference
 
@@ -243,8 +150,6 @@ You should receive a response confirming BetterCallClaude is active and ready.
 ---
 
 > ⚠️ **Installation issues? Check:**
-> - Network egress is enabled (Step 1)
-> - **Windows 11 Home:** VM Platform and WSL are enabled (Step 1.5)
 > - Repository name is exactly `fedec65/bettercallclaude`
 > - All 9 connectors show in the list
 > - Each connector is set to "Always allow"
