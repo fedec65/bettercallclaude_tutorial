@@ -255,6 +255,47 @@ Level 4: Document Drafting & Review (30 min)
 
 ---
 
+### Exercise 4.4: Verify a Draft's Citations Against the Source (v4.9.4)
+
+**goal**: Use the substantive citation gate on a draft you just produced.
+
+**Scenario**: You drafted a legal opinion in Exercise 4.1 or a previous matter and want to be sure every citation is both real and actually supports the claim.
+
+**Type:**
+```text
+/validate --document @bcc-output/2026-08-15-legal-opinion/03-draft.md
+```
+
+**What to observe:**
+1. **Per-citation statuses**: `MATCH` / `PARTIAL` / `MISMATCH` / `UNVERIFIED` / `SKIPPED`
+2. **Matched snippets**: The passage of the source that was checked
+3. **Blocking behavior**: `UNVERIFIED` or `MISMATCH` citations block automatic delivery until fixed or disclaimed
+
+**✅ Success criteria**: You can read the verification report and know exactly which citations to fix, disclaim, or escalate.
+
+---
+
+### Exercise 4.5: Gate a Deliverable with a Goal-Loop (v4.9.0)
+
+**goal**: Run a worker → evaluator verification cycle.
+
+**Scenario**: Before sending a draft to the client, you want an independent judge agent to confirm it meets the quality bar.
+
+**Type:**
+```text
+/legal-goal citations-clean
+/legal-loop [the Goal Record just created]
+```
+
+**What to observe:**
+1. **The verdict trail** in `bcc-output/loops/`: score (0–100) and itemized findings per iteration
+2. **Honest termination**: if the loop stops without success, the verdict says NOT MET with residual findings
+3. **Safety rails**: max iterations, no-progress guard, worker ≠ judge
+
+**✅ Success criteria**: You understand what the judge checked and can interpret a PASS verdict (and a NOT MET verdict) correctly.
+
+---
+
 ## ✅ Building Confidence Checklist
 
 After completing all levels, verify:

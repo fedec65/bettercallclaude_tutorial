@@ -36,6 +36,8 @@ Complex legal matters often have:
 You start /briefing → Specialist panel activated → Panel asks questions → You answer → Panel builds plan → You approve → Execution begins
 ```
 
+> 🏗️ **Under the hood (v4.8.2)**: Briefing is powered by the unified `legal-intake` skill, which has two modes — **Refine** (single-domain clarification, the same engine behind `/refine`) and **Briefing** (multi-domain specialist panel + execution plan). The former `legal-briefing` and `legal-query-refinement` skills were merged into it. Nothing changes in how you invoke `/briefing` or `/refine`.
+
 ### When to Use Briefing
 
 | Use Briefing When... | Use Direct Commands When... |

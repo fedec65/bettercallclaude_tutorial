@@ -131,6 +131,8 @@ Sort by: Severity × Probability
 Format: Board-ready summary
 ```
 
+**Deliverables land as files (v4.8.1):** every `/draft` output in this walkthrough is written to the same dated `bcc-output/YYYY-MM-DD-<slug>/` folder as numbered phase files with a shared `sources.md` — so the entire data-room trail stays in one place, ready for the SPA negotiation.
+
 ---
 
 ## Risk Matrix Template
@@ -237,6 +239,4 @@ Format: Board-ready summary
 
 ---
 
-**✅ Congratulations! You've completed the scenario library.**
-
-**Next**: [Collaboration & Team Workflows](../collaboration.md) →
+**Next**: [Case Chronology Scenario](./case-chronology.md) →

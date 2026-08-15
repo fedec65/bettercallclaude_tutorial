@@ -88,6 +88,8 @@ Cite: All relevant statutory provisions and key precedents
 Format: Professional legal opinion with proper structure
 ```
 
+**Where the opinion lands (v4.8.1):** the full opinion is written to `bcc-output/YYYY-MM-DD-<slug>/` as a numbered file alongside a `sources.md`; the chat keeps only a 3–5 line summary pointing to it. For a board-facing document, open and print the file — don't copy out of the chat window.
+
 ### Step 6: Citation Verification (5 min)
 
 **Type:**

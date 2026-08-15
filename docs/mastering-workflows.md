@@ -10,6 +10,8 @@ By the end of this section, you will be able to:
 - Chain commands naturally
 - Design your own workflows
 - Use quality checkpoints effectively
+- Verify work automatically with goal-loops
+- Build sourced case timelines
 
 > **📖 Context**: This section builds on Phases 2-3 (Execution and Interaction) of the unified framework. For the complete methodology overview, see [Framework Methodology](./framework-methodology.md).
 
@@ -206,7 +208,104 @@ Execute the contract-review workflow for the attached lease agreement
 
 ---
 
-## 5.5 Quality Checkpoints
+## 5.5 Verifying Work Automatically: Goal-Loops (v4.9.0)
+
+The biggest change since v4.6: BetterCallClaude can now **verify its own deliverables against a machine-checkable success condition** — with a separate judge agent, so an agent never grades its own homework.
+
+### The Two Commands
+
+```text
+/legal-goal [profile or free-text objective]   →  creates a Goal Record (never starts work)
+/legal-loop [goal-record]                       →  runs worker → evaluator iterations
+```
+
+1. **`/legal-goal`** turns your quality bar into a **Goal Record** — a small file with a YAML header describing exactly what "done and correct" means.
+2. **`/legal-loop`** then runs the cycle: a **worker** agent improves the deliverable, an **evaluator** agent (the `legal-evaluator` skill) judges it against the Goal Record, and the loop repeats until the condition is met or a safety rail stops it.
+
+```text
+        ┌──────────────────────────────────────────┐
+        │              /legal-loop                 │
+        │                                          │
+        │   ┌────────┐      ┌────────────┐         │
+        │   │ WORKER │ ───▶ │ EVALUATOR  │─── ✅ pass → stop
+        │   │ agent  │      │ (judge)    │         │
+        │   └────────┘      └─────┬──────┘         │
+        │        ▲               │ fail            │
+        │        └───────────────┘ (iterate)       │
+        └──────────────────────────────────────────┘
+```
+
+### Pre-Wired Profiles
+
+| Profile | Verifies That... | Typical Use |
+|---------|------------------|-------------|
+| `citations-clean` | Every citation is validated via MCP (R1/R2 anti-hallucination rules) | Any draft before delivery |
+| `draft-passes-gate` | Citations + structure + factual support all pass | Full quality gate for deliverables |
+| `adversarial-converge` | The position survives repeated stress-testing | Contentious positions |
+| `nda-batch-clean` | Every NDA in a folder got a complete triage verdict | NDA folders (max 3 iterations) |
+| `reg-watch` | A monitoring pass over Fedlex + swiss-caselaw changes ran cleanly | Scheduled regulatory monitoring (1 pass per run) |
+| `timeline-sourced` | Every timeline event has a traceable source, conflicts flagged, deadlines anchored | Case chronologies (v4.9.5) |
+
+**Example: gate a draft before it goes out**
+```text
+/legal-goal draft-passes-gate
+/legal-loop bcc-output/goals/2026-08-15-draft-gate.md
+```
+
+### Safety Rails (Non-Negotiable)
+
+- **Worker ≠ judge**: enforced at runtime — the same agent never produces and grades the work
+- **Finite loops**: max 5 iterations by default, hard cap 20
+- **No-progress guard**: stops after 2 consecutive iterations without score improvement
+- **Honest termination**: if the condition is not met when the loop stops, the verdict says **NOT MET** and lists residual findings — never a false pass
+- **Privacy pre-check every iteration** (Anwaltsgeheimnis)
+- **Human-in-the-loop**: the loop never files, sends, signs, or transmits anything
+
+Every iteration leaves an **auditable verdict trail** in `bcc-output/loops/` — you can see exactly what the judge said, with a 0–100 score and itemized findings.
+
+---
+
+## 5.6 Building a Sourced Case Timeline (v4.9.5)
+
+Litigation lives on facts and dates. `/legal-timeline` turns a folder of case documents — contracts, correspondence, court filings, expert reports — into a legal chronology the way a lawyer reads a case.
+
+```text
+/legal-timeline @case-folder/
+```
+
+### What Makes It Different from a Summary
+
+- **Mandatory provenance**: every event carries its document and locus (page/paragraph). An event without a source never appears in any output — this is the R1/R2 anti-hallucination rule applied to facts.
+- **Contested-fact model**: each event is marked `undisputed`, `alleged`, or `contested`, with party attribution.
+- **Date conflicts are never silently resolved**: when two documents disagree on a date, the timeline records **both** dates and their sources.
+- **Evidentiary gap flags**: periods of ≥ 30 undocumented days are flagged, so you know where the record is thin.
+- **Deadline markers**: procedural deadlines (ZPO 142–149, BGG 46/100–101, cantonal holiday calendars) are computed via the `legal-persona` MCP; substantive limitation periods (Verjährung) come from the skill's mapping table and are always labelled **indicative** — verify them yourself.
+
+### Three Output Formats
+
+All under `bcc-output/timeline/` (a living case artifact — update it with `--merge` as new documents arrive):
+
+| File | What It's For |
+|------|---------------|
+| `timeline.md` | Authoritative table — events, sources, statuses, deadlines |
+| `timeline.html` | Self-contained interactive view: colour-coded statuses, gap bands, deadline markers, source click-through |
+| `timeline.docx` | Case-file export for Word users |
+
+### Combining Both
+
+Chain a timeline with a goal-loop for maximum rigor:
+
+```text
+/legal-timeline @case-folder/
+/legal-goal timeline-sourced
+/legal-loop bcc-output/goals/2026-08-15-timeline-goal.md
+```
+
+The loop only closes when every event has a traceable source, all conflicts are flagged, and all deadlines are anchored. See the full walkthrough in [Case Chronology](./scenarios/case-chronology.md).
+
+---
+
+## 5.7 Quality Checkpoints
 
 ### When to Stop and Review
 
@@ -237,13 +336,29 @@ If the citation doesn't exist or is incorrect:
 2. Search for the correct citation
 3. Update your document
 
+### Substantive Citation Verification (v4.9.4)
+
+Since v4.9.4, checking that a citation *exists* is only half the gate. The `citation-content-verify` skill checks every citation in a draft against the **live source** on two axes: does the cited source exist, and does it actually **support the claim** made for it?
+
+Each citation receives a status:
+
+| Status | Meaning |
+|--------|---------|
+| `MATCH` | Source exists and supports the claim |
+| `PARTIAL` | Source exists but only partly supports the claim (warning) |
+| `MISMATCH` | Source exists but contradicts the claim |
+| `UNVERIFIED` | Source could not be found — the citation may be fabricated |
+| `SKIPPED` | Informal doctrine reference (author/title/margin number) |
+
+**Any `UNVERIFIED` or `MISMATCH` citation blocks automatic delivery** — the draft must be fixed, explicitly disclaimed, or escalated. This gate runs automatically inside `/legal-loop` verdicts and before the orchestrator delivers any citation-bearing document; `/validate` invokes it directly on your drafts. In `strict` privacy mode, claim sentences are never sent to cloud content-checks — verification falls back to existence-only with a `(privacy-gated)` note.
+
 ### Professional Responsibility Reminder
 
 > **You remain responsible for all legal work.** BetterCallClaude is a tool that assists, but all analysis, strategy, and documents must be reviewed and validated by you before use. AI can make mistakes—citation hallucinations, incorrect legal interpretations, or missed nuances. Your professional judgment is the final check.
 
 ---
 
-## 5.6 Workflow Example: Full Walkthrough
+## 5.8 Workflow Example: Full Walkthrough
 
 ### Scenario: Client Wants Legal Opinion on Termination Rights
 
@@ -307,7 +422,9 @@ Before moving to scenarios, verify:
 - [ ] I can describe my legal work as a workflow
 - [ ] I can chain commands naturally
 - [ ] I know when to use predefined vs. custom workflows
-- [ ] I understand quality checkpoints
+- [ ] I understand quality checkpoints and the citation content gate
+- [ ] I can set up a goal-loop to verify a deliverable automatically
+- [ ] I can build a sourced case timeline with `/legal-timeline`
 - [ ] I always validate citations and review AI output
 
 ---

@@ -105,6 +105,8 @@ If the lease has unfamiliar provisions:
 Format: Executive summary first, then details
 ```
 
+**With a firm playbook (v4.8.0):** if you've created your playbook via `/start`, `/draft` classifies every clause that deviates from your house standard as *conforme*, *accettabile*, *negoziare*, or *inaccettabile*. The memo then separates "unusual but acceptable" from "must be renegotiated" automatically — no judgment call left to memory.
+
 ### Step 6: Verify Key Points (3 min)
 
 Before sending to client, verify:
