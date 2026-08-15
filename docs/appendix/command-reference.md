@@ -1,6 +1,6 @@
 # Appendix A: Command Quick Reference
 
-> **All 20 commands at a glance**
+> **All 27 commands at a glance** — v4.9.6
 
 ---
 
@@ -19,7 +19,7 @@
 | `/research` | Search Swiss legal precedents and compile research memoranda. Supports BGE/ATF/DTF databases, doctrine references, and cross-jurisdictional analysis. | `/research Art. 97 OR contractual liability` |
 | `/cite` | Verify and format Swiss legal citations across all four national languages (BGE/ATF/DTF formats). | `/cite BGE 147 IV 73` |
 | `/precedent` | Search and analyze BGE/ATF/DTF precedents with precedent chain tracking and evolution analysis. | `/precedent BGE 145 III 445` |
-| `/validate` | Validate Swiss legal citations in bulk — check format, existence, and cross-language consistency. | `/validate --document` |
+| `/validate` | Validate Swiss legal citations in bulk — format, existence, cross-language consistency, and (since v4.9.4) substantive content verification against the live source via the `citation-content-verify` skill. | `/validate --document` |
 
 ---
 
@@ -46,10 +46,12 @@
 
 | Command | Purpose | Example |
 |---------|---------|---------|
-| `/draft` | Draft Swiss legal documents including contracts, court briefs, legal opinions, and memoranda with proper citation formatting. | `/draft Employment contract for a software engineer in Geneva, bilingual DE/FR` |
-| `/doc-analyze` | Analyze Swiss legal documents — identify legal issues, extract key clauses, verify citations, assess compliance. Use `@file.pdf` to reference uploaded documents. | `/doc-analyze @contract.pdf Review this commercial lease agreement` |
+| `/draft` | Draft Swiss legal documents including contracts, court briefs, legal opinions, and memoranda with proper citation formatting. Applies your local playbook preferences (governing law, jurisdiction, liability caps) when one is configured. | `/draft Employment contract for a software engineer in Geneva, bilingual DE/FR` |
+| `/doc-analyze` | Analyze Swiss legal documents — identify legal issues, extract key clauses, verify citations, assess compliance. Compares clauses against playbook standard positions with deviation classification when a playbook exists. Use `@file.pdf` to reference uploaded documents. | `/doc-analyze @contract.pdf Review this commercial lease agreement` |
 | `/translate` | Translate Swiss legal documents between DE, FR, IT, and EN while preserving legal terminology precision. | `/translate [text] DE to FR` |
 | `/summarize` | Consolidate multi-agent pipeline output — deduplicate disclaimers, terminology, and citations with length control. | `/summarize --short` |
+| `/nda-triage` | Classify NDAs as **GREEN** (standard approval), **YELLOW** (legal review), or **RED** (substantive issues) against Swiss law criteria (Art. 160 ff. OR, Lugano Convention, mandatory law) and your local playbook thresholds. Single file or whole folder. *(v4.8.0)* | `/nda-triage @nda.pdf` or `/nda-triage @nda-folder/` |
+| `/legal-timeline` | Build a sourced legal chronology from a folder of case documents (contracts, correspondence, filings, expert reports). Every event carries its document + locus; contested facts and date conflicts are made visible, never silently resolved. Outputs Markdown, interactive HTML, and Word files under `bcc-output/timeline/`. *(v4.9.5)* | `/legal-timeline @case-folder/ --merge` |
 
 ---
 
@@ -77,6 +79,17 @@
 
 ---
 
+## Goal-Loop Verification Commands
+
+*New in v4.9.0 — iterative quality verification with a separate judge agent. An agent never grades its own homework.*
+
+| Command | Purpose | Example |
+|---------|---------|---------|
+| `/legal-goal` | Define a machine-checkable legal success condition from named profiles (`citations-clean`, `draft-passes-gate`, `adversarial-converge`, `nda-batch-clean`, `reg-watch`, `timeline-sourced`) or free-text objectives. Produces a persisted Goal Record; never starts work itself. | `/legal-goal citations-clean` |
+| `/legal-loop` | Run the worker → evaluator iteration cycle against a Goal Record. Stops on success, max iterations, stagnation, or privacy violation. Persists an auditable verdict trail in `bcc-output/loops/`. | `/legal-loop goal-record.md --max-iterations 5` |
+
+---
+
 ## Privacy & Configuration Commands
 
 | Command | Purpose | Example |
@@ -89,7 +102,9 @@
 
 | Command | Purpose | Example |
 |---------|---------|---------|
-| `/setup` | Check MCP server connectivity and display status for all 9 servers. | `/setup` |
+| `/start` | Non-technical onboarding: language detection, MCP connectivity check, guided playbook creation, profile-specific examples (law firm / in-house / fiduciary). *(v4.8.1 — absorbs `/setup`)* | `/start` |
+| `/doctor` | MCP server diagnostics in plain language: status, latency, user-impact explanation, and suggested fixes. | `/doctor` |
+| `/setup` | Deprecated alias of `/start` — still works through v4.x, shows a deprecation notice, removed in v5.0. | `/setup` |
 | `/version` | Display plugin version, installed components, and system status. | `/version` |
 | `/help` | Show complete command reference, available agents, skills, and usage examples. | `/help /research` |
 
@@ -154,6 +169,16 @@ I need to...
 ├─ Multi-step pipeline → /workflow or /legal
 │
 ├─ Full 5-step pipeline → /legal-5step
+│
+├─ Build a case chronology → /legal-timeline
+│
+├─ Triage an NDA → /nda-triage
+│
+├─ Verify work automatically → /legal-goal, then /legal-loop
+│
+├─ Set up or onboard → /start
+│
+├─ Diagnose connection problems → /doctor
 │
 └─ Check privacy mode → /privacy
 ```

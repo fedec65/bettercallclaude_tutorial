@@ -31,7 +31,7 @@
 /research responsabilité contractuelle     # French terms
 
 # 4. Check database status
-/bettercallclaude:setup    # Verify MCP servers connected
+/bettercallclaude:doctor    # Check MCP server health
 ```
 
 ---
@@ -94,13 +94,13 @@
 4. MCP server status?
 
 ```
-/bettercallclaude:setup    # Check MCP server status
+/bettercallclaude:doctor    # Check MCP server status
 ```
 
 **If servers offline:**
 - Try again in a few minutes
 - Check COWORK status page
-- Run `/bettercallclaude:setup` to see which servers are unreachable
+- Run `/bettercallclaude:doctor` to see which servers are unreachable
 - Contact IT support if persistent
 
 ---
@@ -131,6 +131,55 @@
 # Option 3: Use local-only mode for sensitive work
 # Option 3: Use local-only Ollama processing for sensitive work
 ```
+
+---
+
+#### "Agents fall back to plain web search / MCP tools are rejected"
+
+**Symptoms:**
+- Agents report MCP tools as unavailable and answer from general web search instead
+- COWORK rejects BetterCallClaude's MCP tool calls outright
+
+**Cause:** A tool-call format change on versions before v4.9.3; some calls were malformed, so COWORK refused them and agents silently degraded to web search.
+
+**Fix:**
+```
+# Check your version first
+/bettercallclaude:version
+```
+- Update the plugin to **v4.9.3 or later** (see [Updating the Plugin](../updating-plugin.md))
+- After updating, run `/bettercallclaude:doctor` and confirm all 9 connectors report healthy
+
+---
+
+#### "Marketplace auto-sync shows a stale version"
+
+**Symptoms:**
+- The "Update" button offers an old version, or none appears despite a new release
+- `/bettercallclaude:version` reports a version you already updated past
+
+**Cause:** The locally cached `marketplace.json` hasn't been refreshed — COWORK genuinely doesn't know the newer version exists yet.
+
+**Fix:**
+1. Click the ⋯ menu on the marketplace → **"Check for updates"** to force a catalog refresh
+2. If still stale, remove and re-add the `fedec65/bettercallclaude` marketplace to rebuild the cache from scratch
+
+See [How Cowork Plugin Updates Actually Work](../updating-plugin.md) for the two-layer explanation.
+
+---
+
+#### "Privacy prompts never appear — even for obvious client names"
+
+**Symptoms:**
+- No confirmation prompts in balanced mode, even for queries with clear client identifiers
+- Sensitive queries go straight to cloud processing
+
+**Cause:** If your plugin is installed under a path **containing spaces**, every version before v4.9.6 silently failed to load the privacy hook — it never ran, with no error shown.
+
+**Fix:**
+- Update to **v4.9.6**, where the hook path is correctly quoted
+- Verify by sending a test query containing a made-up client name plus "contract breach" — the confirmation prompt should appear
+- Details: [Privacy & Responsibility](./privacy-responsibility.md)
 
 ---
 
@@ -249,7 +298,6 @@ A: Yes, with strict privacy mode. Client confidences are protected.
 | "Citation not found" | Citation doesn't exist | Verify format, search by topic |
 | "CLAUDE.md not found" | Context file missing | Create CLAUDE.md in current directory |
 | "Rate limit exceeded" | Too many requests | Wait a moment, then retry |
-| "MCP connection timeout" | Server not responding | Check internet, retry, run /setup |
 
 ---
 

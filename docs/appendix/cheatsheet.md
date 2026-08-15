@@ -2,7 +2,7 @@
 
 > **Complete Reference** — Skills, Commands, Agents, Hooks, MCP Servers, and Workflows
 >
-> **v4.6.1** — 20 agents, 20 commands, 15 skills, 9 MCP servers
+> **v4.9.6** — 21 agents, 27 commands, 16 skills, 9 MCP servers
 
 ---
 
@@ -57,17 +57,23 @@ Skills **auto-activate** based on what you're asking. You don't invoke them dire
 
 | Skill | Auto-Activates When |
 |-------|---------------------|
-| `swiss-legal-research` | Legal research queries, BGE/ATF/DTF references, statute analysis |
-| `swiss-legal-drafting` | Document creation, contract drafting, court submissions |
+| `swiss-legal-research` | Legal research queries, BGE/ATF/DTF references, statute analysis, federal/cantonal jurisdiction routing |
+| `swiss-legal-drafting` | Document creation, contract drafting, court submissions; applies your local playbook preferences |
 | `swiss-legal-strategy` | Litigation planning, risk assessment, case strategy questions |
 | `swiss-citation-formats` | Citation formatting, BGE/ATF/DTF references in text |
-| `swiss-jurisdictions` | Canton-specific questions, federal vs. cantonal law routing |
+| `swiss-document-analysis` | Document review, contract clause analysis, NDA triage, playbook deviation classification |
+| `swiss-legal-translation` | Legal translation DE/FR/IT/EN (delegates citation conversion to `swiss-citation-formats`) |
+| `adversarial-analysis` | Three-agent stress-testing (advocate/adversary/judicial) |
+| `compliance-frameworks` | FINMA, AML/KYC, FINIG/DLT, sector regulation questions |
+| `data-protection-law` | GDPR, nDSG/FADP privacy, data processing agreements |
 | `privacy-routing` | Sensitive client data patterns detected (Anwaltsgeheimnis) |
-| `federal-law` | Federal statute analysis, BV/ZGB/OR/StGB questions |
-| `cantonal-law` | Canton-specific legal questions |
-| `multilingual-law` | Multi-language legal terminology needs (DE/FR/IT/EN) |
-| `legal-briefing` | Complex queries needing structured pre-execution intake |
-| `legal-5step` | End-to-end 5-phase pipeline (Intake → Research → Strategy → Adversarial → Draft) |
+| `legal-intake` | Query refinement (single domain) and structured pre-execution briefing (multi-domain panel) — replaces the former `legal-briefing` and `legal-query-refinement` skills |
+| `legal-5step-framework` | End-to-end 5-phase pipeline (Intake → Research → Strategy → Adversarial → Draft) |
+| `legal-evaluator` | Goal-loop verdicts — judges artifacts against a Goal Record with a 0–100 score; enforces worker ≠ judge *(v4.9.0)* |
+| `citation-content-verify` | Substantive citation verification: every citation checked against the live source for existence AND content support *(v4.9.4)* |
+| `legal-chronology` | Case chronology building from case documents, with per-event provenance and deadline markers *(v4.9.5)* |
+
+> 📚 **Reference module**: canton profiles, statute database, and the federal/cantonal competence matrix live in a shared on-demand reference (`swiss-jurisdictions`) loaded by `swiss-legal-research` — not a separate skill you activate.
 
 ### How Skills Work
 
@@ -81,7 +87,7 @@ You: "What does Art. 27 OR say about mistake?"
 [swiss-legal-research] → Federal statute query detected
      │
      ▼
-[federal-law] → OR is federal law
+[jurisdiction routing] → OR is federal law
      │
      ▼
 → Activates researcher agent → Queries fedlex-sparql MCP
@@ -118,10 +124,12 @@ Commands are explicit instructions you type. They give you direct control over s
 
 | Command | Description |
 |---------|-------------|
-| `/bettercallclaude:doc-analyze` | Analyze uploaded legal documents for key issues. Use `@file.pdf` syntax. |
+| `/bettercallclaude:doc-analyze` | Analyze uploaded legal documents for key issues. Use `@file.pdf` syntax. Playbook-aware clause deviation classification. |
 | `/bettercallclaude:precedent` | Search and analyze BGE precedent chains |
-| `/bettercallclaude:validate` | Batch validate citations in documents |
+| `/bettercallclaude:validate` | Batch validate citations in documents — format, existence, and substantive content verification against the live source |
 | `/bettercallclaude:adversarial` | **Three-agent adversarial analysis** — Stress-test your legal position |
+| `/bettercallclaude:nda-triage` | Classify NDAs GREEN/YELLOW/RED against Swiss law criteria and your local playbook. Single file or batch folder. *(v4.8.0)* |
+| `/bettercallclaude:legal-timeline` | Build a sourced case chronology from case documents (md/html/docx outputs under `bcc-output/timeline/`) *(v4.9.5)* |
 
 ### Workflow Commands
 
@@ -143,6 +151,13 @@ Commands are explicit instructions you type. They give you direct control over s
 |---------|-------------|
 | `/bettercallclaude:legal-5step` | End-to-end 5-phase pipeline: Intake → Research → Strategy → Adversarial → Draft. Quality gates at Steps 3 and 4. Flags: `--short`, `--medium`, `--long`, `--no-summary`, `--stop-after`, `--lang`, `--canton` |
 
+### Goal-Loop Verification Commands *(v4.9.0)*
+
+| Command | Description |
+|---------|-------------|
+| `/bettercallclaude:legal-goal` | Define a machine-checkable success condition (named profile or free text). Produces a Goal Record; never starts work itself. |
+| `/bettercallclaude:legal-loop` | Run worker → evaluator iterations against a Goal Record. Auditable verdict trail in `bcc-output/loops/`. |
+
 ### Privacy & Configuration Commands
 
 | Command | Description |
@@ -154,7 +169,9 @@ Commands are explicit instructions you type. They give you direct control over s
 | Command | Description |
 |---------|-------------|
 | `/bettercallclaude:cite` | Format and verify citations |
-| `/bettercallclaude:setup` | Check MCP server status and connectivity for all 9 servers |
+| `/bettercallclaude:start` | Guided onboarding: language detection, MCP check, playbook creation, profile-specific examples *(v4.8.1)* |
+| `/bettercallclaude:doctor` | MCP server diagnostics in plain language: status, latency, impact, suggested fixes *(v4.8.1)* |
+| `/bettercallclaude:setup` | Deprecated alias of `/start` (works through v4.x, removed in v5.0) |
 | `/bettercallclaude:version` | Display plugin version, installed components, and system status |
 | `/bettercallclaude:summarize` | Consolidate multi-agent pipeline output with `--short` / `--medium` / `--long` |
 | `/bettercallclaude:help` | Display command reference |
@@ -191,6 +208,7 @@ These agents handle specific legal domains:
 | `corporate` | AG/GmbH governance, M&A | Company law matters |
 | `cantonal` | All 26 Swiss cantonal systems | Canton-specific research |
 | `realestate` | Property law, Grundbuch | Real estate transactions |
+| `chronology-builder` | Case chronology extraction | Isolated worker for `/legal-timeline` — extracts sourced events from case documents *(v4.9.5)* |
 
 ### Three-Agent Analysis System
 
@@ -263,6 +281,14 @@ Your message contains: "My client Müller wants to..."
 - **Strict mode bypass fixed**: Empty-content MCP calls no longer skip strict mode
 - **Covers more tools**: `MCP`, `MultiEdit`, `WebFetch`, and `Bash` tool calls are now scanned
 - **Reduced false positives**: Weak markers (bare "confidential"/"vertraulich") still require a corroborating strong signal before triggering in `balanced` mode
+
+#### v4.9.6 and Later Privacy Fixes
+
+- **Path-with-spaces fix (v4.9.6)**: On installations whose plugin path contains spaces, the PreToolUse privacy scan silently did not run in versions before v4.9.6. Update immediately if you handle privileged content and your user name or path contains spaces.
+- **Config downgrade protection (v4.6.2)**: `~/.betterask/config.yaml` can only *raise* privacy severity (e.g. balanced → strict), never lower it.
+- **Bash path exfiltration checks (v4.6.2)**: File paths extracted from shell commands (`cat`, `curl --data-binary @file`, etc.) are checked against privileged directories before execution.
+- **Strict mode usable (v4.6.2)**: `strict` now applies deny-instead-of-ask pattern matching — the 9 legal MCP servers remain usable instead of being blocked entirely.
+- **Skill-level fallback (v4.8.1)**: If the PreToolUse hook is unavailable, a skill-level privacy check applies the same pattern matching as defense-in-depth.
 
 #### Privacy Modes
 
@@ -527,4 +553,4 @@ What do you need?
 
 ---
 
-*Last updated: May 2026 — v4.6.1*
+*Last updated: August 2026 — v4.9.6*

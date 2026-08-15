@@ -45,6 +45,8 @@ Gather and analyze:
 5. Termination provisions
 ```
 
+**With v4.9.5: build a sourced timeline.** Once the documents are reviewed, run `/legal-timeline` over the agreement, correspondence, and evidence. Every event carries its source and a dispute label (undisputed / alleged / contested), conflicting dates keep **both** values, and procedural deadlines are computed under ZPO Art. 142–149 (BGG Art. 46 / 100–101 for federal matters), including cantonal holidays. The result lands in `bcc-output/timeline/` — full walkthrough in the [Case Chronology scenario](./case-chronology.md).
+
 ### Step 3: Legal Research (15 min)
 
 **3.1 Research Precedents:**

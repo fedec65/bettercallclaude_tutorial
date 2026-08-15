@@ -12,17 +12,31 @@ BetterCallClaude supports multi-lawyer workflows through:
 2. **Team commands**: Orchestrate multiple specialists
 3. **Session handoffs**: Resume work started by colleagues
 4. **Parallel execution**: Independent work streams
+5. **Shared playbook (v4.8.0)**: One firm-wide drafting standard via `bettercallclaude.local.md`
 
 ---
 
-## Team Collaboration in v4.6.1
+## Team Collaboration in v4.9.6
 
-BetterCallClaude v4.6.1 does not have dedicated `/team`, `/delegate`, or `/sync` commands. Instead, collaboration happens through:
+BetterCallClaude v4.9.6 does not have dedicated `/team`, `/delegate`, or `/sync` commands. Instead, collaboration happens through:
 
 1. **Shared CLAUDE.md**: Persistent case memory accessible to all team members
 2. **`/briefing --resume`**: Pick up where a colleague left off
 3. **`/workflow`**: Define multi-step processes that can be handed off
 4. **Natural language**: Describe parallel work needs in plain language
+
+### The Firm Playbook as a Shared Standard (v4.8.0)
+
+Since v4.8.0 there is a fifth collaboration channel: the **local playbook** (`bettercallclaude.local.md`). Put it in your team's shared folder and every lawyer's `/draft` runs classify deviations against the same house standard (*conforme* / *accettabile* / *negoziare* / *inaccettabile*) — so "this clause is off-standard" means the same thing for everyone.
+
+The lookup order gives you layered standards:
+
+1. `.claude/bettercallclaude.local.md` — matter-specific playbook (wins)
+2. The shared folder — the firm standard
+3. `.claude/legal.local.md` — legacy name
+4. Swiss defaults
+
+A matter-specific playbook therefore overrides the firm one, and the firm one overrides the defaults. `/start` creates the initial playbook from DE/FR/IT/EN templates; check it into the firm's shared folder once, and review it as you would any internal guideline.
 
 ---
 

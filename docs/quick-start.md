@@ -123,13 +123,21 @@ If you have Ollama installed on your computer, the Ollama MCP connects automatic
 
 **Close and reopen BetterCallClaude** — this empties the cache and ensures the new MCPs are loaded properly.
 
-Then run the setup command in COWORK to verify MCP server connections:
+Then run the onboarding command in COWORK:
 
 ```
-/bettercallclaude:setup
+/bettercallclaude:start
 ```
 
-This command checks connectivity for all 9 MCP servers and displays their status. No additional configuration is needed — 8 remote servers connect automatically via HTTP, plus 1 via SSE.
+`/start` (new in v4.8.1) is the non-technical entry point: it detects your preferred language, checks MCP connectivity for all 9 servers, walks you through creating a local playbook, and shows usage examples for your profile (law firm, in-house counsel, or fiduciary). The older `/bettercallclaude:setup` command still works as a deprecated alias.
+
+**If something is not connecting**, run the diagnostics command:
+
+```
+/bettercallclaude:doctor
+```
+
+`/doctor` tests each MCP server with a lightweight call and reports status, latency, and — in plain language — what the problem means for your work and how to fix it.
 
 **Optional: Check your privacy mode**
 ```
@@ -383,6 +391,39 @@ For your first matter, start simple:
 
 ---
 
+### The Playbook: Your Firm's Standing Positions (v4.8.0)
+
+Alongside `CLAUDE.md` (case memory), BetterCallClaude reads an optional **local playbook** — `bettercallclaude.local.md` — containing your firm's standing positions:
+
+- Contractual positions (governing law, jurisdiction, liability caps)
+- Risk thresholds and escalation rules
+- Preferred citation format and output language
+
+When a playbook exists, contract review classifies clauses against your standard positions (conforme / acceptable deviation / deviation to negotiate / unacceptable), drafting applies your preferences automatically, and NDA triage uses your thresholds. The plugin ships templates in DE, FR, IT, and EN; `/start` can create one with you through a short guided dialogue.
+
+**Playbook search order:** `.claude/bettercallclaude.local.md` → shared folder → `.claude/legal.local.md` (Anthropic Legal plugin compatibility) → Swiss defaults. You can start without one — Swiss defaults apply.
+
+---
+
+### Where Your Deliverables Go (v4.8.1)
+
+Since v4.8.1, long outputs are written as **files**, not chat walls. Every memo, research report, strategy, draft, or triage lands in a dated folder inside your matter directory:
+
+```
+📁 2024-001_Smith_v_AG/
+    ├── CLAUDE.md
+    └── bcc-output/
+        └── 2026-08-15-legal-opinion/
+            ├── 01-research.md
+            ├── 02-strategy.md
+            ├── 03-draft.md
+            └── sources.md     ← every source used, as a citation trail
+```
+
+The chat shows only a 3–5 line summary with a pointer to the files. This keeps deliverables versioned, citable, and ready to attach or archive — and the `sources.md` trail makes verification fast. The output folder is configurable in your playbook. (Case timelines are the exception: they live in `bcc-output/timeline/` as a living artifact, updated with `--merge`.)
+
+---
+
 > ⚠️ **Context Not persisting? Check:**
 > - Are you in the correct directory? (Check your current working directory)
 > - Does CLAUDE.md exist? (It should be in your matter folder)
@@ -396,10 +437,12 @@ For your first matter, start simple:
 Before moving on, verify:
 
 - [ ] BetterCallClaude is installed in COWORK
+- [ ] `/bettercallclaude:start` completed and all 9 connectors are healthy
 - [ ] I can run `/bettercallclaude:cite BGE 147 IV 73` successfully
 - [ ] I understand the response structure
 - [ ] I have a dedicated directory for my matter
 - [ ] I have created a CLAUDE.md file with basic case information
+- [ ] (Optional) I have a `bettercallclaude.local.md` playbook or know I can create one later
 
 ---
 

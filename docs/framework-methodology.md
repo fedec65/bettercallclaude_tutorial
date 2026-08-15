@@ -484,6 +484,12 @@ Work is complete when:
 | Correspondence | `/draft letter to [recipient] regarding [topic]` |
 | Demand letter | `/draft demand letter for [claim]` |
 
+### Drafting Against Your Firm's Playbook (v4.8.0)
+
+Since v4.8.0, `/draft` consults your **local playbook** (`bettercallclaude.local.md`) before drafting. The playbook records your firm's standard positions and negotiation fallbacks; when a draft departs from them, each deviation is classified as *conforme*, *accettabile*, *negoziare*, or *inaccettabile*, so you can see at a glance where a document diverges from house style. `/start` creates the playbook from DE/FR/IT/EN templates; search order is `.claude/bettercallclaude.local.md` → the shared team folder → `.claude/legal.local.md` → Swiss defaults.
+
+Since v4.8.1, the finished deliverable is also **written to disk** under `bcc-output/YYYY-MM-DD-<slug>/` as a numbered phase file alongside a `sources.md`, with only a 3–5 line summary kept in the chat. See [Understanding BetterCallClaude](./understanding-ai.md) for the full picture.
+
 ---
 
 ## The `/legal-5step` Command: One-Command Full Pipeline
@@ -589,6 +595,7 @@ This single command runs the full pipeline: intake → research → strategy →
 | `realestate` | Property, Grundbuch | Real estate transactions |
 | `procedure` | ZPO/StPO deadlines | Procedural planning |
 | `risk` | Outcome probability | Settlement evaluation |
+| `chronology-builder` | Sourced case timelines | Building event chronologies with per-event provenance (`/legal-timeline`, v4.9.5) |
 
 ### Direct Agent Invocation
 
@@ -598,20 +605,20 @@ Most agents activate automatically through skills. For explicit control:
 /bettercallclaude:research [query]    → Delegates to swiss-legal-research skill
 /bettercallclaude:strategy [query]    → Delegates to swiss-legal-strategy skill
 /bettercallclaude:draft [query]       → Delegates to swiss-legal-drafting skill
-/bettercallclaude:adversary [query]   → Delegates to swiss-legal-adversarial skill
-/bettercallclaude:refine [query]      → Delegates to legal-query-refinement skill
+/bettercallclaude:adversarial [query] → Delegates to adversarial-analysis skill
+/bettercallclaude:refine [query]      → Delegates to legal-intake skill (refine mode)
 /bettercallclaude:translate [query]   → Delegates to swiss-legal-translation skill
 /bettercallclaude:doc-analyze [query] → Delegates to swiss-document-analysis skill
-/bettercallclaude:summarize [query]   → Delegates to output-summarization skill
+/bettercallclaude:summarize [query]   → Built-in command output (no skill delegation)
 ```
 
-> 🏗️ **Architecture Note**: Domain commands are now thin wrappers (5-13 lines) that delegate to **skills** — the single source of truth. Infrastructure commands (`legal`, `setup`, `help`, `workflow`, `briefing`, `version`) remain full-featured.
+> 🏗️ **Architecture Note**: Domain commands are now thin wrappers (5-13 lines) that delegate to **skills** — the single source of truth. Infrastructure commands (`legal`, `start`, `help`, `workflow`, `briefing`, `version`) remain full-featured, and `doctor` provides diagnostics.
 
 ---
 
 ### The Legal Prompt Engineer Agent
 
-The **Legal Prompt Engineer** is a specialist agent powered by the `legal-query-refinement` skill. It transforms vague or incomplete legal queries into well-structured, actionable prompts through Socratic dialogue. This agent is particularly valuable when you're not quite sure how to formulate your legal question or need help defining the scope of your inquiry.
+The **Legal Prompt Engineer** is a specialist agent powered by the `legal-intake` skill (refine mode). It transforms vague or incomplete legal queries into well-structured, actionable prompts through Socratic dialogue. This agent is particularly valuable when you're not quite sure how to formulate your legal question or need help defining the scope of your inquiry.
 
 #### What It Does
 

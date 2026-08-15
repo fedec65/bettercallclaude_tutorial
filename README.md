@@ -65,10 +65,16 @@ New to BetterCallClaude? Start here:
 - **[Part 4: The Briefing Phase](./docs/briefing-phase.md)** — Structuring complex work with specialist panels
 
 
-- **[Part 5: Mastering Workflows](./docs/mastering-workflows.md)** — Design multi-step legal processes
+- **[Part 5: Mastering Workflows](./docs/mastering-workflows.md)** — Design multi-step legal processes, goal-loop verification, case timelines, citation content verification
 
 
-- **[Part 6: Scenario Library](./docs/scenarios/)** — Real-world examples
+- **[Part 6: Scenario Library](./docs/scenarios/)** — Real-world examples:
+  - [Contract Review](./docs/scenarios/contract-review.md)
+  - [Litigation Prep](./docs/scenarios/litigation-prep.md)
+  - [Legal Opinion](./docs/scenarios/legal-opinion.md)
+  - [Due Diligence](./docs/scenarios/due-diligence.md)
+  - [Case Chronology](./docs/scenarios/case-chronology.md) *(new in v4.9.5)*
+  - [NDA Triage](./docs/scenarios/nda-triage.md) *(new in v4.8.0)*
 
 
 - **[Part 7: Collaboration & Team Workflows](./docs/collaboration.md)** — Multi-lawyer matters
@@ -140,11 +146,16 @@ This tutorial is designed for:
 | ✅ **Citation Validation** | Bulk validate citations in documents | `/validate` |
 | 🧭 **Intelligent Gateway** | Auto-route to optimal workflow | `/legal` |
 | 🔄 **5-Step Pipeline** | End-to-end analysis in one command | `/legal-5step` |
+| 🕐 **Case Timeline** | Build a sourced chronology from case documents | `/legal-timeline` |
+| 🔁 **Goal-Loop Verification** | Define a success condition; a separate judge agent verifies each iteration | `/legal-goal`, `/legal-loop` |
+| 🚦 **NDA Triage** | Classify NDAs GREEN/YELLOW/RED against your playbook | `/nda-triage` |
+| 🔎 **Citation Content Verification** | Check every citation against the live source (existence + content) | `/validate` |
+| 🧑⚖️ **Guided Onboarding** | Non-technical setup, playbook creation, diagnostics | `/start`, `/doctor` |
 | 🔒 **Privacy Control** | Check and change privacy mode | `/privacy` |
 
-> 🏗️ **Architecture**: BetterCallClaude uses 15 specialized **skills** as the single source of truth. Commands are thin entry points that delegate to these skills. Infrastructure commands (`legal`, `setup`, `help`, `workflow`, `briefing`, `version`) remain full-featured.
+> 🏗️ **Architecture**: BetterCallClaude uses 16 specialized **skills** as the single source of truth. Commands are thin entry points that delegate to these skills. Infrastructure commands (`legal`, `start`, `help`, `workflow`, `briefing`, `version`) remain full-featured.
 >
-> **v4.6.1** — 20 agents, 20 commands, 15 skills, 9 MCP servers
+> **v4.9.6** — 21 agents, 27 commands, 16 skills, 9 MCP servers
 
 ## 🔗 Links
 

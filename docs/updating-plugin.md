@@ -48,11 +48,49 @@ The "Update plugin" button only becomes meaningful **after** the catalog has bee
 
 ---
 
-## What's New in v4.6.1
+## What's New since v4.6.1
 
-- **`/legal-5step`** — Run the full 5-phase framework as a single sequential pipeline: Intake → Research → Strategy → Adversarial → Draft, with quality gates at Steps 3 and 4. Flags: `--short`, `--medium`, `--long`, `--no-summary`, `--stop-after`, `--lang`, `--canton`.
-- **`/privacy`** — Check and change your privacy mode (`strict` / `balanced` / `cloud`).
-- **Privacy hardening** — 14 new Anwaltsgeheimnis detection patterns across DE/FR/IT/EN, Bash commands now intercepted, strict/balanced/cloud modes actively enforced.
+The current release is **v4.9.6**. Highlights since v4.6.1, grouped by theme:
+
+### Goal-loop verification (v4.9.0)
+
+- **`/legal-goal`** — declare a measurable goal for a work session (e.g. "every citation verified against its source").
+- **`/legal-loop`** — runs an iterative worker → judge loop until the goal is met: default max 5 iterations (hard cap 20), stops after 2 stagnant rounds, the judge never builds what it judges, and an honest `NOT MET` always beats a false pass. The full trail is written to `bcc-output/loops/`. Built-in profiles include `citations-clean`, `draft-passes-gate`, `adversarial-converge`, `nda-batch-clean`, `reg-watch`, and `timeline-sourced`.
+- Walkthrough: [Mastering Workflows §5.5](./mastering-workflows.md).
+
+### Sourced case timelines (v4.9.5)
+
+- **`/legal-timeline`** — builds a chronology in which **every event carries provenance**, events are labeled undisputed / alleged / contested, date conflicts keep **both** dates, gaps of 30+ days are flagged, and deadlines are computed under ZPO Art. 142–149 and BGG Art. 46 / 100–101 (cantonal holidays included). Verjährung deadlines are always marked "indicative", never definitive. Outputs land in `bcc-output/timeline/` as `timeline.md` / `.html` / `.docx`; `--merge` updates an existing timeline in place.
+- Walkthrough: the [Case Chronology scenario](./scenarios/case-chronology.md).
+
+### Citation content gate
+
+- `/validate` now verifies not just that cited sources **exist**, but that their **content supports the claim** (citation-content-verify). Each citation receives a MATCH / PARTIAL / MISMATCH / UNVERIFIED / SKIPPED verdict; UNVERIFIED and MISMATCH block delivery. Strict mode downgrades to existence-only checks, marked `(privacy-gated)`.
+
+### Firm playbook and NDA triage (v4.8.0)
+
+- **`/start`** — guided first-run setup that also creates your local playbook `bettercallclaude.local.md` from DE/FR/IT/EN templates.
+- **`/nda-triage`** — rapid NDA review, single file or batch, rating each clause GREEN / YELLOW / RED and flagging Art. 160 ff. OR validity limits, Lugano forum clauses, and zwingendes Recht overrides.
+- `/draft` now classifies deviations from your playbook as *conforme*, *accettabile*, *negoziare*, or *inaccettabile*.
+- Walkthrough: the [NDA Triage scenario](./scenarios/nda-triage.md).
+
+### Deliverables as files (v4.8.1)
+
+- Long outputs are written to `bcc-output/YYYY-MM-DD-<slug>/` as numbered phase files plus a `sources.md`; the chat keeps only a 3–5 line summary pointing to the files. The output folder is configurable in the playbook.
+
+### Diagnostics
+
+- **`/doctor`** — one-command health check of all 9 MCP connectors and your configuration. The old `/setup` still works as a deprecated alias that now calls `/start`.
+
+### Privacy fixes (v4.6.2 and v4.9.6)
+
+- **v4.6.2** — the privacy config can now only raise, never lower, severity; Bash path-exfiltration checks; a strict-mode enforcement fix; documented evasion limits.
+- **v4.9.6** — fixes a silent failure where an unquoted `${CLAUDE_PLUGIN_ROOT}` disabled the privacy hook whenever the plugin path contained spaces. If your BetterCallClaude lives under a path with spaces, update for this alone. Details: [Privacy & Responsibility](./appendix/privacy-responsibility.md).
+
+### Still current from v4.6.1
+
+- **`/legal-5step`** — the full 5-phase framework as one sequential pipeline: Intake → Research → Strategy → Adversarial → Draft, with quality gates at Steps 3 and 4. Flags: `--short`, `--medium`, `--long`, `--no-summary`, `--stop-after`, `--lang`, `--canton`.
+- **`/privacy`** — check and switch privacy mode (`strict` / `balanced` / `cloud`).
 
 ---
 
@@ -140,7 +178,7 @@ After updating, we recommend:
 
 1. **Restart COWORK**: Close and reopen the workspace to ensure all changes take effect
 2. **Verify connectors**: Check that all 9 MCP connectors are still enabled
-3. **Run setup command**: Type `/bettercallclaude:setup` to verify everything is working
+3. **Run setup and diagnostics**: Type `/bettercallclaude:start` to verify configuration, then `/bettercallclaude:doctor` for a full connector health check
 4. **Test a quick query**: Try a simple citation lookup to confirm functionality
 
 ---
@@ -158,9 +196,9 @@ After updating, we recommend:
 ### Issue: Update fails or stalls
 
 **Solution**:
-1. Close Claude Desktop completely
+1. Close Cowork completely
 2. Reopen and try again
-3. If it persists, remove and reinstall the plugin
+3. If it persists, remove and reinstall the plugin. If the marketplace catalog itself seems stuck on a stale version, force a manual sync (⋯ menu → "Check for updates"), or remove and re-add the marketplace to rebuild the cached catalog.
 
 ### Issue: Connectors missing after update
 
@@ -194,8 +232,8 @@ If you ever install BetterCallClaude via a manual ZIP upload (e.g., for beta tes
 - [ ] I will click "Update" manually when a new version is available
 - [ ] After updating, I restart COWORK
 - [ ] After updating, I verify all 9 connectors are enabled
-- [ ] After updating, I run `/bettercallclaude:setup` to confirm connectivity
+- [ ] After updating, I run `/bettercallclaude:start` and `/bettercallclaude:doctor` to confirm connectivity
 
 ---
 
-*Last updated: May 2026 — v4.6.1
+*Last updated: August 2026 — v4.9.6*
