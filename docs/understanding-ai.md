@@ -263,7 +263,7 @@ Think of it like this:
 
 Long outputs (memos, research, strategy, drafts, triage reports) are no longer dumped into the chat. They are written as files under:
 
-```
+```text
 bcc-output/YYYY-MM-DD-<matter-slug>/
 ├── 01-research.md
 ├── 02-strategy.md

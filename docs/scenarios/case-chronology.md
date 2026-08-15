@@ -28,7 +28,7 @@ Place every dated document in the matter's `docs/` folder. The timeline is only 
 ### Step 3: Build the Timeline (5 min)
 
 **Type:**
-```
+```text
 /legal-timeline Build the case chronology from the documents in docs/:
 warning letter, HR correspondence, meeting notes, termination letter.
 Include all dated events relevant to the dismissal dispute.

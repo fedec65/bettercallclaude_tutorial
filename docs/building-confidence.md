@@ -262,7 +262,7 @@ Level 4: Document Drafting & Review (30 min)
 **Scenario**: You drafted a legal opinion in Exercise 4.1 or a previous matter and want to be sure every citation is both real and actually supports the claim.
 
 **Type:**
-```
+```text
 /validate --document @bcc-output/2026-08-15-legal-opinion/03-draft.md
 ```
 
@@ -282,7 +282,7 @@ Level 4: Document Drafting & Review (30 min)
 **Scenario**: Before sending a draft to the client, you want an independent judge agent to confirm it meets the quality bar.
 
 **Type:**
-```
+```text
 /legal-goal citations-clean
 /legal-loop [the Goal Record just created]
 ```

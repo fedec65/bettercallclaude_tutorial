@@ -133,7 +133,7 @@ Then run the onboarding command in COWORK:
 
 **If something is not connecting**, run the diagnostics command:
 
-```
+```text
 /bettercallclaude:doctor
 ```
 
@@ -176,7 +176,7 @@ You should receive a response confirming BetterCallClaude is active and ready.
 
  BetterCallClaude will return:
 
-```📄 **BGE 147 IV 73**
+```
 
 **Court**: Federal Supreme Court
  Switzerland
@@ -409,7 +409,7 @@ When a playbook exists, contract review classifies clauses against your standard
 
 Since v4.8.1, long outputs are written as **files**, not chat walls. Every memo, research report, strategy, draft, or triage lands in a dated folder inside your matter directory:
 
-```
+```text
 📁 2024-001_Smith_v_AG/
     ├── CLAUDE.md
     └── bcc-output/

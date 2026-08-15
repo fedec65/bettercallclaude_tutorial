@@ -24,12 +24,12 @@ Create a matter directory and drop all four NDAs into `docs/nda-inbox/`. Batch m
 ### Step 2: Run the Triage (5 min)
 
 **Single file:**
-```
+```text
 /nda-triage docs/nda-inbox/nda-alpha-gmbh.pdf
 ```
 
 **Whole batch:**
-```
+```text
 /nda-triage docs/nda-inbox/
 ```
 
@@ -55,7 +55,7 @@ Ask for each RED item: is this negotiable, or is it a reason to walk?
 
 For the NDAs worth pursuing, generate the negotiation positions with `/draft`, referencing your firm playbook (v4.8.0) if you have one:
 
-```
+```text
 /draft NDA markup for nda-beta-ag.pdf addressing all YELLOW clauses,
 aligned with the firm playbook positions
 ```
@@ -66,7 +66,7 @@ With a playbook, each requested change comes with its deviation class (*conforme
 
 For a multi-NDA batch, wrap the review in a goal-loop so nothing ships half-checked:
 
-```
+```text
 /legal-goal nda-batch-clean
 /legal-loop bcc-output/goals/[the goal record just created]
 ```
@@ -76,7 +76,7 @@ For a multi-NDA batch, wrap the review in a goal-loop so nothing ships half-chec
 ### Step 6: Deliver the Verdict (2 min)
 
 **Type:**
-```
+```text
 /draft client memo: sign / negotiate / refuse recommendation per NDA,
 with the RED findings and the proposed markups attached
 ```

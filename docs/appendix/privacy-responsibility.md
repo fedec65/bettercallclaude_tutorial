@@ -108,7 +108,7 @@ Privacy hooks automatically scan your queries **and tool calls** for:
 **v4.8.1 fallback layer:**
 - Key skills perform their own privacy screening before external calls, so protection holds even when a tool call bypasses the hook layer
 
-> ⚠️ **v4.9.6 advisory — read this if your plugin path contains spaces.** On every version before v4.9.6, an unquoted `${CLAUDE_PLUGIN_ROOT}` silently disabled the privacy hook whenever the plugin was installed under a path containing spaces (e.g. `~/My Tools/Cowork/...`). No error was shown — the hook simply never ran. If that describes your setup, **update to v4.9.6**, then confirm the hook is live again by sending a test query that contains an obvious strong privacy pattern (a made-up client name plus "contract breach" is enough); the confirmation prompt should appear in balanced mode.
+> ⚠️ **v4.9.6 advisory — read this if your plugin path contains spaces.** On every version before v4.9.6, an unquoted `${CLAUDE_PLUGIN_ROOT}` silently disabled the privacy hook whenever the plugin was installed under a path containing spaces (e.g. `~/My Tools/COWORK/...`). No error was shown — the hook simply never ran. If that describes your setup, **update to v4.9.6**, then confirm the hook is live again by sending a test query that contains an obvious strong privacy pattern (a made-up client name plus "contract breach" is enough); the confirmation prompt should appear in balanced mode.
 
 ### Example
 

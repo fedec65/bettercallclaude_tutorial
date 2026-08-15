@@ -143,7 +143,7 @@
 **Cause:** A tool-call format change on versions before v4.9.3; some calls were malformed, so COWORK refused them and agents silently degraded to web search.
 
 **Fix:**
-```
+```text
 # Check your version first
 /bettercallclaude:version
 ```
@@ -164,7 +164,7 @@
 1. Click the ⋯ menu on the marketplace → **"Check for updates"** to force a catalog refresh
 2. If still stale, remove and re-add the `fedec65/bettercallclaude` marketplace to rebuild the cache from scratch
 
-See [How Cowork Plugin Updates Actually Work](../updating-plugin.md) for the two-layer explanation.
+See [How COWORK Plugin Updates Actually Work](../updating-plugin.md) for the two-layer explanation.
 
 ---
 

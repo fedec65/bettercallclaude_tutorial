@@ -214,7 +214,7 @@ The biggest change since v4.6: BetterCallClaude can now **verify its own deliver
 
 ### The Two Commands
 
-```
+```text
 /legal-goal [profile or free-text objective]   →  creates a Goal Record (never starts work)
 /legal-loop [goal-record]                       →  runs worker → evaluator iterations
 ```
@@ -222,7 +222,7 @@ The biggest change since v4.6: BetterCallClaude can now **verify its own deliver
 1. **`/legal-goal`** turns your quality bar into a **Goal Record** — a small file with a YAML header describing exactly what "done and correct" means.
 2. **`/legal-loop`** then runs the cycle: a **worker** agent improves the deliverable, an **evaluator** agent (the `legal-evaluator` skill) judges it against the Goal Record, and the loop repeats until the condition is met or a safety rail stops it.
 
-```
+```text
         ┌──────────────────────────────────────────┐
         │              /legal-loop                 │
         │                                          │
@@ -247,7 +247,7 @@ The biggest change since v4.6: BetterCallClaude can now **verify its own deliver
 | `timeline-sourced` | Every timeline event has a traceable source, conflicts flagged, deadlines anchored | Case chronologies (v4.9.5) |
 
 **Example: gate a draft before it goes out**
-```
+```text
 /legal-goal draft-passes-gate
 /legal-loop bcc-output/goals/2026-08-15-draft-gate.md
 ```
@@ -269,7 +269,7 @@ Every iteration leaves an **auditable verdict trail** in `bcc-output/loops/` —
 
 Litigation lives on facts and dates. `/legal-timeline` turns a folder of case documents — contracts, correspondence, court filings, expert reports — into a legal chronology the way a lawyer reads a case.
 
-```
+```text
 /legal-timeline @case-folder/
 ```
 
@@ -295,7 +295,7 @@ All under `bcc-output/timeline/` (a living case artifact — update it with `--m
 
 Chain a timeline with a goal-loop for maximum rigor:
 
-```
+```text
 /legal-timeline @case-folder/
 /legal-goal timeline-sourced
 /legal-loop bcc-output/goals/2026-08-15-timeline-goal.md
