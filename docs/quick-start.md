@@ -41,22 +41,21 @@ Before installing, ensure you have:
 > 🌙 **A Note on Interface Changes**  
 > Anthropic has a peculiar habit of redesigning the COWORK interface while the rest of us are sleeping. If these instructions don't match what you see on screen, don't worry—you're not going crazy. The menu items have simply taken a midnight stroll to new locations. We update this documentation as fast as humanly possible, but the UI may occasionally outpace us. When in doubt, look for buttons that sound similar to what we describe here.
 
-### Step 1: Open Customize
+### Step 1: Open Plugins
 
 1. Open Claude Desktop
-2. In the left sidebar, click **Customize**
+2. In the left sidebar, click **Plugins**
 
-![Open Customize](../assets/screenshots/install_01_customize.png)
-*Click Customize in the left sidebar*
+![Open Plugins](../assets/screenshots/install_01_plugins.png)
+*Click Plugins in the left sidebar*
 
-### Step 2: Open Plugins and Add a Marketplace
+### Step 2: Add a Marketplace
 
-1. In the Customize section, click **Plugins**
-2. Click the **Add** button in the top-right corner
-3. Select **Add marketplace**
+1. Click the **Add** button in the top-right corner
+2. Select **Add marketplace**
 
-![Plugins page](../assets/screenshots/install_02_plugin_add_marketplace.png)
-*Open Plugins and select Add marketplace*
+![Add marketplace](../assets/screenshots/install_02_add_marketplace.png)
+*Click Add, then select Add marketplace*
 
 ### Step 3: Select Add from a Repository
 
@@ -65,22 +64,22 @@ In the Add marketplace dialog, select **Add from a repository**.
 ![Add from repository](../assets/screenshots/install_03_add_from_repository.png)
 *Choose Add from a repository*
 
-### Step 4: Enter the Repository and Sync
+### Step 4: Enter the Repository
 
-1. In the URL field, enter: `fedec65/bettercallclaude`
+In the URL field, enter: `fedec65/bettercallclaude`
+
+![Enter repository](../assets/screenshots/install_04_enter_repository.png)
+*Enter fedec65/bettercallclaude in the URL field*
+
+### Step 5: Sync the Marketplace and Install BetterCallClaude
+
+1. Keep **Sync automatically** enabled so Claude Desktop refreshes the marketplace catalog when the repository changes
 2. Click **Sync**
+3. When the Directory opens, find the **Bettercallclaude** plugin card and click **Install**
+4. Once installed, click the **gear wheel** icon on the plugin card to open its settings
 
-![Enter repository and sync](../assets/screenshots/install_04_enter_repo_sync.png)
-*Enter the repository and click Sync*
-
-### Step 5: Install BetterCallClaude and Open Settings
-
-1. The Directory opens showing available plugins
-2. Find the **Bettercallclaude** plugin card and click **Install**
-3. Once installed, click the **gear wheel** icon on the plugin card
-
-![Install and open settings](../assets/screenshots/install_05_install_and_gear.png)
-*Install the plugin, then click the gear wheel*
+![Enable automatic sync](../assets/screenshots/install_05_sync_automatically.png)
+*Keep Sync automatically enabled, then click Sync*
 
 ### Step 6: Confirm Installation
 
